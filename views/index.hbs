@@ -1,2 +1,13 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
+<a-scene>
+  <a-text value="hello VR!!!!!" position="-2 1 -2"></a-text>
+
+  <a-sphere
+    position="10 1 -10"
+    material="src: https://raw.githubusercontent.com/german-alvarez-dev/workshop-webvr-aframe/master/textures/marble.jpg; shader:flat;"
+    animation="property: position; to: 10 8 -10; dur: 1000; dir: alternate; loop: true; easing: easeOutQuad;"
+    light="type: point; color: white; intensity: 0.2"
+  ></a-sphere>
+
+</a-scene>

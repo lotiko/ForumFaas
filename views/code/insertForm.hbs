@@ -1,0 +1,112 @@
+<main>
+  <form action="/function/insert" method="post">
+    <label for="nbarg"> Nombre d'arguments
+    <input type="number" name="nbarg" id="nbarg" min="1" max="5">
+    </label>
+    <div id="head-fun">
+      
+        function
+        <span> <input  placeholder="functionName" type="text" name="namefun" id="namefun" size="25" minlength="1" maxlength="25" required></span>
+        (
+        <span id="inputs-args"> <input type="text" class="inputsargs" name="args[]" id="name-arg1" size="5" required></label></span>
+        ) {
+      
+    </div> 
+      <textarea name="body" id="fun" cols="80" rows="20" required></textarea>
+      }
+  </div>
+    <button class="btn" id="bodyfun">Valider</button>
+  </form>
+</main>
+<style>
+  #inputbody {
+    display:flex;
+    flex-direction: column;
+  }
+  #head-fun {
+    display: flex;
+    align-items: center;
+  }
+  #head-fun:not(span) {
+    font-size: 1.5em;
+  }
+</style>
+<script>
+  const $inNbargs = document.getElementById("nbarg");
+  const $inNamefun = document.getElementById("namefun");
+  const $divArgs = document.getElementById("inputs-args");
+  let $lastargs;
+
+  $inNbargs.oninput = () => {
+    if ($inNbargs.value < 1 || $inNbargs.value > 5) return;
+    $divArgs.innerHTML = "";
+    let nbInput = $inNbargs.value;
+    let i = 1;
+    while(i <= nbInput) {
+      let islast = (i === Number(nbInput));
+      let inner;
+      if(islast) {
+       inner = `<input type="text" size="5" class="inputsargs" name="args[]" id="name-arg${i}" required>`;
+      } else {
+         inner = `<input type="text" size="5" class="inputsargs" name="args[]" id="name-arg${i}" required>,`;
+      }
+      $divArgs.innerHTML = $divArgs.innerHTML+inner;
+        islast && ($lastargs = document.getElementById(`name-arg${i}`));
+      i++;
+    }
+  }
+  //const insert
+/*const $btns = document.querySelectorAll(".btn");
+let $btnNandA = $btns[0];
+let $btnnameArgs = $btns[1];
+$btnnameArgs.hidden = true;
+let $btnbody = $btns[2];
+$btnbody.hidden = true;
+let $namefun = document.getElementById("namefun");
+let $nbarg = document.getElementById("nbarg");
+let $inputsArgs = document.getElementById("inputs-args");
+const funobj = { funName: "", args: [], body: "" };
+$btnNandA.onclick = () => {
+  funobj.funName = $namefun.value;
+  let inner = "";
+  for (let i = 0; i < $nbarg.value; i++) {
+    inner += `<label>Name argument n°${i + 1}
+    <input type="text" class="inputsargs" name="name-arg${i}" id="name-arg${i}">
+    </label>`;
+  }
+  $btnNandA.hidden = true;
+  $btnnameArgs.hidden = false;
+  $inputsArgs.innerHTML = inner;
+};
+$btnnameArgs.onclick = () => {
+  let $args = document.querySelectorAll(".inputsargs");
+  $args.forEach((el) => funobj.args.push(el.value));
+  console.log(funobj, $nbarg.value);
+  inner = `<label>Corps de la function:
+  function ${funobj.funName}() {
+    <textarea name="fun" id="fun" cols="30" rows="10"></textarea>
+  }
+  </label>`;
+  $btnnameArgs.hidden = true;
+  $btnbody.hidden = false;
+  document.getElementById("inputbody").innerHTML = inner;
+};
+
+$btnbody.onclick = () => {
+  let $body = document.getElementById("fun");
+  funobj.body = $body.value;
+  console.log(funobj);
+  fetch("/insertCode", {
+    method: "post",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+
+    //make sure to serialize your JSON body
+    body: JSON.stringify(funobj),
+  }).then((res) => {
+    console.log(res);
+  });
+};*/
+</script>
