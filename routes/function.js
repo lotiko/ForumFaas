@@ -23,12 +23,15 @@ router
         next(err);
       });
   })
-  .post("/fun/", (req, res, next) => {
-    Fun.findById("609a8c77cd3d515e98b32096")
+  .post("/result/:name", (req, res, next) => {
+    Fun.findOne({name: req.params.name})
       .then((ret) => {
-        console.log(ret);
         let path = `${__dirname}/../tmpfolder/${ret.name}.js`;
-        let args = ret.args.reduce((acc, val) => acc + "," + val);
+        let args = ret.args.map((el) => {
+          if (el.match(/^str/)) return String(`${el} = "${req.body[el]}"`);
+          return `${el} = ${req.body[el]}`;
+          // return req.body[el];
+        });
         console.log(args, __dirname);
         let fileText = `
 function ${ret.name}(${args}) {
@@ -43,6 +46,7 @@ module.exports = ${ret.name};`;
         const fun = require(`../tmpfolder/${ret.name}.js`);
         let datatoret = fun(req.body.nb, req.body.str);
         res.json({ data: datatoret });
+        // res.send("test")
       })
       .catch((err) => next(err));
   });
