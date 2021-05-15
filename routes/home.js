@@ -36,6 +36,7 @@ router.post('/register', (req, res, next) => {
         })
         .catch((err)=>console.log(err))
     } else {
+        
         console.log('vous devez mettre un mot de pass egal');
     }
 })
