@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Fun = require("../models/functionModel");
 const fs = require("fs");
+const fetch = require("node-fetch");
 
 router
   .get("/insert", (req, res, next) => {
@@ -24,15 +25,21 @@ router
       });
   })
   .post("/result/:name", (req, res, next) => {
-    Fun.findOne({name: req.params.name})
+    let datatoret;
+    let id;
+    Fun.findOne({ name: req.params.name })
       .then((ret) => {
-        let path = `${__dirname}/../tmpfolder/${ret.name}.js`;
+        let argsNames = [];
+        id = ret._id;
+        let path = `${__dirname}/../tmpfolder/${ret._id}.js`;
+        // let path = `/var/lib/docker/volumes/volTestNode/${ret._id}.js`;
         let args = ret.args.map((el) => {
+          argsNames.push(el);
           if (el.match(/^str/)) return String(`${el} = "${req.body[el]}"`);
           return `${el} = ${req.body[el]}`;
           // return req.body[el];
         });
-        console.log(args, __dirname);
+        // console.log(args, __dirname);
         let fileText = `
 function ${ret.name}(${args}) {
 ${ret.body}
@@ -43,10 +50,19 @@ module.exports = ${ret.name};`;
           if (err) throw err;
           console.log("Saved!");
         });
-        const fun = require(`../tmpfolder/${ret.name}.js`);
-        let datatoret = fun(req.body.nb, req.body.str);
-        res.json({ data: datatoret });
+        // const fun = require(`../tmpfolder/${ret.name}.js`);
+        // let datatoret = fun(req.body.nb, req.body.str);
+        // res.json({ data: datatoret });
         // res.send("test")
+        // .catch((err) => console.log("in ctch==============", err));
+        datatoret = fetch("http://localhost:2323/indb/launch/" + id, {
+          headers: { "Content-type": "application/json" },
+        })
+          .then((ret) => ret.json())
+          .then((json) => {
+            console.log("in fetch================", json);
+            res.json(json);
+          });
       })
       .catch((err) => next(err));
   });
