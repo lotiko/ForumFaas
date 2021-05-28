@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const User = require('../models/users')
+const User = require('../models/user')
 
 mongoose.connect('mongodb://localhost/forumfaas', {
     useCreateIndex: true,
@@ -9,15 +9,15 @@ mongoose.connect('mongodb://localhost/forumfaas', {
 
 const modo = [
     {
-        Pseudo: 'massytak',
+        name: 'massytak',
         email: 'massi06.messalti@gmail.com',
-        password: 'MOBejaia',
-        confirmPw: 'MOBejaia'
+        password: 'MOBejaia06',
+        status:'admin'
     }, {
-        Pseudo: 'massytahk',
-        email: 'massi06.messalti@gmail.com',
-        password: 'MOBejaia',
-        confirmPw: 'MOBejaia'
+        Pseudo: 'lolodev',
+        email: 'lo@lo.com',
+        password: 'Plop1234',
+        status:'admin'
     }
 ];
 

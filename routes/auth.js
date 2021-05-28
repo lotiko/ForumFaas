@@ -1,7 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 
-const Users = require('../models/users')
+const Users = require('../models/user')
 // const baseDataview = {
 //     frame: true,
 //     title: 'home'
@@ -20,25 +20,22 @@ router.get('/signUp', (req, res, next) => {
 
 router.post('/signUp', (req, res, next) => {
 
-    let pseudoAdd = req.body.pseudo;
+    let nameAdd = req.body.pseudo;
     let emailAdd = req.body.email;
     let passwordAdd = req.body.password;
-    if (passwordAdd === req.body.confirmPw) {
+   
         const adduser=new Users({
-            Pseudo:pseudoAdd,
+            name:nameAdd,
             email:emailAdd,
-            password:passwordAdd,
-            confirmPw:req.body.confirmPw
+            password:passwordAdd
+            
         })
         adduser.save()
         .then(function(usersFromDb){
             res.redirect('/')
         })
         .catch((err)=>console.log(err))
-    } else {
-        
-        console.log('vous devez mettre un mot de pass egal');
-    }
+   
 })
 
 
