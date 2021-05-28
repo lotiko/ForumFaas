@@ -2,8 +2,9 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
-const Users = require("../models/user");
-var validator = require("email-validator");
+const User = require("../models/user");
+const validator = require("email-validator");
+const passport = require("passport");
 // const baseDataview = {
 //     frame: true,
 //     title: 'home'
@@ -44,7 +45,7 @@ router.post("/signUp", (req, res, next) => {
   const salt = bcrypt.genSaltSync(bcryptSalt);
   const hashPass = bcrypt.hashSync(passwordAdd, salt);
 
-  const adduser = new Users({
+  const adduser = new User({
     name: nameAdd,
     email: emailAdd,
     password: hashPass,
@@ -71,8 +72,29 @@ router.get("/login", (req, res, next) => {
   res.render("auth/login");
 });
 router.post("/login", (req, res, next) => {
-  console.log(req.body);
-  res.render("home");
+  passport.authenticate("local", (err, theUser, failureDetails) => {
+    if (err) {
+      // Something went wrong authenticating user
+      return next(err);
+    }
+
+    if (!theUser) {
+      // Unauthorized, `failureDetails` contains the error messages from our logic in "LocalStrategy" {message: '…'}.
+      res.render("auth/login", { errorMessage: failureDetails.message });
+      return;
+    }
+
+    // save user in session: req.user
+    req.login(theUser, (err) => {
+      if (err) {
+        // Session save went bad
+        return next(err);
+      }
+
+      // All good, we are now logged in and `req.user` is now set
+      res.render("home", { message: "Vous étes connecté." });
+    });
+  })(req, res, next);
 });
 
 module.exports = router;
