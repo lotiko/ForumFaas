@@ -58,6 +58,7 @@ router.post("/signUp", (req, res, next) => {
     })
     /// voir ici si message dans modéles ou ici
     .catch((err) => {
+      // catch E11000 duplicate key error
       if (err.code === 11000) {
         res.render("auth/signup", { errorMessage: "Un utilisateur avec ce mail existe deja." });
         return;
