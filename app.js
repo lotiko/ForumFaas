@@ -55,4 +55,7 @@ app.use("/", index);
 const home = require("./routes/home");
 app.use("/home", home);
 
+const auth = require("./routes/auth");
+app.use("/auth", auth);
+
 module.exports = app;

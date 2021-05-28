@@ -9,12 +9,12 @@ mongoose.connect('mongodb://localhost/forumfaas', {
 
 const modo = [
     {
-        pseudo: 'massytak',
+        Pseudo: 'massytak',
         email: 'massi06.messalti@gmail.com',
         password: 'MOBejaia',
         confirmPw: 'MOBejaia'
     }, {
-        pseudo: 'massytahk',
+        Pseudo: 'massytahk',
         email: 'massi06.messalti@gmail.com',
         password: 'MOBejaia',
         confirmPw: 'MOBejaia'
