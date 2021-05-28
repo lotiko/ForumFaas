@@ -1,3 +1,8 @@
 <p>hello</p>
 <a href="/auth/signUp">Inscription</a>
 <a href="/auth/login">Connexion</a>
+{{#if message}}
+  <div class="message">
+    {{message}}
+  </div>
+{{/if}}
