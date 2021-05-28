@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const Users = require('../models/users')
+const User = require('../models/users')
 
 mongoose.connect('mongodb://localhost/forumfaas', {
     useCreateIndex: true,
@@ -21,6 +21,6 @@ const modo = [
     }
 ];
 
-Users.insertMany(modo).then(function (modoFromDb) {
+User.insertMany(modo).then(function (modoFromDb) {
     console.log(modoFromDb);
 }).catch(err => console.log(err));
