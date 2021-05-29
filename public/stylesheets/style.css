@@ -12,7 +12,10 @@ body {
   font-family: "Noto Sans JP", sans-serif; }
 
 main {
-  flex: 1; }
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
 
 #background {
   position: absolute;
@@ -46,9 +49,7 @@ nav .btnf {
 nav a {
   margin-left: 2em; }
 
-.btnf button {
-  width: 7em;
-  margin-left: 2em;
+button {
   background-color: rgba(72, 104, 215, 0.41);
   color: #e49906;
   font-weight: bold;
@@ -56,10 +57,60 @@ nav a {
   border-radius: 5px;
   height: 2em; }
 
+.btnf button {
+  width: 7em;
+  margin-left: 2em; }
+
+.bubble {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url("/images/bubble.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin: auto;
+  height: 150px;
+  width: 260px;
+  color: #e49906; }
+
+.bubble button {
+  margin-top: 0.5em; }
+
+.message {
+  display: flex;
+  align-items: center;
+  background-color: rgba(72, 103, 215, 0.733);
+  color: #e49906;
+  font-size: 1.5em;
+  border: 4px solid rgba(24, 102, 220, 0.58);
+  margin: 4em;
+  min-height: 4em; }
+
+.message p {
+  text-align: center;
+  margin: auto 2em; }
+
+.login,
 .register {
   display: flex;
   flex-direction: column;
-  align-items: center; }
+  align-items: center;
+  max-width: 250px;
+  background-color: #04819c;
+  margin: 1em auto;
+  border-radius: 5px; }
+
+.register h2,
+.login h2 {
+  max-width: 90%; }
+
+label {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  color: #e49906;
+  margin: 0.5em auto;
+  max-width: 15em; }
 
 .footer {
   padding-bottom: 4em;

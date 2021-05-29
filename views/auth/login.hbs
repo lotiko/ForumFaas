@@ -1,14 +1,15 @@
-<form action="/auth/login" method="POST">
-  <label>Email:
-    <input type="email" name="email" />
-  </label>
-  <label>password:
-    <input type="password" name="password" />
-  </label>
-  <button>Valider</button>
-</form>
-{{#if errorMessage}}
-  <div class="error">
-    {{errorMessage}}
-  </div>
-{{/if}}
+<div class="login">
+  <h2>Bienvenue sur la page de login</h2>
+  <form action="/auth/login" method="POST" class="login">
+    <label>Email:
+      <input type="email" name="email" /></label>
+    <label>Password:
+      <input type="password" name="password" /></label>
+    <button>Valider</button>
+  </form>
+  {{#if errorMessage}}
+    <div class="error">
+      {{errorMessage}}
+    </div>
+  {{/if}}
+</div>

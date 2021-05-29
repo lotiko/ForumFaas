@@ -1,7 +1,7 @@
 <div class="register">
     <h2>Bienvenue sur la page d'inscription</h2>
     <form action="/auth/signUp" method="POST" class="register">
-        <label for="">Pseudo:
+        <label>Pseudo:
             <input type="text" name="pseudo" {{#if oldValues.pseudo}} value="{{ oldValues.pseudo }}" {{/if}}/></label>
         <label>Email:
             <input type="email" name="email" {{#if oldValues.email}} value="{{ oldValues.email }}" {{/if}}/></label>
