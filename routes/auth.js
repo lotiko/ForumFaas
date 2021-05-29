@@ -21,6 +21,7 @@ router.get("/signUp", (req, res, next) => {
 });
 
 router.post("/signUp", (req, res, next) => {
+    const regex = new RegExp(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/);
   let nameAdd = req.body.pseudo;
   let emailAdd = req.body.email;
   let passwordAdd = req.body.password;
@@ -40,6 +41,13 @@ router.post("/signUp", (req, res, next) => {
       oldValues: oldValues,
     });
     return;
+  }
+  //3.check the password validate
+  if(!regex.test(passwordAdd)===true){
+      res.render("auth/signup",{
+          errorMessage:"Le mot de passe doit être de 8 caractères minimum et contenir au moins un chiffre une majuscule et minuscule"
+      })
+      return;
   }
   // Encrypt the password
   const salt = bcrypt.genSaltSync(bcryptSalt);
