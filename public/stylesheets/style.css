@@ -7,6 +7,13 @@ body {
   margin: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
 
+#background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: black;
+  z-index: -1; }
+
 header {
   display: flex;
   align-items: center;
@@ -34,7 +41,13 @@ nav a {
 
 .btnf button {
   width: 7em;
-  margin-left: 2em; }
+  margin-left: 2em;
+  background-color: rgba(72, 104, 215, 0.41);
+  color: #e49906;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  height: 2em; }
 
 .register {
   display: flex;
