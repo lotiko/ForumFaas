@@ -12,6 +12,7 @@ const MongoStore = require("connect-mongo");
 
 const bcrypt = require("bcrypt");
 
+/// mongoose
 const mongoose = require("mongoose");
 mongoose
   .connect("mongodb://localhost/forumfaas", {
@@ -40,7 +41,6 @@ app.use(cookieParser());
 const User = require("./models/user");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
-console.log(LocalStrategy);
 
 passport.serializeUser((user, cb) => cb(null, user._id));
 
