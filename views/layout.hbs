@@ -1,18 +1,30 @@
-<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>{{title}}</title>
-  <link rel="stylesheet" href="/stylesheets/style.css" />
-  
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
 
-  {{{body}}}
+  </head>
+  <body>
+    <header>
+      <img class="logo" src="/images/LOGO.png" alt="logo" />
+      <nav>
+        <div class="btnf">
+          <button>Forum</button>
+        </div>
+        <a href="/auth/signup"><img src="/images/codicon_account.png" alt="icon signup" /></a>
+        <a href="/auth/login"><img
+            src="/images/ant-design_login-outlined.png"
+            alt="icon login"
+          /></a>
+      </nav>
+    </header>
 
-  <script src="/javascripts/script.js"></script>
+    {{{body}}}
 
-</body>
+    <script src="/javascripts/script.js"></script>
+
+  </body>
 </html>
