@@ -5,23 +5,13 @@ const bcryptSalt = 10;
 const User = require("../models/user");
 const validator = require("email-validator");
 const passport = require("passport");
-// const baseDataview = {
-//     frame: true,
-//     title: 'home'
-// }
-// router.get('/', (req, res, next) => {
-
-//     res.render('home', {
-//         ... baseDataview
-//     });
-// });
 
 router.get("/signUp", (req, res, next) => {
   res.render("auth/signup");
 });
 
 router.post("/signUp", (req, res, next) => {
-    const regex = new RegExp(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/);
+  const regex = new RegExp(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/);
   let nameAdd = req.body.pseudo;
   let emailAdd = req.body.email;
   let passwordAdd = req.body.password;
@@ -43,11 +33,12 @@ router.post("/signUp", (req, res, next) => {
     return;
   }
   //3.check the password validate
-  if(!regex.test(passwordAdd)===true){
-      res.render("auth/signup",{
-          errorMessage:"Le mot de passe doit être de 8 caractères minimum et contenir au moins un chiffre une majuscule et minuscule"
-      })
-      return;
+  if (!regex.test(passwordAdd) === true) {
+    res.render("auth/signup", {
+      errorMessage:
+        "Le mot de passe doit être de 8 caractères minimum et contenir au moins un chiffre une majuscule et minuscule",
+    });
+    return;
   }
   // Encrypt the password
   const salt = bcrypt.genSaltSync(bcryptSalt);
@@ -77,6 +68,7 @@ router.post("/signUp", (req, res, next) => {
 });
 
 router.get("/login", (req, res, next) => {
+  console.log(req.user);
   res.render("auth/login");
 });
 router.post("/login", (req, res, next) => {
@@ -98,11 +90,15 @@ router.post("/login", (req, res, next) => {
         // Session save went bad
         return next(err);
       }
-
+      console.log(req.user);
       // All good, we are now logged in and `req.user` is now set
-      res.render("home", { message: "Vous étes connecté." });
+      res.render("home", { message: "Vous étes connecté.", isLog: true });
     });
   })(req, res, next);
 });
-
+router.get("/logout", (req, res, next) => {
+  req.logout();
+  console.log(!!req.user);
+  res.render("home", { message: "Vous étes déconnecté.", isLog: !!req.user });
+});
 module.exports = router;
