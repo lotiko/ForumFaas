@@ -9,7 +9,7 @@ body {
   display: flex;
   flex-direction: column;
   height: 100%;
-  font-family: 'Noto Sans JP', sans-serif; }
+  font-family: "Noto Sans JP", sans-serif; }
 
 main {
   flex: 1; }
@@ -63,7 +63,7 @@ nav a {
 
 .footer {
   padding: 1.2em;
-  background-color: #04819C;
+  background-color: #0d6d7f;
   border-radius: 50% 50% 0% 0%; }
 
 .linkfooter {
