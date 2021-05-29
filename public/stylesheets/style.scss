@@ -15,6 +15,16 @@ font-family: 'Noto Sans JP', sans-serif;
 main{
   flex: 1;
 }
+#background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: black;
+  z-index: -1;
+}
+////////////////
+///// HEADER
+////////////////
 header {
   display: flex;
   align-items: center;
@@ -43,7 +53,15 @@ nav a {
 .btnf button {
   width: 7em;
   margin-left: 2em;
+  background-color: rgba(72, 104, 215, 0.41);
+  color: rgba(228, 153, 6, 1);
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  height: 2em;
 }
+///////////////////////////////////////////////////
+//////////////////////////////////////////////////
 // a {
 //   color: #00b7ff;
 // }
