@@ -6,6 +6,14 @@ body {
   color: aliceblue;
   margin: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  
+font-family: 'Noto Sans JP', sans-serif;
+}
+main{
+  flex: 1;
 }
 header {
   display: flex;
@@ -44,4 +52,16 @@ nav a {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.footer{
+  padding: 1.2em;
+  background-color: #04819C;
+  border-radius: 50% 50% 0% 0%;
+  
+}
+
+.linkfooter{
+  display: flex;
+  flex-direction: row;
 }
