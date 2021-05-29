@@ -1,8 +1,10 @@
-<p>hello</p>
-<a href="/auth/signUp">Inscription</a>
-<a href="/auth/login">Connexion</a>
+<div class="bubble">
+  <h3>Rejoins la communauté</h3>
+  <img src="/images/codicon_account.png" alt="icon signup" />
+  <a href="/auth/signup"><button>Inscription</button></a>
+</div>
 {{#if message}}
   <div class="message">
-    {{message}}
+    <p>{{message}}</p>
   </div>
 {{/if}}
