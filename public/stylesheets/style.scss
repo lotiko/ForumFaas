@@ -135,3 +135,13 @@ label {
   display: flex;
   flex-direction: row;
 }
+
+.error {
+  min-height: 3em;
+  min-width: 200px;
+  background-color: rgb(204, 40, 34);
+  border-radius: 5px;
+  text-align: center;
+  margin-bottom: 1em;
+  padding: 1em;
+}
