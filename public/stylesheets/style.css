@@ -1,11 +1,40 @@
+* {
+  box-sizing: border-box; }
+
 body {
   background-color: black;
   color: aliceblue;
-  padding: 50px;
+  margin: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
 
-a {
-  color: #00B7FF; }
+header {
+  display: flex;
+  align-items: center;
+  background-color: #0d6d7f;
+  height: 3em;
+  width: 90%;
+  border-radius: 5px;
+  margin: 1em auto;
+  padding: 0 2em; }
+
+.logo {
+  height: 38px;
+  width: 50px; }
+
+nav {
+  display: flex;
+  margin: auto 2em;
+  flex: 1; }
+
+nav .btnf {
+  flex: 1; }
+
+nav a {
+  margin-left: 2em; }
+
+.btnf button {
+  width: 7em;
+  margin-left: 2em; }
 
 .register {
   display: flex;
