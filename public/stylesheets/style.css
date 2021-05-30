@@ -9,7 +9,8 @@ body {
   display: flex;
   flex-direction: column;
   height: 100%;
-  font-family: "Noto Sans JP", sans-serif; }
+  font-family: "Noto Sans JP", sans-serif;
+  width: 100%; }
 
 main {
   flex: 1;
@@ -154,7 +155,7 @@ label {
   justify-content: center;
   margin: 1.1em 0; }
 
-.logocontact > img {
+.dropdown > img {
   border: solid 1px #e49906;
   border-radius: 0.5em;
   overflow: hidden;
@@ -175,19 +176,44 @@ label {
   position: relative;
   display: inline-block; }
 
-.dropdown-content {
+.dropdwnlinkdin {
   display: none;
   position: absolute;
-  background-color: #f1f1f1;
+  background-color: #111111d2;
   min-width: 160px;
   overflow: auto;
   bottom: 25px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  left: 0.5em;
+  box-shadow: 0px 8px 16px 0px #e49906 0, 0, 0, 0.2;
+  z-index: 1;
+  font: 1; }
+
+.dropdwnslack {
+  display: none;
+  position: absolute;
+  background-color: #111111d2;
+  min-width: 160px;
+  overflow: auto;
+  bottom: 25px;
+  left: 0.5em;
+  box-shadow: 0px 8px 16px 0px #e49906 0, 0, 0, 0.2;
+  z-index: 1;
+  font: 1; }
+
+.dropdwngit {
+  display: none;
+  position: absolute;
+  background-color: #111111d2;
+  min-width: 160px;
+  overflow: auto;
+  bottom: 25px;
+  left: 2em;
+  box-shadow: 0px 8px 16px 0px #e49906 0, 0, 0, 0.2;
   z-index: 1;
   font: 1; }
 
 .dropdown-content a {
-  color: black;
+  color: #e49906;
   padding: 12px 16px;
   text-decoration: none;
   display: block; }
