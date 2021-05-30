@@ -45,23 +45,23 @@
             </ul>
             <div class="logocontact">
                 <div class="dropdown">
-                    <img src="/images/logoLinkDin.png" alt="logolink" onclick="myFunctionlinkdin()" class="linkdinlogo dropbtn">
+                    <img src="/images/logoLinkDin.png" alt="logolink" id="imgLinkdIn" class="linkdinlogo dropbtn">
                     <div id="myDropdownl" class="dropdown-content dropdwnlinkdin ">
                         <a href="https://www.linkedin.com/in/massinissa-messalti-32a693106/">Massytak</a>
                         <a href="#about">Lotiko</a>
                     </div>
                 </div>
                 <div class="dropdown">
-                    <img src="/images/logoSlack.png" alt="logoslack" onclick="myFunctionslack()" class="slacklogo dropbtn">
+                    <img src="/images/logoSlack.png" alt="logoslack" id="imgSlack" class="slacklogo dropbtn">
                     <div id="myDropdowns" class="dropdown-content dropdwnslack">
-                        <a href="https://www.linkedin.com/in/massinissa-messalti-32a693106/">Massytak</a>
+                        <a href="https://app.slack.com/client/T02CQ4EN4/D0195KDG5MJ">Massytak</a>
                         <a href="#about">Lotiko</a>
                     </div>
                 </div>
                 <div class="dropdown">
-                    <img src="/images/logoGitHUB.png" alt="logogit" onclick="myFunctiongit()" class="gitlogo dropbtn">
+                    <img src="/images/logoGitHUB.png" alt="logogit" id="imgGit" class="gitlogo dropbtn">
                     <div id="myDropdowng" class="dropdown-content dropdwngit ">
-                        <a class="gitme" href="https://www.linkedin.com/in/massinissa-messalti-32a693106/">Massytak</a>
+                        <a class="gitme" href="https://github.com/massytak">Massytak</a>
                         <a class="gitme" href="#about">Lotiko</a>
                     </div>
                 </div>
@@ -72,64 +72,6 @@
 
         <script src="/javascripts/background.js"></script>
         <script src="/javascripts/script.js"></script>
-        <script>
-            /* When the user clicks on the button, 
-toggle between hiding and showing the dropdown content */
-            function myFunctionlinkdin() {
-                
-                document.getElementById("myDropdownl").classList.toggle("show");
-                
-
-            }
-            function myFunctionslack() {
-               
-                    document.getElementById("myDropdowns").classList.toggle("show");
-                
-            }
-            function myFunctiongit() {
-                
-                    document.getElementById("myDropdowng").classList.toggle("show");
-            
-            }
-
-
-            // Close the dropdown if the user clicks outside of it
-            document.getElementById("myDropdowng").addEventListener('mouseleave', function (event) {
-                if (! event.target.matches('.dropbtn')) {
-                    var dropdowns = document.getElementsByClassName("dropdown-content");
-                    var i;
-                    for (i = 0; i < dropdowns.length; i++) {
-                        var openDropdown = dropdowns[i];
-                        if (openDropdown.classList.contains('show')) {
-                            openDropdown.classList.remove('show');
-                        }
-                    }
-                }
-            })
-            document.getElementById("myDropdowns").addEventListener('mouseleave', function (event) {
-                if (! event.target.matches('.dropbtn')) {
-                    var dropdowns = document.getElementsByClassName("dropdown-content");
-                    var i;
-                    for (i = 0; i < dropdowns.length; i++) {
-                        var openDropdown = dropdowns[i];
-                        if (openDropdown.classList.contains('show')) {
-                            openDropdown.classList.remove('show');
-                        }
-                    }
-                }
-            })
-            document.getElementById("myDropdownl").addEventListener('mouseleave', function (event) {
-                if (! event.target.matches('.dropbtn')) {
-                    var dropdowns = document.getElementsByClassName("dropdown-content");
-                    var i;
-                    for (i = 0; i < dropdowns.length; i++) {
-                        var openDropdown = dropdowns[i];
-                        if (openDropdown.classList.contains('show')) {
-                            openDropdown.classList.remove('show');
-                        }
-                    }
-                }
-            })
-        </script>
+        <script src="/javascripts/footer.js"></script>
     </body>
 </html>
