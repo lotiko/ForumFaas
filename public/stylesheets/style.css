@@ -27,7 +27,7 @@ main {
 header {
   display: flex;
   align-items: center;
-  background-color: #0d6d7f;
+  background-color: #04819c;
   height: 3em;
   width: 90%;
   border-radius: 5px;
@@ -126,10 +126,21 @@ label {
   margin: 0px;
   padding: 0px; }
 
+.error {
+  min-height: 3em;
+  min-width: 200px;
+  background-color: #cc2822;
+  border-radius: 5px;
+  text-align: center;
+  margin-bottom: 1em;
+  padding: 1em; }
+
 .linkfooter > li {
   list-style: none; }
 
-.linkfooter1 > a, .linkfooter3 > a, .linkfooter2 > address > a {
+.linkfooter1 > a,
+.linkfooter3 > a,
+.linkfooter2 > address > a {
   text-decoration-line: none;
   color: #e49906;
   font-size: small; }
@@ -159,7 +170,7 @@ label {
   border: solid 1px #e49906;
   border-radius: 0.5em;
   overflow: hidden;
-  transition: .3s ease-in-out;
+  transition: 0.3s ease-in-out;
   box-shadow: red;
   cursor: pointer; }
 
@@ -169,8 +180,9 @@ label {
 .gitlogo {
   margin-left: 1.5em; }
 
-.dropbtn:hover, .dropbtn:focus {
-  background-color: #2980B9; }
+.dropbtn:hover,
+.dropbtn:focus {
+  background-color: #2980b9; }
 
 .dropdown {
   position: relative;
@@ -198,14 +210,5 @@ label {
 
 .show {
   display: block; }
-
-.error {
-  min-height: 3em;
-  min-width: 200px;
-  background-color: #cc2822;
-  border-radius: 5px;
-  text-align: center;
-  margin-bottom: 1em;
-  padding: 1em; }
 
 /*# sourceMappingURL=style.css.map */
