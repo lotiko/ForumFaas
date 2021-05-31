@@ -4,7 +4,6 @@ const User = require("../models/user");
 const validator = require("email-validator");
 const fileUploader = require("../configs/cloudinary.config");
 const upload = fileUploader.single("avatar");
-const multer = require("multer");
 const routeGuard = require("../configs/route-gard-isLog");
 
 router.use(routeGuard); //only authenthicate user can use this router
@@ -12,7 +11,13 @@ router.use(routeGuard); //only authenthicate user can use this router
 router.get("/", (req, res, next) => {
   // console.log(req.user.createdAt.toLocaleString());
   const dataView = getDataView(req.user);
-  res.render("user/account", { isLog: true, title: "Account", ...dataView });
+  res.render("user/account", {
+    isLog: true,
+    title: "Account",
+    ...dataView,
+    script: "deleteAccount",
+    style: "deleteAccount",
+  });
 });
 router
   .get("/edit", (req, res, next) => {
@@ -23,6 +28,7 @@ router
   })
   .post(
     "/edit",
+    /// middelware to catch error of file upload
     (req, res, next) => {
       upload(req, res, (err) => {
         console.log(err);
@@ -37,6 +43,7 @@ router
         }
       });
     },
+    /////////////////////////////////////////////////
     (req, res, next) => {
       console.log(req.user.createdAt.toLocaleString());
       console.log(req.file);
@@ -64,9 +71,13 @@ router
           res.redirect("/user");
         })
         .catch((err) => next(err));
-      // res.render("user/edit", { isLog: true, title: "EditUser", ...dataView });
     }
   );
+router.get("/delete", (req, res, next) => {
+  // console.log(req.user.createdAt.toLocaleString());
+  const dataView = getDataView(req.user);
+  res.render("user/account", { isLog: true, title: "Account", ...dataView });
+});
 
 // utils
 function getDataView(user) {

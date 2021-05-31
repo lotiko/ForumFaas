@@ -9,10 +9,17 @@
       {{/if}}
     </div>
     <a class="user-ico" href="/user/edit"><img src="/images/editaccount.png" alt="icon edit" /></a>
-    <a class="user-ico" href="/user/delete"><img
-        src="/images/deleteaccount.png"
-        alt="icon delete"
-      /></a>
+    <img class="user-ico" id="btn-delete" src="/images/deleteaccount.png" alt="icon delete" />
+    <div id="delete-modal" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Étes vous sur de vouloir supprimer votre compte ?</p>
+        <a href="/user/delete"><button>Confirmer</button></a>
+      </div>
+
+    </div>
 
   </div>
   <div class="user-activity">
