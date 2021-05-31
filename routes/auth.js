@@ -109,7 +109,6 @@ router.post("/login", (req, res, next) => {
 });
 router.get("/logout", (req, res, next) => {
   req.logout();
-  console.log(!!req.user);
   res.render("home", { message: "Vous étes déconnecté.", isLog: !!req.user, title: "home" });
 });
 module.exports = router;
