@@ -22,10 +22,17 @@
           <button>Forum</button>
         </div>
         <a href="/auth/signup"><img src="/images/codicon_account.png" alt="icon signup" /></a>
-        <a href="/auth/login"><img
-            src="/images/ant-design_login-outlined.png"
-            alt="icon login"
-          /></a>
+        {{#if isLog}}
+          <a href="/auth/logout"><img
+              src="/images/ant-design_logout-outlined.png"
+              alt="icon login"
+            /></a>
+        {{else}}
+          <a href="/auth/login"><img
+              src="/images/ant-design_login-outlined.png"
+              alt="icon login"
+            /></a>
+        {{/if}}
       </nav>
     </header>
     <main>

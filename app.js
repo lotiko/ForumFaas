@@ -105,4 +105,7 @@ app.use("/forum", forum);
 const auth = require("./routes/auth");
 app.use("/auth", auth);
 
+const user = require("./routes/user");
+app.use("/user", user);
+
 module.exports = app;
