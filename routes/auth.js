@@ -7,7 +7,12 @@ const validator = require("email-validator");
 const passport = require("passport");
 
 router.get("/signUp", (req, res, next) => {
-  res.render("auth/signup");
+  let isLog = !!req.user;
+  if (isLog) {
+    res.redirect("/user");
+    return;
+  }
+  res.render("auth/signup", { title: "signUp" });
 });
 
 router.post("/signUp", (req, res, next) => {
@@ -21,6 +26,7 @@ router.post("/signUp", (req, res, next) => {
     res.render("auth/signup", {
       errorMessage: "Tous les champs sont obligatoire.",
       oldValues: oldValues,
+      title: "signUp",
     });
     return;
   }
@@ -29,6 +35,7 @@ router.post("/signUp", (req, res, next) => {
     res.render("auth/signup", {
       errorMessage: "Email non valide.",
       oldValues: oldValues,
+      title: "signUp",
     });
     return;
   }
@@ -37,6 +44,8 @@ router.post("/signUp", (req, res, next) => {
     res.render("auth/signup", {
       errorMessage:
         "Le mot de passe doit être de 8 caractères minimum et contenir au moins un chiffre une majuscule et minuscule",
+      title: "signUp",
+      oldValues: oldValues,
     });
     return;
   }
@@ -54,13 +63,17 @@ router.post("/signUp", (req, res, next) => {
     .then(function (usersFromDb) {
       res.render("home", {
         message: "Votre compte à bien été enregistré vous pouvez désormais vous connecter.",
+        title: "Home",
       });
     })
     /// voir ici si message dans modéles ou ici
     .catch((err) => {
       // catch E11000 duplicate key error
       if (err.code === 11000) {
-        res.render("auth/signup", { errorMessage: "Un utilisateur avec ce mail existe deja." });
+        res.render("auth/signup", {
+          errorMessage: "Un utilisateur avec ce mail existe deja.",
+          title: "signUp",
+        });
         return;
       }
       next(err);
@@ -68,8 +81,7 @@ router.post("/signUp", (req, res, next) => {
 });
 
 router.get("/login", (req, res, next) => {
-  console.log(req.user);
-  res.render("auth/login");
+  res.render("auth/login", { title: "login" });
 });
 router.post("/login", (req, res, next) => {
   passport.authenticate("local", (err, theUser, failureDetails) => {
@@ -80,7 +92,7 @@ router.post("/login", (req, res, next) => {
 
     if (!theUser) {
       // Unauthorized, `failureDetails` contains the error messages from our logic in "LocalStrategy" {message: '…'}.
-      res.render("auth/login", { errorMessage: failureDetails.message });
+      res.render("auth/login", { errorMessage: failureDetails.message, title: "login" });
       return;
     }
 
@@ -90,15 +102,14 @@ router.post("/login", (req, res, next) => {
         // Session save went bad
         return next(err);
       }
-      console.log(req.user);
       // All good, we are now logged in and `req.user` is now set
-      res.render("home", { message: "Vous étes connecté.", isLog: true });
+      res.render("home", { message: "Vous étes connecté.", isLog: !!req.user, title: "Home" });
     });
   })(req, res, next);
 });
 router.get("/logout", (req, res, next) => {
   req.logout();
   console.log(!!req.user);
-  res.render("home", { message: "Vous étes déconnecté.", isLog: !!req.user });
+  res.render("home", { message: "Vous étes déconnecté.", isLog: !!req.user, title: "home" });
 });
 module.exports = router;
