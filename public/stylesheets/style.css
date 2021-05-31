@@ -1,6 +1,5 @@
 * {
-  box-sizing: border-box;
-}
+  box-sizing: border-box; }
 
 body {
   background-color: black;
@@ -11,53 +10,45 @@ body {
   flex-direction: column;
   height: 100%;
   font-family: "Noto Sans JP", sans-serif;
-  width: 100%;
-}
+  width: 100%; }
 
 main {
   flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
-}
+  align-items: center; }
 
 #background {
   position: absolute;
   top: 0;
   left: 0;
   background-color: black;
-  z-index: -1;
-}
+  z-index: -1; }
 
 header {
   display: flex;
   align-items: center;
-  background-color: #0d6d7f;
+  background-color: #04819c;
   height: 3em;
   width: 90%;
   border-radius: 5px;
   margin: 1em auto;
-  padding: 0 2em;
-}
+  padding: 0 2em; }
 
 .logo {
   height: 38px;
-  width: 50px;
-}
+  width: 50px; }
 
 nav {
   display: flex;
   margin: auto 2em;
-  flex: 1;
-}
+  flex: 1; }
 
 nav .btnf {
-  flex: 1;
-}
+  flex: 1; }
 
 nav a {
-  margin-left: 2em;
-}
+  margin-left: 2em; }
 
 button {
   background-color: rgba(72, 104, 215, 0.41);
@@ -65,13 +56,11 @@ button {
   font-weight: bold;
   border: none;
   border-radius: 5px;
-  height: 2em;
-}
+  height: 2em; }
 
 .btnf button {
   width: 7em;
-  margin-left: 2em;
-}
+  margin-left: 2em; }
 
 .bubble {
   display: flex;
@@ -83,12 +72,10 @@ button {
   margin: auto;
   height: 150px;
   width: 260px;
-  color: #e49906;
-}
+  color: #e49906; }
 
 .bubble button {
-  margin-top: 0.5em;
-}
+  margin-top: 0.5em; }
 
 .message {
   display: flex;
@@ -98,13 +85,11 @@ button {
   font-size: 1.5em;
   border: 4px solid rgba(24, 102, 220, 0.58);
   margin: 4em;
-  min-height: 4em;
-}
+  min-height: 4em; }
 
 .message p {
   text-align: center;
-  margin: auto 2em;
-}
+  margin: auto 2em; }
 
 .login,
 .register {
@@ -114,13 +99,11 @@ button {
   max-width: 250px;
   background-color: #04819c;
   margin: 1em auto;
-  border-radius: 5px;
-}
+  border-radius: 5px; }
 
 .register h2,
 .login h2 {
-  max-width: 90%;
-}
+  max-width: 90%; }
 
 label {
   display: flex;
@@ -128,61 +111,51 @@ label {
   align-items: left;
   color: #e49906;
   margin: 0.5em auto;
-  max-width: 15em;
-}
+  max-width: 15em; }
 
 .footer {
   padding-bottom: 4em;
   padding-bottom: 0.5em;
-  background-color: #0d6d7f;
-  border-radius: 50% 50% 0% 0%;
-}
+  background-color: #04819c;
+  border-radius: 50% 50% 0% 0%; }
 
 .linkfooter {
   display: flex;
   flex-direction: row;
   justify-content: center;
   margin: 0px;
-  padding: 0px;
-}
+  padding: 0px; }
 
 .linkfooter > li {
-  list-style: none;
-}
+  list-style: none; }
 
 .linkfooter1 > a,
 .linkfooter3 > a,
 .linkfooter2 > address > a {
   text-decoration-line: none;
   color: #e49906;
-  font-size: small;
-}
+  font-size: small; }
 
 .footertitle {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  font-size: 1.8em;
-}
+  font-size: 1.8em; }
 
 .footertitle > a {
   text-decoration-line: none;
-  color: #e49906;
-}
+  color: #e49906; }
 
 .linkfooter1 {
-  padding-right: 4em;
-}
+  padding-right: 4em; }
 
 .linkfooter3 {
-  padding-left: 4em;
-}
+  padding-left: 4em; }
 
 .logocontact {
   display: flex;
   justify-content: center;
-  margin: 1.1em 0;
-}
+  margin: 1.1em 0; }
 
 .dropdown > img {
   border: solid 1px #e49906;
@@ -190,26 +163,21 @@ label {
   overflow: hidden;
   transition: 0.3s ease-in-out;
   box-shadow: red;
-  cursor: pointer;
-}
+  cursor: pointer; }
 
 .linkdinlogo {
-  margin-right: 1.5em;
-}
+  margin-right: 1.5em; }
 
 .gitlogo {
-  margin-left: 1.5em;
-}
+  margin-left: 1.5em; }
 
 .dropbtn:hover,
 .dropbtn:focus {
-  background-color: #2980b9;
-}
+  background-color: #2980b9; }
 
 .dropdown {
   position: relative;
-  display: inline-block;
-}
+  display: inline-block; }
 
 .dropdwnlinkdin {
   display: none;
@@ -221,8 +189,7 @@ label {
   left: 0.5em;
   box-shadow: 0px 8px 16px 0px #e49906 0, 0, 0, 0.2;
   z-index: 1;
-  font: 1;
-}
+  font: 1; }
 
 .dropdwnslack {
   display: none;
@@ -234,8 +201,7 @@ label {
   left: 0.5em;
   box-shadow: 0px 8px 16px 0px #e49906 0, 0, 0, 0.2;
   z-index: 1;
-  font: 1;
-}
+  font: 1; }
 
 .dropdwngit {
   display: none;
@@ -247,22 +213,18 @@ label {
   left: 2em;
   box-shadow: 0px 8px 16px 0px #e49906 0, 0, 0, 0.2;
   z-index: 1;
-  font: 1;
-}
+  font: 1; }
 
 .dropdown-content a {
   color: #e49906;
   padding: 12px 16px;
   text-decoration: none;
-  display: block;
-}
+  display: block; }
 
 .dropdown a:hover {
-  background-color: #000;
-}
+  background-color: #000; }
 
 .show {
-  display: block;
-}
+  display: block; }
 
 /*# sourceMappingURL=style.css.map */
