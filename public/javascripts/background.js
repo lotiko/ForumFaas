@@ -7,7 +7,7 @@ var w = (c.width = window.innerWidth),
   initialWidth = 10,
   maxLines = 100,
   initialLines = 4,
-  speed = 3,
+  speed = 2,
   lines = [],
   frame = 0,
   timeSinceLast = 0,
@@ -138,9 +138,6 @@ Line.prototype.step = function () {
   if (dead) return true;
 };
 
-init();
-anim();
-
 window.addEventListener("resize", function () {
   w = c.width = window.innerWidth;
   h = c.height = window.innerHeight;
@@ -148,4 +145,32 @@ window.addEventListener("resize", function () {
   starter.y = h / 2;
 
   init();
+});
+// Grab the prefers reduced media query.
+const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+// Check if the media query matches or is not available.
+if (!mediaQuery || mediaQuery.matches) {
+  c.hidden = true;
+  document.body.style.backgroundImage = "url(/images/backgroundfixe.png)";
+  document.body.style.backgroundSize = "cover";
+} else {
+  c.hidden = false;
+  speed = 2;
+  init();
+  anim();
+}
+
+// Ads an event listener to check for changes in the media query's value.
+mediaQuery.addEventListener("change", () => {
+  if (mediaQuery.matches) {
+    c.hidden = true;
+    document.body.style.backgroundImage = "url(/images/backgroundfixe.png)";
+    document.body.style.backgroundSize = "cover";
+  } else {
+    c.hidden = false;
+    document.body.style.backgroundImage = "";
+    init();
+    anim();
+  }
 });

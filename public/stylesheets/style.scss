@@ -127,80 +127,71 @@ label {
 }
 ////////////////////
 .footer {
-  
   padding-bottom: 4em;
   padding-bottom: 0.5em;
   background-color: rgba(13, 109, 127, 1);
   border-radius: 50% 50% 0% 0%;
-  
 }
 
 .linkfooter {
   display: flex;
   flex-direction: row;
- justify-content: center;
- margin: 0px;
- padding: 0px;
- 
+  justify-content: center;
+  margin: 0px;
+  padding: 0px;
 }
-.linkfooter  >li{
-
+.linkfooter > li {
   list-style: none;
-
-  
-  
 }
 
-.linkfooter1>a , .linkfooter3>a,.linkfooter2>address>a{
-text-decoration-line:none ;
-color: rgba(228, 153, 6, 1);
-font-size: small;
+.linkfooter1 > a,
+.linkfooter3 > a,
+.linkfooter2 > address > a {
+  text-decoration-line: none;
+  color: rgba(228, 153, 6, 1);
+  font-size: small;
 }
 
-
-.footertitle{
+.footertitle {
   display: flex;
   flex-direction: row;
   justify-content: center;
   font-size: 1.8em;
-  
 }
-.footertitle>a{
-  text-decoration-line:none ;
+.footertitle > a {
+  text-decoration-line: none;
   color: rgba(228, 153, 6, 1);
 }
-.linkfooter1{
+.linkfooter1 {
   padding-right: 4em;
 }
-.linkfooter3{
+.linkfooter3 {
   padding-left: 4em;
 }
 
-.logocontact{
- display: flex;
- justify-content: center;
- margin:1.1em 0 ;
+.logocontact {
+  display: flex;
+  justify-content: center;
+  margin: 1.1em 0;
 }
-.dropdown>img{
+.dropdown > img {
   border: solid 1px rgba(228, 153, 6, 1);
   border-radius: 0.5em;
   overflow: hidden;
-  transition: .3s ease-in-out;
+  transition: 0.3s ease-in-out;
   box-shadow: red;
-  cursor: pointer
-
+  cursor: pointer;
 }
-.linkdinlogo{
-margin-right: 1.5em;
-
+.linkdinlogo {
+  margin-right: 1.5em;
 }
-.gitlogo{
-margin-left: 1.5em;
+.gitlogo {
+  margin-left: 1.5em;
 }
 
-
-.dropbtn:hover, .dropbtn:focus {
-  background-color: #2980B9;
+.dropbtn:hover,
+.dropbtn:focus {
+  background-color: #2980b9;
 }
 
 .dropdown {
@@ -211,7 +202,7 @@ margin-left: 1.5em;
 .dropdwnlinkdin {
   display: none;
   position: absolute;
- 
+
   background-color: #111111d2;
   min-width: 160px;
   overflow: auto;
@@ -219,13 +210,13 @@ margin-left: 1.5em;
   left: 0.5em;
   box-shadow: 0px 8px 16px 0px #e49906(0, 0, 0, 0.2);
   z-index: 1;
-  font:1;
+  font: 1;
 }
 
 .dropdwnslack {
   display: none;
   position: absolute;
- 
+
   background-color: #111111d2;
   min-width: 160px;
   overflow: auto;
@@ -233,13 +224,13 @@ margin-left: 1.5em;
   left: 0.5em;
   box-shadow: 0px 8px 16px 0px #e49906(0, 0, 0, 0.2);
   z-index: 1;
-  font:1;
+  font: 1;
 }
 
-.dropdwngit{
+.dropdwngit {
   display: none;
   position: absolute;
- 
+
   background-color: #111111d2;
   min-width: 160px;
   overflow: auto;
@@ -247,20 +238,21 @@ margin-left: 1.5em;
   left: 2em;
   box-shadow: 0px 8px 16px 0px #e49906(0, 0, 0, 0.2);
   z-index: 1;
-  font:1;
+  font: 1;
 }
 
 .dropdown-content a {
   color: #e49906;
-  
+
   padding: 12px 16px;
   text-decoration: none;
   display: block;
 }
 
 .dropdown a:hover {
+  background-color: #000;
+}
 
-
-background-color: #000;}
-
-.show {display: block;}
+.show {
+  display: block;
+}
