@@ -4,12 +4,16 @@
     <div class="user-infos-text">
       <p class="user-name">{{name}}</p>
       <p class="user-mail">{{email}}</p>
+      {{#if description}}
+        <p class="user-description">{{description}}</p>
+      {{/if}}
     </div>
     <a class="user-ico" href="/user/edit"><img src="/images/editaccount.png" alt="icon edit" /></a>
     <a class="user-ico" href="/user/delete"><img
         src="/images/deleteaccount.png"
         alt="icon delete"
       /></a>
+
   </div>
   <div class="user-activity">
     <div class="activity-left">

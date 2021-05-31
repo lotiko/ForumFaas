@@ -14,7 +14,7 @@ const storage = new CloudinaryStorage({
   params: {
     // see: https://cloudinary.com/documentation/image_upload_api_reference#optional_parameters
     folder: "ForumFaas", // The name of the folder in cloudinary
-    allowedFormats: ["jpg", "png", "jpeg"],
+    allowedFormats: ["jpg", "png"],
     public_id: (req, file) => file.originalname, // The file on cloudinary would have the same name as the original file name
   },
 });

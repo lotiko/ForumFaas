@@ -2,17 +2,24 @@
   <div>
     <img class="avatar" src="{{avatar}}" alt="avatar" />
   </div>
-  <form action="/user/edit">
-    <input type="file" name="avatar" />
+  <form action="/user/edit" method="post" enctype="multipart/form-data">
+    <label>Choisir un avatar
+      <input type="file" name="avatar" />
+    </label>
     <label>Nom:
       <input type="text" name="name" value="{{name}}" />
     </label>
     <label>Email:
-      <input type="text" name="" value="{{email}}" />
+      <input type="text" name="email" value="{{email}}" />
     </label>
     <label>Description:
-      <textarea name="description" value="{{description}}" cols="30" rows="10"></textarea>
+      <textarea name="description" cols="30" rows="10">{{description}}</textarea>
     </label>
     <button>Valider</button>
   </form>
+  {{#if errorMessage}}
+    <div class="error">
+      {{errorMessage}}
+    </div>
+  {{/if}}
 </div>

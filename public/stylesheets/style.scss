@@ -159,10 +159,18 @@ label {
 .user-infos-text {
   flex: 1;
 }
-.user-infos-text p {
+.user-name,
+.user-mail {
   margin: 0;
   font-size: x-large;
   font-weight: bold;
+  margin-left: 2em;
+}
+.user-description {
+  margin: 0;
+  font-size: medium;
+  font-weight: normal;
+  text-align: center;
   margin-left: 2em;
 }
 .user-ico {
