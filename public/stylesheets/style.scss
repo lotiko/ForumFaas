@@ -27,7 +27,7 @@ main {
 }
 ////////////////
 ///// HEADER
-////////////////
+
 header {
   display: flex;
   align-items: center;
@@ -128,6 +128,47 @@ label {
 }
 ///user account
 //////////////////////////////////////
+
+//////////////////////////////////////
+////// USER ACCOUNT
+.account {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  color: rgba(228, 153, 6, 1);
+}
+.avatar {
+  height: 75px;
+  width: 75px;
+  border-radius: 50%;
+  border: 2px solid rgba(228, 153, 6, 1);
+}
+.user-infos,
+.user-activity {
+  display: flex;
+  align-items: center;
+  min-width: 70vw;
+  justify-content: space-around;
+  border-radius: 5px;
+  background-color: rgba(4, 129, 156, 1);
+  padding: 1em;
+  min-height: 40%;
+}
+.user-infos-text {
+  flex: 1;
+}
+.user-infos-text p {
+  margin: 0;
+  font-size: x-large;
+  font-weight: bold;
+  margin-left: 2em;
+}
+.user-ico {
+  margin-right: 1em;
+}
+/////////////////////////////////////
 
 ////////////////////
 //////// FOOTER
