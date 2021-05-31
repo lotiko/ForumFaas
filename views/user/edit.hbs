@@ -1,12 +1,18 @@
 <div class="user-details">
-  <div class="user-avatar">
-    <img src="" alt="" />
-    <button><a href=""></a></button>
+  <div>
+    <img class="avatar" src="{{avatar}}" alt="avatar" />
   </div>
-  <form action="">
-    <input type="text" name="" id="" />
-    <input type="text" name="" id="" />
-    <textarea name="" id="" cols="30" rows="10"></textarea>
-    <button></button>
+  <form action="/user/edit">
+    <input type="file" name="avatar" />
+    <label>Nom:
+      <input type="text" name="name" value="{{name}}" />
+    </label>
+    <label>Email:
+      <input type="text" name="" value="{{email}}" />
+    </label>
+    <label>Description:
+      <textarea name="description" value="{{description}}" cols="30" rows="10"></textarea>
+    </label>
+    <button>Valider</button>
   </form>
 </div>
