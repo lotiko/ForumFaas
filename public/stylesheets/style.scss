@@ -66,8 +66,8 @@ button {
   margin-left: 2em;
 }
 ///////////////////////////////////////////////////
-//////////////////////////////////////////////////
 
+/////////////////////////////////////////////////
 //////////// HOME PAGE
 .bubble {
   display: flex;
@@ -93,8 +93,6 @@ button {
   border: 4px solid rgba(24, 102, 220, 0.58);
   margin: 4em;
   min-height: 4em;
-  // min-width: 50%;
-  // max-width: 90%;
 }
 .message p {
   text-align: center;
@@ -102,7 +100,10 @@ button {
 }
 /////////////////////
 
-///// Form
+////////////////////
+///// Forms
+////////////////////
+//login register
 .login,
 .register {
   display: flex;
@@ -125,7 +126,11 @@ label {
   margin: 0.5em auto;
   max-width: 15em;
 }
+///user account
+//////////////////////////////////////
+
 ////////////////////
+//////// FOOTER
 .footer {
   padding-bottom: 4em;
   padding-bottom: 0.5em;
@@ -256,3 +261,4 @@ label {
 .show {
   display: block;
 }
+///////////////////////////

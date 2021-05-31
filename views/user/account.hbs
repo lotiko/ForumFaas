@@ -1,9 +1,19 @@
 <div>
-  <img src="" alt="" />
+  <img src="{{avatar}}" alt="" />
   <div class="user-infos">
-    <p class="user-name"></p>
-    <p class="user-mail"></p>
+    <p class="user-name">{{name}}</p>
+    <p class="user-mail">{{email}}</p>
   </div>
   <a href="/user/edit"><img src="/images/editaccount.png" alt="icon edit" /></a>
   <a href="/user/delete"><img src="/images/deleteaccount.png" alt="icon delete" /></a>
+</div>
+<div class="user-activity">
+  <div class="activity-left">
+    <h4>Nombre de post: {{nbPost}}</h4>
+    <h4>Nombre de fonction: {{nbFunction}}</h4>
+  </div>
+  <div class="activity-rigth">
+    <h4>Membre depuis le: {{creationDate}}</h4>
+    <h4>Status: {{status}}</h4>
+  </div>
 </div>
