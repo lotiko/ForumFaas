@@ -74,9 +74,17 @@ router
     }
   );
 router.get("/delete", (req, res, next) => {
-  // console.log(req.user.createdAt.toLocaleString());
-  const dataView = getDataView(req.user);
-  res.render("user/account", { isLog: true, title: "Account", ...dataView });
+  User.findByIdAndDelete(req.user._id, (err) => {
+    if (err) {
+      next(err);
+    } else {
+      req.logout();
+      req.session.destroy((err) => next(err));
+      console.log("session =>", req.session, "passport =>", req.user);
+      res.redirect("/");
+      return;
+    }
+  });
 });
 
 // utils
