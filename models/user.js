@@ -13,6 +13,7 @@ const UsersSchema = new mongoose.Schema(
     descriptions: { type: String, default: "Aucune" },
     avatar: { type: String, default: "/images/basicAvatar.png" },
     status: { type: String, enum: ["user", "admin"], default: "user" },
+    publicContact: { type: Boolean },
   },
   {
     timestamps: true,

@@ -113,6 +113,9 @@ label {
   margin: 0.5em auto;
   max-width: 15em; }
 
+.checkb {
+  flex-direction: row; }
+
 .account {
   height: 100%;
   display: flex;

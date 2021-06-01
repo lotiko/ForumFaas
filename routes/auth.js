@@ -20,6 +20,7 @@ router.post("/signUp", (req, res, next) => {
   let nameAdd = req.body.pseudo;
   let emailAdd = req.body.email;
   let passwordAdd = req.body.password;
+  let publicContact = req.body.public === "on" ? true : false;
   let oldValues = { pseudo: req.body.pseudo, email: req.body.email };
   // 1. Check username, email and password are not empty
   if (!nameAdd || !passwordAdd || !emailAdd) {
@@ -57,6 +58,7 @@ router.post("/signUp", (req, res, next) => {
     name: nameAdd,
     email: emailAdd,
     password: hashPass,
+    publicContact: publicContact,
   });
   adduser
     .save()
