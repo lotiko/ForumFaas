@@ -1,0 +1,32 @@
+.presentations {
+  background-color: #04819c;
+  border-radius: 5px;
+  min-width: 30%;
+  text-align: center; }
+
+.user-block {
+  display: flex;
+  flex-direction: column;
+  background-color: whitesmoke;
+  color: black;
+  border-radius: 5px;
+  border: 2px solid #e49906;
+  margin: 1em 2em; }
+
+.user-title {
+  display: flex;
+  align-items: center; }
+
+.name {
+  flex: 1; }
+
+.title {
+  margin: 0.5em 2em 0.5em; }
+
+.hide {
+  display: none; }
+
+.show {
+  display: block; }
+
+/*# sourceMappingURL=presentations.css.map */

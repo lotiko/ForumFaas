@@ -4,7 +4,7 @@ const PostSchema = new mongoose.Schema(
   {
     title: { type: String, required: true },
     body: { type: String, required: true },
-    categorie: { type: String, enum: ["function", "answer", "presentations"], required: true },
+    categorie: { type: String, enum: ["function", "answer", "question"], required: true },
     withFunction: { type: mongoose.Schema.Types.ObjectId, ref: "Function" },
     userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   },
