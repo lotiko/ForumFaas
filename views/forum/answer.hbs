@@ -1,1 +1,38 @@
-hello answer
+
+<div class="postanswer modal">
+    
+    <form action="/forum/answer" method="post">
+        <label>
+            <h4>Title:</h4>
+            <p>Soyer précis et imaginez que vous posez une question à une autre personne.</p>
+            <input type="text" name="title">
+        </label>
+        <label>
+            <h4>Votre qustion</h4>
+            <p>Incluez toutes les information dont quelqu'un aurait besoin pour répondre à votre question</p>
+            <textarea name="body" id="editor"  color=#111111d2> Votre question <br><br><br> <br><br></textarea>
+            
+
+        </label>
+        <button class="btnposter">Poster</button>
+    </form>
+   
+</div>
+ {{#if errorMessage}}
+     <div class="error">
+            {{ errorMessage }}
+        </div>
+    {{/if}}
+
+<script src="https://cdn.tiny.cloud/1/9vtav1b955vox5k3b5rsqf5vt481kjge93drxd2wweg1ibmg/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
+
+<script>
+  
+    ClassicEditor
+        .create( document.querySelector( '#editor' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+
+</script>
