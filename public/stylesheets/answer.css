@@ -1,0 +1,21 @@
+.postanswer {
+  display: flex;
+  align-items: center;
+  min-width: 70vw;
+  justify-content: space-around;
+  border-radius: 5px;
+  background-color: #04819c;
+  padding: 1em;
+  min-height: 40%; }
+
+.postanswer > form > label {
+  max-width: none; }
+
+p {
+  margin: 0em; }
+
+.btnposter {
+  margin-left: 80%;
+  margin-top: 1.2em; }
+
+/*# sourceMappingURL=answer.css.map */

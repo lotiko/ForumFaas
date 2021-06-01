@@ -7,6 +7,8 @@ const upload = fileUploader.single("avatar");
 const routeGuard = require("../configs/route-gard-isLog");
 router.use(routeGuard);
 
+
+
 /* GET home page */
 router.get("/:catname", async (req, res, next) => {
   if (req.params.catname === "presentation") {
@@ -43,10 +45,12 @@ router.get("/:catname", async (req, res, next) => {
     return;
   }
   if(req.params.catname==='answer'){
+
     res.render('forum/answer',{
       isLog:true,
       title:"Question",
-      style:"answer"
+      style:"answer",
+      module:"answer"
     });
     return;
   }

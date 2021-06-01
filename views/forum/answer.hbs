@@ -1,4 +1,4 @@
-
+<link rel="stylesheet" href="/stylesheets/styles.css">
 <div class="postanswer modal">
     
     <form action="/forum/answer" method="post">
@@ -8,9 +8,9 @@
             <input type="text" name="title">
         </label>
         <label>
-            <h4>Votre qustion</h4>
+            <h4>Votre question</h4>
             <p>Incluez toutes les information dont quelqu'un aurait besoin pour répondre à votre question</p>
-            <textarea name="body" id="editor"  color=#111111d2> Votre question <br><br><br> <br><br></textarea>
+            <textarea name="body" id="editor"  > Votre question </textarea>
             
 
         </label>
@@ -23,16 +23,9 @@
             {{ errorMessage }}
         </div>
     {{/if}}
+    
+<script src="/javascripts/ckeditor.js"></script>
 
-<script src="https://cdn.tiny.cloud/1/9vtav1b955vox5k3b5rsqf5vt481kjge93drxd2wweg1ibmg/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-<script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
 
-<script>
-  
-    ClassicEditor
-        .create( document.querySelector( '#editor' ) )
-        .catch( error => {
-            console.error( error );
-        } );
 
-</script>
+{{!-- <script src="[ckeditor-build-path]/ckeditor.js"></script>   --}}

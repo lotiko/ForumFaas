@@ -8,6 +8,7 @@
     "dev-windows": "nodemon ./bin/www"
   },
   "dependencies": {
+    "@ckeditor/ckeditor5-code-block": "^27.1.0",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.18.3",
     "ckeditor5": "^27.1.0",
