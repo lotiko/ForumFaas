@@ -1,11 +1,16 @@
 const express = require("express");
 const router = express.Router();
+
+//// MODELS
 const User = require("../models/user");
-const validator = require("email-validator");
+const Function = require("../models/function");
+
+///// CLOUDINARY MULTER
 const fileUploader = require("../configs/cloudinary.config");
 const upload = fileUploader.single("avatar");
+
+///// UTILS
 const routeGuard = require("../configs/route-gard-isLog");
-router.use(routeGuard);
 
 /* GET home page */
 router.get("/:catname", async (req, res, next) => {
@@ -26,6 +31,7 @@ router.get("/:catname", async (req, res, next) => {
         users: usersDataView,
         page: page,
         limit: limit,
+        title: "Presentations",
         style: "presentations",
         script: "presentations",
       });
@@ -35,6 +41,7 @@ router.get("/:catname", async (req, res, next) => {
     }
   }
   if (req.params.catname === "function") {
+    routeGuard(req, res);
     res.render("forum/function", {
       isLog: true,
       title: "Function",
@@ -44,10 +51,11 @@ router.get("/:catname", async (req, res, next) => {
     return;
   }
   if (req.params.catname === "home") {
-    res.render("forum/home");
+    res.render("forum/home", { isLog: !!req.user });
     return;
   }
   if (req.params.catname === "answer") {
+    routeGuard(req, res);
     res.render("forum/answer", {
       isLog: true,
       title: "Question",
@@ -59,21 +67,35 @@ router.get("/:catname", async (req, res, next) => {
   next();
 });
 
-router.post("/answer", (req, res, next) => {
-  const { title, body } = req.body;
-  const categorie = "answer";
-  console.log(req.user._id);
-
-  console.log("title", title);
-  if (!title || !body) {
-    console.log("jai pas de titre et de body");
-    res.render("forum/answer", {
-      isLog: true,
-      errorMessage: "Veuillez remplir le titre",
-      style: "answer",
-      module: "answer",
-    });
+router.post("/:catname", (req, res, next) => {
+  ///////////////PRESENTATION
+  if (req.params.catname === "presentation") {
+    return;
   }
+  ///////////////FUNCTION
+  if (req.params.catname === "function") {
+    res.send(req.body);
+    return;
+  }
+  ///////////////ANSWER
+  if (req.params.catname === "answer") {
+    const { title, body } = req.body;
+    const categorie = "answer";
+    console.log(req.user._id);
+
+    console.log("title", title);
+    if (!title || !body) {
+      console.log("jai pas de titre et de body");
+      res.render("forum/answer", {
+        isLog: true,
+        errorMessage: "Veuillez remplir le titre",
+        style: "answer",
+        module: "answer",
+      });
+    }
+    return;
+  }
+  next(); // si pas de route trouver continue vers 404 error
 });
 
 module.exports = router;
