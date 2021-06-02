@@ -7,8 +7,6 @@ const upload = fileUploader.single("avatar");
 const routeGuard = require("../configs/route-gard-isLog");
 router.use(routeGuard);
 
-
-
 /* GET home page */
 router.get("/:catname", async (req, res, next) => {
   if (req.params.catname === "presentation") {
@@ -37,40 +35,45 @@ router.get("/:catname", async (req, res, next) => {
     }
   }
   if (req.params.catname === "function") {
-    res.render("forum/function");
+    res.render("forum/function", {
+      isLog: true,
+      title: "Function",
+      style: "function",
+      module: "function",
+    });
     return;
   }
   if (req.params.catname === "home") {
     res.render("forum/home");
     return;
   }
-  if(req.params.catname==='answer'){
-
-    res.render('forum/answer',{
-      isLog:true,
-      title:"Question",
-      style:"answer",
-      module:"answer"
+  if (req.params.catname === "answer") {
+    res.render("forum/answer", {
+      isLog: true,
+      title: "Question",
+      style: "answer",
+      module: "answer",
     });
     return;
   }
   next();
 });
 
-router.post('/answer',(req,res,next)=>{
-  const {title,body} =req.body
-  const categorie='answer'
+router.post("/answer", (req, res, next) => {
+  const { title, body } = req.body;
+  const categorie = "answer";
   console.log(req.user._id);
-  
-  console.log('title',title);
-  if(!title || !body){
-    console.log('jai pas de titre et de body');
-    res.render("forum/answer",{
-      errorMessage: "Veuillez remplir le titre",
-      style:'answer'
-    })
-  }
-})
 
+  console.log("title", title);
+  if (!title || !body) {
+    console.log("jai pas de titre et de body");
+    res.render("forum/answer", {
+      isLog: true,
+      errorMessage: "Veuillez remplir le titre",
+      style: "answer",
+      module: "answer",
+    });
+  }
+});
 
 module.exports = router;

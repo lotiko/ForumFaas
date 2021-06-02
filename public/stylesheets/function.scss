@@ -1,0 +1,24 @@
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(4, 129, 156, 1);
+  margin: 1em auto;
+  border-radius: 5px;
+  min-width: 40em;
+}
+.block-args,
+.head-function {
+  display: flex;
+  align-items: center;
+  font-size: x-large;
+  font-weight: bolder;
+  padding: 0 0.5em;
+}
+.end-function {
+  font-size: x-large;
+  font-weight: bolder;
+}
+.arg {
+  width: 5em;
+}

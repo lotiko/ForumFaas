@@ -1,1 +1,38 @@
-hello fonction
+<link rel="stylesheet" href="/stylesheets/styles.css" />
+<div class="function modal">
+
+  <form action="/forum/function" method="post">
+    <label>
+      Nombre d'arguments:
+      <input type="number" class="nb-args" name="nbargs" min="0" max="5" value="0" />
+    </label>
+    <p>Le nom de la function et des arguments doit commencer
+      <br />part une lettre ou underscore ou "$"</p>
+    <div class="head-function">
+
+      <span>function</span>
+      <input type="text" name="name" />
+
+      <div class="block-args">
+        <span>(</span>
+
+        <input type="text" class="arg" name="[args]" hidden />
+
+        <div class="args-input">
+        </div>
+        <span>) {</span>
+      </div>
+    </div>
+    <textarea name="body" id="editor">return</textarea>
+    <span class="end-function">}</span>
+    <button class="btnposter">Poster</button>
+  </form>
+
+</div>
+{{#if errorMessage}}
+  <div class="error">
+    {{errorMessage}}
+  </div>
+{{/if}}
+
+<script src="/javascripts/ckeditor.js"></script>
