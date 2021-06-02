@@ -1,7 +1,13 @@
 const express = require("express");
-const usersModel = require("../models/user");
 const router = express.Router();
 const User = require("../models/user");
+const validator = require("email-validator");
+const fileUploader = require("../configs/cloudinary.config");
+const upload = fileUploader.single("avatar");
+const routeGuard = require("../configs/route-gard-isLog");
+router.use(routeGuard);
+
+
 
 /* GET home page */
 router.get("/:catname", async (req, res, next) => {
@@ -38,11 +44,33 @@ router.get("/:catname", async (req, res, next) => {
     res.render("forum/home");
     return;
   }
-  if (req.params.catname === "answer") {
-    res.render("forum/answer");
+  if(req.params.catname==='answer'){
+
+    res.render('forum/answer',{
+      isLog:true,
+      title:"Question",
+      style:"answer",
+      module:"answer"
+    });
     return;
   }
   next();
 });
+
+router.post('/answer',(req,res,next)=>{
+  const {title,body} =req.body
+  const categorie='answer'
+  console.log(req.user._id);
+  
+  console.log('title',title);
+  if(!title || !body){
+    console.log('jai pas de titre et de body');
+    res.render("forum/answer",{
+      errorMessage: "Veuillez remplir le titre",
+      style:'answer'
+    })
+  }
+})
+
 
 module.exports = router;
