@@ -165,7 +165,10 @@ label {
   padding-bottom: 4em;
   padding-bottom: 0.5em;
   background-color: #04819c;
-  border-radius: 50% 50% 0% 0%; }
+  border-radius: 50% 50% 0% 0%;
+  position: relative;
+  bottom: 0;
+  margin-bottom: 0; }
 
 .linkfooter {
   display: flex;

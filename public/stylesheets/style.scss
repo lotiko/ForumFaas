@@ -131,8 +131,6 @@ label {
 }
 ///user account
 //////////////////////////////////////
-
-//////////////////////////////////////
 ////// USER ACCOUNT
 .account {
   height: 100%;
@@ -188,6 +186,9 @@ label {
   padding-bottom: 0.5em;
   background-color: rgba(4, 129, 156, 1);
   border-radius: 50% 50% 0% 0%;
+  position: relative;
+  bottom: 0;
+  margin-bottom: 0;
 }
 
 .linkfooter {

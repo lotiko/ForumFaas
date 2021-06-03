@@ -143,7 +143,6 @@ window.addEventListener("resize", function () {
   h = c.height = window.innerHeight;
   starter.x = w / 2;
   starter.y = h / 2;
-
   init();
 });
 // Grab the prefers reduced media query.
