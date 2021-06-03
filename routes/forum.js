@@ -74,7 +74,22 @@ router.post("/:catname", (req, res, next) => {
   }
   ///////////////FUNCTION
   if (req.params.catname === "function") {
-    res.send(req.body);
+    const { name, body } = req.body;
+    const args = req.body["[args]"];
+    console.log(name, args, body, req.body, req.user._id);
+    /// TODO VERIF DATA
+
+    new Function({ name: name, args: args, body: body, userId: req.user._id })
+      .save()
+      .then((funInDb) => {
+        User.findById(req.user._id).then((userInDb) => {
+          userInDb.functions.push(funInDb._id);
+          userInDb.save().then((updateUser) => {
+            res.json({ fun: funInDb, upUser: updateUser });
+          });
+        });
+      })
+      .catch((err) => next(err));
     return;
   }
   ///////////////ANSWER
