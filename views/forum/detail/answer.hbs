@@ -1,0 +1,11 @@
+<link rel="stylesheet" href="/stylesheets/answer.css">
+<div data-id="{{this.id}}" id="editor" class='postanswer'>
+    <h1>details questions</h1>
+    <h3>{{title}}</h3>
+    <p id="p" >{{body}} </p>
+</div>
+<script>
+    const data=document.getElementById('p').textContent;
+    document.getElementById('p').innerHTML=data
+</script>
+{{!-- <script src="/javascripts/ckeditor.js"></script> --}}

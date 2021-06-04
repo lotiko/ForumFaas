@@ -11,10 +11,14 @@
 </div> }}
 <a href="/forum/answer"><button>Question</button></a>
 {{! bloc answer }}
-{{! <div class="block">
+<div class="block">
+  
   <h1>question</h1>
+ 
   <button class="new"></button>
+  {{#each posts}}
   <div class="question">
-    each questions
+   <a href="/forum/answer/{{this._id}}">{{this.title}}</a>
   </div>
-</div> }}
+   {{/each}}
+</div> 
