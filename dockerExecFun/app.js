@@ -32,39 +32,39 @@ app.get("/exec/:id", (req, res) => {
   res.json(req.body);
 });
 app.post("/exec/:name", (req, res, next) => {
+  console.log(req);
   Fun.find({ name: req.params.name })
     .then((ret) => {
-      console.log(ret);
+      console.log("body", req.body);
+      console.log("ret[0]", ret[0]);
       let data = ret[0];
-      let dataArgs = false;
+      const valuesArgs = [];
       if (data.args.length !== 0) {
-        dataArgs = [];
         data.args.forEach((nameArgs) => {
-          dataArgs.push(req.body[nameArgs]);
+          valuesArgs.push(req.body[nameArgs]);
         });
       }
+      console.log("valueArgs=>", valuesArgs);
       let path = `${__dirname}/tmpfolder/${data.name}.js`;
       let args = data.args.reduce((acc, val) => {
         return acc + "," + val;
       });
-      console.log(args, __dirname);
-      let fileText = `
+
+      const fileText = `
 function ${data.name}(${args}) {
 ${data.body}
 }
 module.exports = ${data.name};`;
+      console.log(fileText);
 
-      fs.writeFileSync(path, fileText, { flag: "w+" }, function (err) {
-        if (err) throw err;
-        console.log("Saved!");
-      });
+      fs.writeFileSync(path, fileText, { flag: "w+" });
+      //   , function (err) {
+      //   if (err) throw err;
+      //   console.log("Saved!");
+      // });
       const fun = require(`./tmpfolder/${data.name}.js`);
-      let datatoret;
-      if (dataArgs) {
-        datatoret = fun(...dataArgs);
-      } else {
-        datatoret = fun();
-      }
+      console.log(fun);
+      let datatoret = fun.apply(null, valuesArgs);
       res.json({ data: datatoret });
     })
     .catch((err) => next(err));
@@ -75,6 +75,6 @@ module.exports = ${data.name};`;
 //   //__dirname : It will resolve to your project folder.
 // });
 
-app.listen(8080, () => {
-  console.log("Listening on port 8080");
+app.listen(2323, () => {
+  console.log("Listening on port 2323");
 });
