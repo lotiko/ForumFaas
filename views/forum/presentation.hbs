@@ -1,32 +1,50 @@
 <div class="presentations">
   <h1>Présentations</h1>
-  {{#each users}}
-    <div class="user-block">
-      <div class="user-title">
-        <img class="title avatar" src="{{this.avatar}}" alt="avatar" />
-        <h2 class="title name">{{this.name}}</h2>
-        <img
-          class="title btn-details"
-          src="/images/userDetails.png"
-          alt="ico details"
-          data-id="{{this._id}}"
-        />
+  <div class="users">
+    {{#each users}}
+      <div class="user-block">
+        <div class="user-title">
+          <img class="title avatar" src="{{this.avatar}}" alt="avatar" />
+          <h2 class="title name">{{this.name}}</h2>
+          <img
+            class="title btn-details"
+            src="/images/userDetails.png"
+            alt="ico details"
+            data-id="{{this._id}}"
+          />
+        </div>
+        <div class="details hide" data-id="{{this._id}}">
+          <div class="activity">
+            <h3>Activités sur le forum:</h3>
+            <p>Post: {{this.nbPost}} Fonction: {{this.nbFun}}</p>
+          </div>
+          <div class="description">
+            <h3>Description:</h3>
+            <p>{{this.descriptions}}</p>
+          </div>
+          <div class="contact">
+            <h3>Contact:</h3>
+            <p>{{#if this.publicContact}} {{this.email}} {{else}}
+                Cet utilisateur ne souhaite pas divulgué son contact.{{/if}}</p>
+          </div>
+        </div>
       </div>
-      <div class="details hide" data-id="{{this._id}}">
-        <div class="activity">
-          <h3>Activités sur le forum:</h3>
-          <p>Post: {{this.nbPost}} Fonction: {{this.nbFun}}</p>
-        </div>
-        <div class="description">
-          <h3>Description:</h3>
-          <p>{{this.descriptions}}</p>
-        </div>
-        <div class="contact">
-          <h3>Contact:</h3>
-          <p>{{#if this.publicContact}} {{this.email}} {{else}}
-              Cet utilisateur ne souhaite pas divulgué son contact.{{/if}}</p>
-        </div>
-      </div>
+    {{/each}}
+  </div>
+  {{#if pagination.one}}
+    <div class="pagination" data-nbpage="{{nbPage}}">
+      <a href="#" class="active btn-page">1</a>
+      {{#if pagination.two}}
+        <a href="#" class="btn-page">2</a>
+      {{/if}}
+      {{#if pagination.tree}}
+        <a href="#" class="btn-page">3</a>
+      {{/if}}
+      {{#if pagination.four}}
+        <a href="#" class="btn-page">4</a>
+      {{/if}}
+
     </div>
-  {{/each}}
+  {{/if}}
 </div>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

@@ -16,7 +16,7 @@ const routeGuard = require("../configs/route-gard-isLog");
 /* GET home page */
 router.get("/:catname", async (req, res, next) => {
   if (req.params.catname === "presentation") {
-    const { page = 1, limit = 15 } = req.query;
+    const { page = 1, limit = 4 } = req.query;
     try {
       // execute query with page and limit values
       const users = await User.find()
@@ -24,6 +24,13 @@ router.get("/:catname", async (req, res, next) => {
         .limit(limit * 1)
         .skip((page - 1) * limit)
         .exec();
+      // compter le nombre de présentations et calculer le nombre de page en conséquences pour pagination dans vue
+      const nbDoc = await User.countDocuments({}).exec();
+      let nbPage = Math.floor(nbDoc / limit);
+      if (nbDoc % nbPage !== 0) {
+        nbPage++;
+      }
+
       const usersDataView = users.map((el) => {
         return {
           ...el._doc,
@@ -31,11 +38,37 @@ router.get("/:catname", async (req, res, next) => {
           nbFun: el.functions.length,
         };
       });
+      // on retourne seulement la donnée si query data sinon on envoi la vue
+      if (req.query.data) {
+        res.json({
+          users: usersDataView,
+          nbPage: nbPage,
+          page: page,
+          limit: limit,
+        });
+        return;
+      }
       // console.log(usersDataView);
+      let pagination = { one: false, two: false, tree: false, four: false };
+      if (nbPage < 3) {
+        pagination.one = true;
+        pagination.two = true;
+      } else if (nbPage < 4) {
+        pagination.one = true;
+        pagination.two = true;
+        pagination.tree = true;
+      } else {
+        pagination.one = true;
+        pagination.two = true;
+        pagination.tree = true;
+        pagination.four = true;
+      }
       res.render("forum/presentation", {
         users: usersDataView,
+        nbPage: nbPage,
         page: page,
         limit: limit,
+        pagination: pagination,
         title: "Presentations",
         style: "presentations",
         script: "presentations",
@@ -165,4 +198,5 @@ router.get("/:catname/:id", (req, res, next) => {
     })
     .catch((err) => next(err));
 });
+router;
 module.exports = router;
