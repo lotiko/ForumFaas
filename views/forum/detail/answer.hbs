@@ -1,9 +1,30 @@
 <link rel="stylesheet" href="/stylesheets/answer.css">
-<div data-id="{{this.id}}" id="editor" class='postanswer'>
+<div data-id="{{question.id}}" id="editor" class='postanswer'>
     <h1>details questions</h1>
-    <h3>{{title}}</h3>
-    <p id="p" >{{body}} </p>
+    <h3>{{question. title}}</h3>
+    <p id="p" >{{question.body}} </p>
 </div>
+<div>
+    {{#each answers}}
+    <div>
+    <h3>{{this.body}}</h3>
+    </div>
+    {{/each}}
+</div>
+<div>
+    <form action="/forum/answer?type=answer&from={{question.id}}" method="post">
+    
+        <label>
+            <h4>Votre réponse</h4>
+
+            <textarea name="body" id="editor"  > Votre question </textarea>
+            
+
+        </label>
+        <button class="btnposter">Poster</button>
+    </form>
+</div>
+
 <script>
     const data=document.getElementById('p').textContent;
     document.getElementById('p').innerHTML=data

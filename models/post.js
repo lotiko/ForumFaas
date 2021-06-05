@@ -6,6 +6,7 @@ const PostSchema = new mongoose.Schema(
     body: { type: String, required: true },
     categorie: { type: String, enum: ["function", "answer", "question"], required: true },
     withFunction: { type: mongoose.Schema.Types.ObjectId, ref: "Function" },
+    fromQuestion: {type: mongoose.Schema.Types.ObjectId, ref: "Post"},
     userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   },
   {
