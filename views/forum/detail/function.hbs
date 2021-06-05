@@ -1,0 +1,34 @@
+<div class="detail-fun">
+  <h1>Detail Fonction</h1>
+  <div data-id="{{fun.id}}" class="fun">
+    <div class="user-block">
+      <h4>{{userq.name}}</h4>
+      <img src="{{userq.avatar}}" alt="avatar" class="avatar" />
+    </div>
+    <div>
+      <h3>{{function.name}}</h3>
+      <p>{{{function.body}}} </p>
+    </div>
+
+  </div>
+  <div>
+
+    {{#if answers}}
+      {{#each answers}}
+        <div>
+          <p>{{{this.body}}}</p>
+        </div>
+      {{/each}}
+    {{/if}}
+  </div>
+  {{!-- <div class="postanswer">
+    <form action="/forum/answer?type=answer&from={{function.id}}" method="post">
+
+      <label>
+        <textarea name="body" id="editor"> Votre réponse </textarea>
+      </label>
+      <button class="btnposter">Poster</button>
+    </form>
+  </div> --}}
+</div>
+<script src="/javascripts/ckeditor.js"></script>

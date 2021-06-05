@@ -199,6 +199,10 @@ router.get("/:catname/:id", (req, res, next) => {
   if (req.params.catname === "presentation") {
   }
   if (req.params.catname === "function") {
+    Function.findById(req.params.id).then((funFromDb) => {
+      res.render("forum/detail/function", { function: funFromDb });
+      return;
+    });
   }
   if (req.params.catname === "home") {
   }
