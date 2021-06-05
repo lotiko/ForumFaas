@@ -34,20 +34,33 @@ nav {
   justify-content: center; }
 
 .pagination {
-  display: inline-block; }
+  display: inline-block;
+  border: 1px solid #e49906;
+  border-radius: 5px; }
 
-.pagination a {
+.btn-less-page {
+  border-radius: 5px 0 0 5px; }
+
+.btn-more-page {
+  border-radius: 0 5px 5px 0; }
+
+.btn-page {
+  border-radius: 0; }
+
+.pagination button {
+  display: flex;
+  align-items: center;
   color: black;
   float: left;
   padding: 8px 16px;
   text-decoration: none;
   transition: background-color 0.3s; }
 
-.pagination a.active {
-  background-color: #4caf50;
-  color: white; }
+.pagination button.active {
+  background-color: #35578b;
+  color: #e49906; }
 
-.pagination a:hover:not(.active) {
-  background-color: #ddd; }
+.pagination button:hover:not(.active) {
+  background-color: #a3b1c2; }
 
 /*# sourceMappingURL=presentations.css.map */

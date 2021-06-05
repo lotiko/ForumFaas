@@ -36,9 +36,22 @@ nav {
 
 .pagination {
   display: inline-block;
+  border: 1px solid rgba(228, 153, 6, 1);
+  border-radius: 5px;
 }
 
-.pagination a {
+.btn-less-page {
+  border-radius: 5px 0 0 5px;
+}
+.btn-more-page {
+  border-radius: 0 5px 5px 0;
+}
+.btn-page {
+  border-radius: 0;
+}
+.pagination button {
+  display: flex;
+  align-items: center;
   color: black;
   float: left;
   padding: 8px 16px;
@@ -46,11 +59,11 @@ nav {
   transition: background-color 0.3s;
 }
 
-.pagination a.active {
-  background-color: #4caf50;
-  color: white;
+.pagination button.active {
+  background-color: #35578b;
+  color: rgba(228, 153, 6, 1);
 }
 
-.pagination a:hover:not(.active) {
-  background-color: #ddd;
+.pagination button:hover:not(.active) {
+  background-color: rgb(163, 177, 194);
 }

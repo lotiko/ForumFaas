@@ -16,7 +16,7 @@ const routeGuard = require("../configs/route-gard-isLog");
 /* GET home page */
 router.get("/:catname", async (req, res, next) => {
   if (req.params.catname === "presentation") {
-    const { page = 1, limit = 4 } = req.query;
+    const { page = 1, limit = 2 } = req.query;
     try {
       // execute query with page and limit values
       const users = await User.find()
@@ -49,7 +49,7 @@ router.get("/:catname", async (req, res, next) => {
         return;
       }
       // console.log(usersDataView);
-      let pagination = { one: false, two: false, tree: false, four: false };
+      let pagination = { one: false, two: false, tree: false, four: false, more: false };
       if (nbPage < 3) {
         pagination.one = true;
         pagination.two = true;
@@ -58,11 +58,15 @@ router.get("/:catname", async (req, res, next) => {
         pagination.two = true;
         pagination.tree = true;
       } else {
+        if (nbPage > 4) pagination.more = true;
         pagination.one = true;
         pagination.two = true;
         pagination.tree = true;
         pagination.four = true;
       }
+      // dev
+      pagination.more = true;
+
       res.render("forum/presentation", {
         users: usersDataView,
         nbPage: nbPage,
@@ -72,6 +76,7 @@ router.get("/:catname", async (req, res, next) => {
         title: "Presentations",
         style: "presentations",
         script: "presentations",
+        isLog: !!req.user,
       });
       return;
     } catch (err) {
@@ -192,26 +197,23 @@ router.post("/:catname", (req, res, next) => {
 router.get("/:catname/:id", (req, res, next) => {
   PostModel.findById(req.params.id)
     .then((questionFromDb) => {
-  User.findById(questionFromDb.userId)
-          .select('avatar name createdAt')
-          .then(userFromDb=>{
-      PostModel.find({ fromQuestion: questionFromDb._id })
-      .then((answersFromDb) => {
-          
-              console.log('lutilisateur est', userFromDb);
-          if (answersFromDb.length === 0) {
-            res.render("forum/detail/answer", { question: questionFromDb ,userq:userFromDb,});
-          } else {
-            res.render("forum/detail/answer", {
-              question: questionFromDb,
-              answers: answersFromDb,
-              userq:userFromDb,
-              script: "answer",
-            });
-          }
-        })
-        }
-      );
+      User.findById(questionFromDb.userId)
+        .select("avatar name createdAt")
+        .then((userFromDb) => {
+          PostModel.find({ fromQuestion: questionFromDb._id }).then((answersFromDb) => {
+            console.log("lutilisateur est", userFromDb);
+            if (answersFromDb.length === 0) {
+              res.render("forum/detail/answer", { question: questionFromDb, userq: userFromDb });
+            } else {
+              res.render("forum/detail/answer", {
+                question: questionFromDb,
+                answers: answersFromDb,
+                userq: userFromDb,
+                script: "answer",
+              });
+            }
+          });
+        });
     })
     .catch((err) => next(err));
 });
