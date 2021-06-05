@@ -83,29 +83,22 @@ router.get("/:catname", async (req, res, next) => {
       next(err);
     }
   }
+  // voir si details catname
   if (req.params.catname === "function") {
-    routeGuard(req, res);
-    res.render("forum/function", {
-      isLog: true,
-      title: "Function",
-      style: "function",
-      module: "function",
-    });
-    return;
   }
   if (req.params.catname === "home") {
-    PostModel.find({ categorie: "question" })
-      .sort({ createdAt: -1 })
-      .exec()
-      .then((postFromDb) => {
-        console.log("jai trouve sa", postFromDb);
-        res.render("forum/home", {
-          isLog: !!req.user,
-          posts: postFromDb,
-        });
-      })
-      .catch((err) => next(err));
-    return;
+    try {
+      let fun = await Function.find({}).sort({ createdAt: -1 }).exec();
+      let post = await PostModel.find({ categorie: "question" }).sort({ createdAt: -1 }).exec();
+
+      res.render("forum/home", {
+        isLog: !!req.user,
+        posts: post,
+        functions: fun,
+      });
+    } catch (error) {
+      next(error);
+    }
   }
   if (req.params.catname === "answer") {
     routeGuard(req, res);
@@ -203,27 +196,53 @@ router.post("/:catname", (req, res, next) => {
 });
 
 router.get("/:catname/:id", (req, res, next) => {
-  PostModel.findById(req.params.id)
-    .then((questionFromDb) => {
-      User.findById(questionFromDb.userId)
-        .select("avatar name createdAt")
-        .then((userFromDb) => {
-          PostModel.find({ fromQuestion: questionFromDb._id }).then((answersFromDb) => {
-            console.log("lutilisateur est", userFromDb);
-            if (answersFromDb.length === 0) {
-              res.render("forum/detail/answer", { question: questionFromDb, userq: userFromDb });
-            } else {
-              res.render("forum/detail/answer", {
-                question: questionFromDb,
-                answers: answersFromDb,
-                userq: userFromDb,
-                script: "answer",
-              });
-            }
+  if (req.params.catname === "presentation") {
+  }
+  if (req.params.catname === "function") {
+  }
+  if (req.params.catname === "home") {
+  }
+  if (req.params.catname === "answer") {
+    PostModel.findById(req.params.id)
+      .then((questionFromDb) => {
+        User.findById(questionFromDb.userId)
+          .select("avatar name createdAt")
+          .then((userFromDb) => {
+            PostModel.find({ fromQuestion: questionFromDb._id }).then((answersFromDb) => {
+              console.log("lutilisateur est", userFromDb);
+              if (answersFromDb.length === 0) {
+                res.render("forum/detail/answer", { question: questionFromDb, userq: userFromDb });
+              } else {
+                res.render("forum/detail/answer", {
+                  question: questionFromDb,
+                  answers: answersFromDb,
+                  userq: userFromDb,
+                  script: "answer",
+                });
+              }
+            });
           });
-        });
-    })
-    .catch((err) => next(err));
+        return;
+      })
+      .catch((err) => next(err));
+  }
 });
-router;
+router.get("/:catname/new", (req, res, next) => {
+  if (req.params.catname === "presentation") {
+  }
+  if (req.params.catname === "function") {
+    routeGuard(req, res);
+    res.render("forum/function", {
+      isLog: true,
+      title: "Function",
+      style: "function",
+      module: "function",
+    });
+    return;
+  }
+  if (req.params.catname === "home") {
+  }
+  if (req.params.catname === "answer") {
+  }
+});
 module.exports = router;
