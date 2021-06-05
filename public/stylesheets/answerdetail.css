@@ -1,0 +1,26 @@
+.postanswer {
+  display: flex;
+  align-items: center;
+  min-width: 70vw;
+  justify-content: space-around;
+  border-radius: 5px;
+  background-color: #04819c;
+  padding: 1.5em;
+  min-height: 40%;
+  flex-direction: column; }
+
+.question {
+  display: flex;
+  flex-direction: row;
+  border: solid 1px coral;
+  border-radius: 5px;
+  width: 100%; }
+
+.user-block {
+  margin-right: 8em;
+  background-color: whitesmoke;
+  color: black;
+  border-radius: 5px;
+  border: 2px solid #e49906; }
+
+/*# sourceMappingURL=answerdetail.css.map */

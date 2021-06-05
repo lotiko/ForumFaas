@@ -89,7 +89,7 @@ router.get("/:catname", async (req, res, next) => {
     return;
   }
   if (req.params.catname === "home") {
-    PostModel.find({})
+    PostModel.find({ categorie: "question" })
       .sort({ createdAt: -1 })
       .exec()
       .then((postFromDb) => {
@@ -177,7 +177,12 @@ router.post("/:catname", (req, res, next) => {
     new PostModel(newPost)
       .save()
       .then(function (answersFromDb) {
-        res.redirect("/forum/home");
+        if (categorie === "question") {
+          res.redirect("/forum/home");
+        }
+        if (categorie === "answer") {
+          res.redirect("/forum/answer/" + fromQuestion);
+        }
       })
       .catch((err) => next(err));
   }
@@ -187,14 +192,26 @@ router.post("/:catname", (req, res, next) => {
 router.get("/:catname/:id", (req, res, next) => {
   PostModel.findById(req.params.id)
     .then((questionFromDb) => {
-      console.log(questionFromDb);
-      PostModel.find({ fromQuestion: questionFromDb._id }).then((answersFromDb) => {
-        if (answersFromDb.length === 0) {
-          res.render("forum/detail/answer", { question: questionFromDb });
-        } else {
-          res.render("forum/detail/answer", { questionFromDb, answers: answersFromDb });
+  User.findById(questionFromDb.userId)
+          .select('avatar name createdAt')
+          .then(userFromDb=>{
+      PostModel.find({ fromQuestion: questionFromDb._id })
+      .then((answersFromDb) => {
+          
+              console.log('lutilisateur est', userFromDb);
+          if (answersFromDb.length === 0) {
+            res.render("forum/detail/answer", { question: questionFromDb ,userq:userFromDb,});
+          } else {
+            res.render("forum/detail/answer", {
+              question: questionFromDb,
+              answers: answersFromDb,
+              userq:userFromDb,
+              script: "answer",
+            });
+          }
+        })
         }
-      });
+      );
     })
     .catch((err) => next(err));
 });

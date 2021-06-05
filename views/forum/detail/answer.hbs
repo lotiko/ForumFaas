@@ -1,32 +1,36 @@
-<link rel="stylesheet" href="/stylesheets/answer.css" />
-<div data-id="{{question.id}}" id="editor" class="postanswer">
-  <h1>details questions</h1>
-  <h3>{{question.title}}</h3>
-  <p id="p">{{question.body}} </p>
-</div>
-<div>
-  {{#if answer}}
-    {{#each answers}}
-      <div>
-        <h3>{{this.body}}</h3>
-      </div>
-    {{/each}}
-  {{/if}}
-</div>
-<div>
-  <form action="/forum/answer?type=answer&from={{question.id}}" method="post">
+<link rel="stylesheet" href="/stylesheets/answerdetail.css" />
+<h1>Detail question</h1>
+<div class="postanswer">
 
-    <label>
-      <h4>Votre réponse</h4>
+    <div data-id="{{question.id}}" class="question">
+        <div class="user-block">
+            <h4>{{userq.name}}</h4>
+            <img src="{{userq.avatar}}" alt="avatar" class="avatar">
+        </div>
+        <div>
+            <h3>{{question.title}}</h3>
+            <p>{{{question.body}}} </p>
+        </div>
+        
+    </div>
+<hr>
+    <div>
 
-      <textarea name="body" id="editor"> Votre question </textarea>
+        {{#if answers}}
+        {{#each answers}}
+        <div>
+            <p>{{{this.body}}}</p>
+        </div>
+        {{/each}}
+        {{/if}}
+    </div>
+    <div class="postanswer">
+        <form action="/forum/answer?type=answer&from={{question.id}}" method="post">
 
-    </label>
-    <button class="btnposter">Poster</button>
-  </form>
-</div>
-
-<script>
-  const data=document.getElementById('p').textContent; document.getElementById('p').innerHTML=data
-</script>
-{{! <script src="/javascripts/ckeditor.js"></script> }}
+            <label>
+                <textarea name="body" id="editor"> Votre réponse </textarea>
+            </label>
+            <button class="btnposter">Poster</button>
+        </form>
+    </div>
+    <script src="/javascripts/ckeditor.js"></script>
