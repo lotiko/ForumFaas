@@ -16,7 +16,7 @@ const routeGuard = require("../configs/route-gard-isLog");
 /* GET home page */
 router.get("/:catname", async (req, res, next) => {
   if (req.params.catname === "presentation") {
-    const { page = 1, limit = 2 } = req.query;
+    const { page = 1, limit = 4 } = req.query;
     try {
       // execute query with page and limit values
       const users = await User.find()

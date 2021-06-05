@@ -64,7 +64,7 @@ function setPagination() {
       $btnpage.onclick = () => {
         toggleActive($btnpage);
         axios
-          .get(`/forum/presentation?page=${page}&limit=2&data=true`)
+          .get(`/forum/presentation?page=${page}&limit=4&data=true`)
           .then((dataPage) => {
             console.log(dataPage);
             changeUsersBlock(dataPage.data.users);
