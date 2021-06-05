@@ -9,13 +9,12 @@
    <a href="/forum/function/{{this._id}}">{{this.name}}</a>
   </div>
    {{/each}}
-<a href="/forum/answer"><button>Question</button></a>
 {{! bloc answer }}
 <div class="block">
   
   <h1>question</h1>
  
-  <button class="new">New</button>
+  <a href="/forum/answer"><button class="new">New</button></a>
   {{#each posts}}
   <div class="question">
    <a href="/forum/answer/{{this._id}}">{{this.title}}</a>
