@@ -128,6 +128,14 @@ router.post("/:catname", (req, res, next) => {
   // /////////////FUNCTION
   if (req.params.catname === "function") {
     const { name, body } = req.body;
+    if (!name || !body || body === "return") {
+      res.render("forum/function", {
+        errorMessage: "Le nom de fonction et le corps de fonction sont requis.",
+        style: "function",
+        module: "function",
+      });
+      return;
+    }
     const args = req.body["[args]"];
     console.log(name, args, body, req.body, req.user._id);
     // / TODO VERIF DATA
