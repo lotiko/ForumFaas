@@ -15,6 +15,7 @@ router.get("/", (req, res, next) => {
     isLog: true,
     title: "Account",
     ...dataView,
+    id: req.user._id,
     script: "deleteAccount",
     style: "deleteAccount",
   });
@@ -73,7 +74,11 @@ router
         .catch((err) => next(err));
     }
   );
-router.get("/delete", (req, res, next) => {
+router.get("/delete/:id", (req, res, next) => {
+  if (req.user._id !== req.params.id) {
+    res.render("home", { errorMessage: "Vous ne pouvez pas supprimer cette utilsateur." });
+    return;
+  }
   User.findByIdAndDelete(req.user._id, (err) => {
     if (err) {
       next(err);
