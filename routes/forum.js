@@ -109,7 +109,7 @@ router.post("/:catname", (req, res, next) => {
   }
   // /////////////ANSWER///////////////////
   if (req.params.catname === "answer") {
-      console.log(req.body, req.query);
+    console.log(req.body, req.query);
     const { title = "answer", body } = req.body;
     const categorie = req.query.type;
     let fromQuestion = false;
@@ -137,13 +137,11 @@ router.post("/:catname", (req, res, next) => {
       categorie: categorie,
       userId: userId,
     };
-    console.log('mon nvx poste',newPost);
+    console.log("mon nvx poste", newPost);
     if (fromQuestion) {
       newPost.fromQuestion = fromQuestion;
     }
-    new PostModel(
-      newPost
-    )
+    new PostModel(newPost)
       .save()
       .then(function (answersFromDb) {
         res.redirect("/forum/home");
@@ -154,12 +152,16 @@ router.post("/:catname", (req, res, next) => {
 });
 
 router.get("/:catname/:id", (req, res, next) => {
-
   PostModel.findById(req.params.id)
     .then((questionFromDb) => {
-        PostModel.find({fromQuestion: questionFromDb._id})
-        .then(answersFromDb=> {res.render("forum/detail/answer", {questionFromDb,answers: answersFromDb});})
-      
+      console.log(questionFromDb);
+      PostModel.find({ fromQuestion: questionFromDb._id }).then((answersFromDb) => {
+        if (answersFromDb.length === 0) {
+          res.render("forum/detail/answer", { question: questionFromDb });
+        } else {
+          res.render("forum/detail/answer", { questionFromDb, answers: answersFromDb });
+        }
+      });
     })
     .catch((err) => next(err));
 });
