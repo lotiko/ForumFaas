@@ -7,21 +7,21 @@
             <h4>{{userq.name}}</h4>
             <img src="{{userq.avatar}}" alt="avatar" class="avatar">
         </div>
-        <div>
+        <div class="containquestion dialgueBox">
             <h3>{{question.title}}</h3>
             <p>{{{question.body}}} </p>
         </div>
         
     </div>
 <hr>
-    <div>
-
+    <div >
+        
         {{#if answers}}
-        {{#each answers}}
-        <div>
-            <p>{{{this.body}}}</p>
-        </div>
-        {{/each}}
+        {{#each userA}}
+<h3>{{this.userId.name}}</h3>
+<p>{{{this.body}}}</p>
+{{/each}}
+        
         {{/if}}
     </div>
     <div class="postanswer">

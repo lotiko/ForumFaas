@@ -12,6 +12,7 @@ const upload = fileUploader.single("avatar");
 
 // /// UTILS
 const routeGuard = require("../configs/route-gard-isLog");
+const { findById } = require("../models/user");
 
 /* GET home page */
 router.get("/:catname", async (req, res, next) => {
@@ -146,6 +147,7 @@ router.post("/:catname", (req, res, next) => {
     const { title = "answer", body } = req.body;
     const categorie = req.query.type;
     let fromQuestion = false;
+    const regexTitle = /^.{1,90}$/;
     if (categorie === "answer") {
       fromQuestion = req.query.from;
     }
@@ -159,6 +161,16 @@ router.post("/:catname", (req, res, next) => {
       res.render("forum/answer", {
         isLog: true,
         errorMessage: "Veuillez remplir le titre",
+        style: "answer",
+        module: "answer",
+      });
+      return;
+    }
+
+    console.log("mon test titre", regexTitle.test(title));
+    if (!regexTitle.test(title)) {
+      res.render("forum/answer", {
+        errorMessage: "Votre question est tres longue",
         style: "answer",
         module: "answer",
       });
@@ -192,26 +204,38 @@ router.post("/:catname", (req, res, next) => {
 router.get("/:catname/:id", (req, res, next) => {
   PostModel.findById(req.params.id)
     .then((questionFromDb) => {
-  User.findById(questionFromDb.userId)
-          .select('avatar name createdAt')
-          .then(userFromDb=>{
-      PostModel.find({ fromQuestion: questionFromDb._id })
-      .then((answersFromDb) => {
-          
-              console.log('lutilisateur est', userFromDb);
-          if (answersFromDb.length === 0) {
-            res.render("forum/detail/answer", { question: questionFromDb ,userq:userFromDb,});
-          } else {
-            res.render("forum/detail/answer", {
-              question: questionFromDb,
-              answers: answersFromDb,
-              userq:userFromDb,
-              script: "answer",
-            });
-          }
-        })
-        }
-      );
+      console.log('massiquestionFromDb',questionFromDb);
+      User.findById(questionFromDb.userId)
+        .select("avatar name createdAt")
+        .then((userFromDb) => {
+          PostModel.find({ fromQuestion: questionFromDb._id })
+          .then((answersFromDb) => {
+            console.log('kiwwwwwwwwwww',answersFromDb);
+            PostModel.find( {$and:[{fromQuestion: questionFromDb._id },{categorie:"answer"}]})
+            .populate('userId') 
+            .then((useranswer)=>{
+              console.log('fadilauseranswer',useranswer);
+              console.log("lutilisateur est", userFromDb);
+              if (answersFromDb.length === 0) {
+                res.render("forum/detail/answer", {
+                  question: questionFromDb,
+                  userq: userFromDb,
+                  userA:useranswer,
+                  script: "answer",
+                });
+              } else {
+                res.render("forum/detail/answer", {
+                  question: questionFromDb,
+                  answers: answersFromDb,
+                  userq: userFromDb,
+                  userA:useranswer,
+                  script: "answer",
+                });
+              }
+             })
+            }
+          );
+        });
     })
     .catch((err) => next(err));
 });

@@ -463,3 +463,11 @@ footer {
 		font-size: 1.5em;
 	}
 }
+form{
+	max-width: 50vw;
+	max-width: 40vw;
+}
+.postanswer{
+	min-width: 50vw;
+	max-width: 50vw;
+}

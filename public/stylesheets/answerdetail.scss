@@ -1,32 +1,59 @@
-.postanswer{
-    display: flex;
-    align-items: center;
-    min-width: 70vw;
-    justify-content: space-around;
-    border-radius: 5px;
-    background-color: rgba(4, 129, 156, 1);
-    padding: 1.5em;
-    min-height: 40%;
-    flex-direction: column;
-    
-   
+.postanswer {
+  display: flex;
+  align-items: center;
+  min-width: 70vw;
+  justify-content: space-around;
+  border-radius: 5px;
+  background-color: rgba(4, 129, 156, 1);
+  padding: 1.5em;
+  margin-bottom: 2em;
+  flex-direction: column;
+}
+
+.question {
+  display: flex;
+  flex-direction: row;
+  min-width: 65vw;
+}
+
+.containquestion{
+  
+  
+padding: 2em;
+  width: 100%;
+}
+.dialgueBox {
+
+  margin:10px;
+  background:gray;
+  position: relative;
+  cursor:pointer;
+  box-shadow: 10px 5px 10px 2px black;
+  border-radius: 0px 10px 10px 10px;
   }
   
-  .question{
-      display: flex;
-      flex-direction: row;
-   border:solid 1px coral;
-   border-radius: 5px;
-   
-   width: 100%;
-   
-
+  .dialgueBox::before,.dialgueBox::after {
+  content: "";
+  position: absolute;
+  top: -webkit-calc(100% - 10px); /*may require prefix for old browser support*/
+  top: calc(7%); /*i.e. half the height*/
+  left:-22px;
+  height: 43px;
+  width: 43px;
+  background: gray;
+  transform: rotate(45deg);
+  z-index:-1;
+  box-shadow:inherit;
   }
-  .user-block{
-      margin-right: 8em;
-      background-color: whitesmoke;
+  .dialgueBox::after{
+  box-shadow:none;
+  z-index:8;
+  }
+.user-block {
+  margin-bottom: auto;
+  margin-right: 2em;
+  background-color: whitesmoke;
   color: black;
   border-radius: 5px;
   border: 2px solid rgba(228, 153, 6, 1);
-  
-  }
+}
