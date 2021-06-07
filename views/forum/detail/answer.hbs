@@ -11,19 +11,20 @@
             <h3>{{question.title}}</h3>
             <p>{{{question.body}}} </p>
         </div>
-        
+
     </div>
-<hr>
-    <div >
-        
+    <hr>
+    <div>
+
         {{#if answers}}
         {{#each userA}}
-<h3>{{this.userId.name}}</h3>
-<p>{{{this.body}}}</p>
-{{/each}}
-        
+        <h3>{{this.userId.name}}</h3>
+        <p>{{{this.body}}}</p>
+        {{/each}}
+
         {{/if}}
     </div>
+    {{#if isLog}}
     <div class="postanswer">
         <form action="/forum/answer?type=answer&from={{question.id}}" method="post">
 
@@ -33,4 +34,5 @@
             <button class="btnposter">Poster</button>
         </form>
     </div>
+    {{/if}}
     <script src="/javascripts/ckeditor.js"></script>
