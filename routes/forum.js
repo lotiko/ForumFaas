@@ -182,26 +182,6 @@ router.post("/:catname", (req, res, next) => {
   }
   // /////////////ANSWER///////////////////
   if (req.params.catname === "answer") {
-  }
-  // si pas de route trouver continue vers 404 error
-});
-
-router.get("/:catname/new", (req, res, next) => {
-  if (req.params.catname === "presentation") {
-  }
-  if (req.params.catname === "function") {
-    routeGuard(req, res);
-    res.render("forum/new/function", {
-      isLog: true,
-      title: "Function",
-      style: "function",
-      module: "function",
-    });
-    return;
-  }
-  if (req.params.catname === "home") {
-  }
-  if (req.params.catname === "answer") {
     console.log(req.body, req.query);
     const { title = "answer", body } = req.body;
     const categorie = req.query.type;
@@ -260,44 +240,26 @@ router.get("/:catname/new", (req, res, next) => {
   // si pas de route trouver continue vers 404 error
 });
 
-// router.get("/:catname/:id", (req, res, next) => {
-// PostModel.findById(req.params.id)
-//   .then((questionFromDb) => {
-//     console.log("massiquestionFromDb", questionFromDb);
-//     User.findById(questionFromDb.userId)
-//       .select("avatar name createdAt")
-//       .then((userFromDb) => {
-//         PostModel.find({ fromQuestion: questionFromDb._id }).then((answersFromDb) => {
-//           console.log("kiwwwwwwwwwww", answersFromDb);
-//           PostModel.find({
-//             $and: [{ fromQuestion: questionFromDb._id }, { categorie: "answer" }],
-//           })
-//             .populate("userId")
-//             .then((useranswer) => {
-//               console.log("fadilauseranswer", useranswer);
-//               console.log("lutilisateur est", userFromDb);
-//               if (answersFromDb.length === 0) {
-//                 res.render("forum/detail/answer", {
-//                   question: questionFromDb,
-//                   userq: userFromDb,
-//                   userA: useranswer,
-//                   script: "answer",
-//                 });
-//               } else {
-//                 res.render("forum/detail/answer", {
-//                   question: questionFromDb,
-//                   answers: answersFromDb,
-//                   userq: userFromDb,
-//                   userA: useranswer,
-//                   script: "answer",
-//                 });
-//               }
-//             });
-//         });
-//       });
-//   })
-//   .catch((err) => next(err));
-// });
+router.get("/:catname/new", (req, res, next) => {
+  if (req.params.catname === "presentation") {
+  }
+  if (req.params.catname === "function") {
+    routeGuard(req, res);
+    res.render("forum/new/function", {
+      isLog: true,
+      title: "Function",
+      style: "function",
+      module: "function",
+    });
+    return;
+  }
+  if (req.params.catname === "home") {
+  }
+  if (req.params.catname === "answer") {
+  }
+  // si pas de route trouver continue vers 404 error
+});
+
 router.get("/:catname/:id", (req, res, next) => {
   if (req.params.catname === "presentation") {
   }
@@ -307,31 +269,7 @@ router.get("/:catname/:id", (req, res, next) => {
       return;
     });
   }
-  if (req.params.catname === "home") {
-  }
   if (req.params.catname === "answer") {
-    // PostModel.findById(req.params.id)
-    //   .then((questionFromDb) => {
-    //     User.findById(questionFromDb.userId)
-    //       .select("avatar name createdAt")
-    //       .then((userFromDb) => {
-    //         PostModel.find({ fromQuestion: questionFromDb._id }).then((answersFromDb) => {
-    //           console.log("lutilisateur est", userFromDb);
-    //           if (answersFromDb.length === 0) {
-    //             res.render("forum/detail/answer", { question: questionFromDb, userq: userFromDb });
-    //           } else {
-    //             res.render("forum/detail/answer", {
-    //               question: questionFromDb,
-    //               answers: answersFromDb,
-    //               userq: userFromDb,
-    //               script: "answer",
-    //             });
-    //           }
-    //         });
-    //       });
-    //     return;
-    //   })
-    //   .catch((err) => next(err));
     PostModel.findById(req.params.id)
       .then((questionFromDb) => {
         console.log("massiquestionFromDb", questionFromDb);
