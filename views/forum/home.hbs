@@ -56,7 +56,7 @@
 <div class="functions">
   <h1>Fonction</h1>
   <a href="/forum/function/new"><button class="new">New</button></a>
-  <div class="functions-block">
+  <div class="block">
     {{#each functions}}
       <div class="function-block">
         <div class="function-title">
@@ -71,6 +71,27 @@
         </div>
       </div>
     {{/each}}
+    {{#if paginationFunctions.one}}
+      <div class="pagination-functions" data-nbpage="{{nbPage.functions}}">
+        {{#if paginationFunctions.more}}
+          <button class="btn-less-page-functions">&#60&#60</button>
+        {{/if}}
+        <button class="active btn-page-functions">1</button>
+        {{#if paginationFunctions.two}}
+          <button class="btn-page-functions">2</button>
+        {{/if}}
+        {{#if paginationFunctions.tree}}
+          <button class="btn-page-functions">3</button>
+        {{/if}}
+        {{#if paginationFunctions.four}}
+          <button class="btn-page-functions">4</button>
+        {{/if}}
+        {{#if paginationFunctions.more}}
+          <button class="btn-more-page-functions">&#62&#62</button>
+        {{/if}}
+
+      </div>
+    {{/if}}
   </div>
 </div>
 {{! bloc answer }}

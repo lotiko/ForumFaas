@@ -49,6 +49,8 @@ router.get("/:catname", async (req, res, next) => {
           .limit(limit * 1)
           .skip((page - 1) * limit)
           .exec();
+        let nbDocFun = await User.countDocuments({}).exec();
+        let nbPageFun = Math.ceil(nbDocFun / limit);
         functionsDataView = dataDb.map((funDb) => {
           const { name, _id } = funDb;
           const authorData = {
@@ -57,7 +59,20 @@ router.get("/:catname", async (req, res, next) => {
           };
           return { _id, name, authorData };
         });
-        console.log(functionsDataView);
+        if (req.query.data) {
+          // on retourne seulement la donnée si query data
+          if (req.query.data) {
+            res.json({
+              functions: functionsDataView,
+              nbPage: nbPageFun,
+              page: page,
+              limit: limit,
+            });
+            return;
+          }
+        } // sinon on prepare les données de la vue
+        paginationFunctions = makePaginationObj(nbPageFun);
+        nbPage.functions = nbPageFun;
       }
       if (!req.query.data || req.query.data === "question") {
         postsDataview = await PostModel.find({ categorie: "question" })
@@ -100,17 +115,18 @@ router.get("/:catname", async (req, res, next) => {
       }
 
       res.render("forum/home", {
-        users: usersDataView,
         nbPage: nbPage,
+        users: usersDataView,
+        paginationUsers: paginationUsers,
+        functions: functionsDataView,
+        paginationFunctions: paginationFunctions,
+        posts: postsDataview,
         page: page,
         limit: limit,
-        paginationUsers: paginationUsers,
+        isLog: !!req.user,
         title: "ForumHome",
         style: "presentations",
         script: "presentations",
-        isLog: !!req.user,
-        posts: postsDataview,
-        functions: functionsDataView,
       });
       return;
     } catch (error) {
