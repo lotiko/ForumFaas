@@ -15,7 +15,7 @@ const routeGuard = require("../configs/route-gard-isLog");
 const { findById } = require("../models/user");
 
 /* GET home page */
-router.get("/home", async (req, res, next) => {
+router.get("/:catname", async (req, res, next) => {
   function makePaginationObj(nbpage) {
     let pagination = { one: false, two: false, tree: false, four: false, more: false };
     if (nbpage < 3) {
