@@ -133,16 +133,6 @@ router.get("/:catname", async (req, res, next) => {
       next(error);
     }
   }
-  // if (req.params.catname === "answer") {
-  //   routeGuard(req, res);
-  //   res.render("forum/answer", {
-  //     isLog: true,
-  //     title: "Question",
-  //     style: "answer",
-  //     module: "answer",
-  //   });
-  //   return;
-  // }
   next();
 });
 
@@ -256,6 +246,16 @@ router.get("/:catname/new", (req, res, next) => {
   if (req.params.catname === "home") {
   }
   if (req.params.catname === "answer") {
+    if (req.params.catname === "answer") {
+      routeGuard(req, res);
+      res.render("forum/new/answer", {
+        isLog: true,
+        title: "Question",
+        style: "answer",
+        module: "answer",
+      });
+      return;
+    }
   }
   // si pas de route trouver continue vers 404 error
 });
