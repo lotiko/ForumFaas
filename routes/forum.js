@@ -227,6 +227,7 @@ router.get("/:catname/:id", (req, res, next) => {
                       userq: userFromDb,
                       userA: useranswer,
                       script: "answer",
+                      isLog: !!req.user,
                     });
                   } else {
                     res.render("forum/detail/answer", {
@@ -235,6 +236,7 @@ router.get("/:catname/:id", (req, res, next) => {
                       userq: userFromDb,
                       userA: useranswer,
                       script: "answer",
+                      isLog: !!req.user,
                     });
                   }
                 });
