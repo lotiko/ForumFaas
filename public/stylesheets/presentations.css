@@ -1,4 +1,5 @@
-.presentations {
+.presentations,
+.functions {
   background-color: #04819c;
   border-radius: 5px;
   min-width: 30%;
@@ -12,7 +13,10 @@
   width: 40px; }
 
 .btn-details {
-  height: 30px;
+  height: 30px; }
+
+.btn-details-fun {
+  height: 20px;
   border-radius: 5px; }
 
 .user-block,

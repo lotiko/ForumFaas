@@ -36,50 +36,53 @@
       {{#if paginationUsers.more}}
         <button class="btn-less-page-users">&#60&#60</button>
       {{/if}}
-      <button class="active btn-page-users ">1</button>
+      <button class="active btn-page-users">1</button>
       {{#if paginationUsers.two}}
-        <button class="btn-page-users ">2</button>
+        <button class="btn-page-users">2</button>
       {{/if}}
       {{#if paginationUsers.tree}}
-        <button class="btn-page-users ">3</button>
+        <button class="btn-page-users">3</button>
       {{/if}}
       {{#if paginationUsers.four}}
-        <button class="btn-page-users ">4</button>
+        <button class="btn-page-users">4</button>
       {{/if}}
       {{#if paginationUsers.more}}
-        <button class="btn-more-page-users ">&#62&#62</button>
+        <button class="btn-more-page-users">&#62&#62</button>
       {{/if}}
 
     </div>
   {{/if}}
 </div>
-<div class="block functions">
+<div class="functions">
   <h1>Fonction</h1>
   <a href="/forum/function/new"><button class="new">New</button></a>
-  {{#each functions}}
-  <div class="function-block">
+  <div class="functions-block">
+    {{#each functions}}
+      <div class="function-block">
         <div class="function-title">
           <img class="title avatar" src="{{this.authorData.avatar}}" alt="avatar" />
           <h2 class="title name">{{this.name}}</h2>
-          <a href="/forum/function/{{this._id}}"></a><img
-            class="title btn-details"
-            src="/images/details.png"
-            alt="ico details"
-            data-id="{{this._id}}"
-          /></a>
+          <a href="/forum/function/{{this._id}}"><img
+              class="title btn-details-fun"
+              src="/images/details.png"
+              alt="ico details"
+              data-id="{{this._id}}"
+            /></a>
         </div>
+      </div>
+    {{/each}}
   </div>
-   {{/each}}
+</div>
 {{! bloc answer }}
 <div class="block">
-  
+
   <h1>question</h1>
- 
+
   <a href="/forum/answer"><button class="new">New</button></a>
   {{#each posts}}
-  <div class="question">
-   <a href="/forum/answer/{{this._id}}">{{this.title}}</a>
-  </div>
-   {{/each}}
-</div> 
+    <div class="question">
+      <a href="/forum/answer/{{this._id}}">{{this.title}}</a>
+    </div>
+  {{/each}}
+</div>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
