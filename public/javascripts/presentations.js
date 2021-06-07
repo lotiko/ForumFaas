@@ -125,6 +125,7 @@ function addEvent$paginMoreLess() {
     }
   };
 }
+/// Functions block
 
 /// launch process
 set$details();
