@@ -24,8 +24,9 @@ router
   .get("/edit", (req, res, next) => {
     console.log(req.user.descriptions);
     const dataView = getDataView(req.user);
+    if (!dataView.description) dataView.description = "";
     console.log(req.session);
-    res.render("user/edit", { isLog: true, title: "EditUser", ...dataView });
+    res.render("user/edit", { isLog: true, title: "EditUser", ...dataView, style: "editUser" });
   })
   .post(
     "/edit",

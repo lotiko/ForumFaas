@@ -2,7 +2,17 @@
   background-color: #04819c;
   border-radius: 5px;
   min-width: 30%;
-  text-align: center; }
+  text-align: center;
+  margin: 1em;
+  min-height: 400px;
+  position: relative; }
+
+.avatar {
+  height: 40px;
+  width: 40px; }
+
+.btn-details {
+  height: 30px; }
 
 .user-block {
   display: flex;
@@ -18,7 +28,8 @@
   align-items: center; }
 
 .name {
-  flex: 1; }
+  flex: 1;
+  width: 7em; }
 
 .title {
   margin: 0.5em 2em 0.5em; }
@@ -34,20 +45,40 @@ nav {
   justify-content: center; }
 
 .pagination {
-  display: inline-block; }
+  display: flex;
+  border: 1px solid #35578b;
+  border-radius: 5px;
+  margin-bottom: 0.5em;
+  width: 60%;
+  position: absolute;
+  bottom: 0;
+  left: 20%; }
 
-.pagination a {
+.btn-less-page {
+  border-radius: 5px 0 0 5px;
+  flex: 2;
+  text-align: center; }
+
+.btn-more-page {
+  border-radius: 0 5px 5px 0;
+  flex: 2; }
+
+.btn-page {
+  border-radius: 0;
+  flex: 2; }
+
+.pagination button {
   color: black;
-  float: left;
-  padding: 8px 16px;
-  text-decoration: none;
   transition: background-color 0.3s; }
 
-.pagination a.active {
-  background-color: #4caf50;
-  color: white; }
+.pagination button.active {
+  background-color: #35578b;
+  color: #e49906; }
 
-.pagination a:hover:not(.active) {
-  background-color: #ddd; }
+.pagination button:hover:not(.active) {
+  background-color: #a3b1c2; }
+
+button :first-child {
+  margin: auto; }
 
 /*# sourceMappingURL=presentations.css.map */

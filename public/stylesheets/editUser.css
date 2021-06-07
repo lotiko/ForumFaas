@@ -1,0 +1,28 @@
+.user-details {
+  background-color: #04819c;
+  border-radius: 5px;
+  min-width: 30%;
+  text-align: center;
+  margin: 1em;
+  min-height: 400px;
+  text-align: left;
+  font-size: large;
+  font-weight: bolder; }
+
+.insert-avatar {
+  display: flex;
+  align-items: center;
+  margin: 0.5em; }
+
+.avatar {
+  margin-right: 10px; }
+
+form {
+  display: flex;
+  flex-direction: column; }
+
+form button {
+  margin: auto;
+  font-size: 1em; }
+
+/*# sourceMappingURL=editUser.css.map */

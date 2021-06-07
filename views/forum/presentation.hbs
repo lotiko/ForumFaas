@@ -33,15 +33,21 @@
   </div>
   {{#if pagination.one}}
     <div class="pagination" data-nbpage="{{nbPage}}">
-      <a href="#" class="active btn-page">1</a>
+      {{#if pagination.more}}
+        <button class="btn-less-page">&#60&#60</button>
+      {{/if}}
+      <button class="active btn-page">1</button>
       {{#if pagination.two}}
-        <a href="#" class="btn-page">2</a>
+        <button class="btn-page">2</button>
       {{/if}}
       {{#if pagination.tree}}
-        <a href="#" class="btn-page">3</a>
+        <button class="btn-page">3</button>
       {{/if}}
       {{#if pagination.four}}
-        <a href="#" class="btn-page">4</a>
+        <button class="btn-page">4</button>
+      {{/if}}
+      {{#if pagination.more}}
+        <button class="btn-more-page">&#62&#62</button>
       {{/if}}
 
     </div>

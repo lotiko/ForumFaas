@@ -1,11 +1,11 @@
 <div class="user-details">
-  <div>
-    <img class="avatar" src="{{avatar}}" alt="avatar" />
-  </div>
   <form action="/user/edit" method="post" enctype="multipart/form-data">
-    <label>Choisir un avatar
-      <input type="file" name="avatar" />
-    </label>
+    <div class="insert-avatar">
+      <img class="avatar" src="{{avatar}}" alt="avatar" />
+      <label>Choisir un avatar
+        <input type="file" name="avatar" accept=".png, .jpg, .jpeg" />
+      </label>
+    </div>
     <label>Nom:
       <input type="text" name="name" value="{{name}}" />
     </label>
@@ -13,7 +13,7 @@
       <input type="text" name="email" value="{{email}}" />
     </label>
     <label>Description:
-      <textarea name="description" cols="30" rows="10">{{description}}</textarea>
+      <textarea name="description" cols="50" rows="5">{{description}}</textarea>
     </label>
     <button>Valider</button>
   </form>
