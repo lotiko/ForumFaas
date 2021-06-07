@@ -56,7 +56,7 @@
 <div class="functions">
   <h1>Fonction</h1>
   <a href="/forum/function/new"><button class="new">New</button></a>
-  <div class="block">
+  <div class="block funs">
     {{#each functions}}
       <div class="function-block">
         <div class="function-title">
@@ -66,36 +66,35 @@
               class="title btn-details-fun"
               src="/images/details.png"
               alt="ico details"
-              data-id="{{this._id}}"
             /></a>
         </div>
       </div>
     {{/each}}
-    {{#if paginationFunctions.one}}
-      <div class="pagination-functions" data-nbpage="{{nbPage.functions}}">
-        {{#if paginationFunctions.more}}
-          <button class="btn-less-page-functions">&#60&#60</button>
-        {{/if}}
-        <button class="active btn-page-functions">1</button>
-        {{#if paginationFunctions.two}}
-          <button class="btn-page-functions">2</button>
-        {{/if}}
-        {{#if paginationFunctions.tree}}
-          <button class="btn-page-functions">3</button>
-        {{/if}}
-        {{#if paginationFunctions.four}}
-          <button class="btn-page-functions">4</button>
-        {{/if}}
-        {{#if paginationFunctions.more}}
-          <button class="btn-more-page-functions">&#62&#62</button>
-        {{/if}}
-
-      </div>
-    {{/if}}
   </div>
+  {{#if paginationFunctions.one}}
+    <div class="pagination-functions" data-nbpage="{{nbPage.functions}}">
+      {{#if paginationFunctions.more}}
+        <button class="btn-less-page-functions">&#60&#60</button>
+      {{/if}}
+      <button class="active btn-page-functions">1</button>
+      {{#if paginationFunctions.two}}
+        <button class="btn-page-functions">2</button>
+      {{/if}}
+      {{#if paginationFunctions.tree}}
+        <button class="btn-page-functions">3</button>
+      {{/if}}
+      {{#if paginationFunctions.four}}
+        <button class="btn-page-functions">4</button>
+      {{/if}}
+      {{#if paginationFunctions.more}}
+        <button class="btn-more-page-functions">&#62&#62</button>
+      {{/if}}
+
+    </div>
+  {{/if}}
 </div>
 {{! bloc answer }}
-<div class="block">
+<div class="answers">
 
   <h1>question</h1>
 
@@ -105,5 +104,26 @@
       <a href="/forum/answer/{{this._id}}">{{this.title}}</a>
     </div>
   {{/each}}
+  {{#if paginationAnswers.one}}
+    <div class="pagination-answers" data-nbpage="{{nbPage.answers}}">
+      {{#if paginationAnswers.more}}
+        <button class="btn-less-page-answers">&#60&#60</button>
+      {{/if}}
+      <button class="active btn-page-answers">1</button>
+      {{#if paginationAnswers.two}}
+        <button class="btn-page-answers">2</button>
+      {{/if}}
+      {{#if paginationAnswers.tree}}
+        <button class="btn-page-answers">3</button>
+      {{/if}}
+      {{#if paginationAnswers.four}}
+        <button class="btn-page-answers">4</button>
+      {{/if}}
+      {{#if paginationAnswers.more}}
+        <button class="btn-more-page-answers">&#62&#62</button>
+      {{/if}}
+
+    </div>
+  {{/if}}
 </div>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

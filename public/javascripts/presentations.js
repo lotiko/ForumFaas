@@ -1,10 +1,31 @@
 ///// Users block
 const $users = document.querySelector(".users");
-const nbPageUsers = document.querySelector(".pagination-users").dataset.nbpage;
-let currentPageUsers = 1;
-const $btnPagesUsers = document.querySelectorAll(".btn-page-users");
-const $btnPaginLessUsers = document.querySelector(".btn-less-page-users");
-const $btnPaginMoreUsers = document.querySelector(".btn-more-page-users");
+const nbPage = {
+  users: document.querySelector(".pagination-users").dataset.nbpage,
+  functions: document.querySelector(".pagination-functions").dataset.nbpage,
+  // answers: document.querySelector(".pagination-answers").dataset.nbpage,
+};
+let currentPage = { users: 1, functions: 1, answers: 1 };
+const $btnPages = {
+  users: document.querySelectorAll(".btn-page-users"),
+  functions: document.querySelectorAll(".btn-page-functions"),
+  answers: document.querySelectorAll(".btn-page-answer"),
+};
+const $btnPaginLess = {
+  users: document.querySelector(".btn-less-page-users"),
+  functions: document.querySelector(".btn-less-page-functions"),
+  answers: document.querySelector(".btn-less-page-answers"),
+};
+const $btnPaginMore = {
+  users: document.querySelector(".btn-more-page-users"),
+  functions: document.querySelector(".btn-more-page-functions"),
+  answers: document.querySelector(".btn-more-page-answers"),
+};
+const changeFun = {
+  users: changeUsersBlock,
+  functions: changeFunctionsBlock,
+  answers: changeAnswersBlock,
+};
 let $btnDetails, $details;
 
 function set$details() {
@@ -47,8 +68,8 @@ function changeUsersBlock(newData) {
   addEventDetails();
 }
 //////// PAGINATION process make event on button then update button
-function toggleActive($toActive) {
-  $btnPagesUsers.forEach((el) => {
+function toggleActive($toActive, type) {
+  $btnPages[type].forEach((el) => {
     if (el.classList.contains("active")) {
       el.classList.remove("active");
     }
@@ -57,25 +78,6 @@ function toggleActive($toActive) {
     }
   });
 }
-function setPagination() {
-  if ($btnPagesUsers.length > 0) {
-    $btnPagesUsers.forEach(($btnpage) => {
-      let page = $btnpage.textContent;
-      $btnpage.onclick = () => {
-        toggleActive($btnpage);
-        axios
-          .get(`/forum/home?page=${page}&limit=4&data=users`)
-          .then((dataPage) => {
-            console.log(dataPage);
-            changeUsersBlock(dataPage.data.users);
-            currentPageUsers = Number(page);
-          })
-          .catch((err) => console.log(err));
-      };
-    });
-  }
-}
-
 function addEventDetails() {
   $btnDetails.forEach((btnDetail) => {
     btnDetail.onclick = () => {
@@ -91,44 +93,93 @@ function addEventDetails() {
     };
   });
 }
-function addEvent$paginMoreLess() {
-  if ($btnPaginLessUsers.length === 0) return;
-  $btnPaginLessUsers.onclick = () => {
-    if ($btnPagesUsers[0].textContent === "1") return;
-    for (let i = 0; i < $btnPagesUsers.length; i++) {
-      const element = $btnPagesUsers[i];
-      let newNbpage = Number(element.textContent) - 1;
+function addEvent$paginMoreLess(type) {
+  console.log(type);
+  if ($btnPaginLess[type].length === 0) return;
+  $btnPaginLess[type].onclick = () => {
+    let newNbpage;
+    if ($btnPages[type][0].textContent === "1") return;
+    for (let i = 0; i < $btnPages[type].length; i++) {
+      const element = $btnPages[type][i];
+      newNbpage = Number(element.textContent) - 1;
       element.textContent = newNbpage;
       if (element.classList.contains("active")) {
         element.classList.remove("active");
       } else {
         if (newNbpage === currentPageUsers) $btnPagesUsers[i].classList.add("active");
       }
-      set$details();
-      setPagination();
     }
+    if (type === "users") set$details();
+
+    setPagination(type);
   };
 
-  $btnPaginMoreUsers.onclick = () => {
-    if ($btnPagesUsers[$btnPagesUsers.length - 1].textContent === nbPageUsers) return;
-    for (let i = 0; i < $btnPagesUsers.length; i++) {
-      const element = $btnPagesUsers[i];
+  $btnPaginMore[type].onclick = () => {
+    if ($btnPages[type][$btnPages[type].length - 1].textContent === nbPage[type]) return;
+    for (let i = 0; i < $btnPages[type].length; i++) {
+      const element = $btnPages[type][i];
       let newNbpage = Number(element.textContent) + 1;
       element.textContent = newNbpage;
       if (element.classList.contains("active")) {
         element.classList.remove("active");
       } else {
-        if (newNbpage === currentPageUsers) $btnPagesUsers[i].classList.add("active");
+        if (newNbpage === currentPage[type]) $btnPages[type][i].classList.add("active");
       }
-      set$details();
-      setPagination();
+      if (type === "users") set$details();
+
+      setPagination(type);
     }
   };
 }
 /// Functions block
-
+const $function = document.querySelector(".funs");
+function changeFunctionsBlock(newData) {
+  $function.innerHTML = "";
+  newData.map((funData) => {
+    let $funblock = document.createElement("div");
+    $funblock.classList.add("function-block");
+    let inner = `<div class="function-title">
+    <img class="title avatar" src="${funData.authorData.avatar}" alt="avatar" />
+    <h2 class="title name">${funData.name}</h2>
+    <a href="/forum/function/${funData._id}"><img
+        class="title btn-details-fun"
+        src="/images/details.png"
+        alt="ico details"
+      /></a>
+  </div>`;
+    $funblock.innerHTML = inner;
+    $function.appendChild($funblock);
+  });
+}
+//// answer block
+function changeAnswersBlock(newData) {}
+/// utils
+function setPagination(type) {
+  let $btnToset = $btnPages[type];
+  let callback = changeFun[type];
+  if ($btnToset.length > 0) {
+    $btnToset.forEach(($btnpage) => {
+      let page = $btnpage.textContent;
+      $btnpage.onclick = () => {
+        toggleActive($btnpage, type);
+        axios
+          .get(`/forum/home?page=${page}&limit=4&data=${type}`)
+          .then((dataPage) => {
+            console.log(dataPage);
+            callback(dataPage.data[type]);
+            currentPage[type] = Number(page);
+          })
+          .catch((err) => console.log(err));
+      };
+    });
+  }
+}
 /// launch process
 set$details();
 addEventDetails();
-setPagination();
-addEvent$paginMoreLess();
+setPagination("users");
+setPagination("functions");
+// setPagination("answers");
+if ($btnPaginLess.users) addEvent$paginMoreLess("users");
+if ($btnPaginLess.functions) addEvent$paginMoreLess("functions");
+// addEvent$paginMoreLess("answers");
