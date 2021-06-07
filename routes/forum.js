@@ -204,35 +204,40 @@ router.post("/:catname", (req, res, next) => {
 router.get("/:catname/:id", (req, res, next) => {
   PostModel.findById(req.params.id)
     .then((questionFromDb) => {
-      console.log('massiquestionFromDb',questionFromDb);
+      console.log("massiquestionFromDb", questionFromDb);
       User.findById(questionFromDb.userId)
         .select("avatar name createdAt")
         .then((userFromDb) => {
-          PostModel.find({ fromQuestion: questionFromDb._id })
-          .then((answersFromDb) => {
-            console.log('kiwwwwwwwwwww',answersFromDb);
-            PostModel.find( {$and:[{fromQuestion: questionFromDb._id },{categorie:"answer"}]})
-            .populate('userId') 
-            .then((useranswer)=>{
-              console.log('fadilauseranswer',useranswer);
-              console.log("lutilisateur est", userFromDb);
-              if (answersFromDb.length === 0) {
-                res.render("forum/detail/answer", {
-                  question: questionFromDb,
-                  userq: userFromDb,
-                  userA:useranswer,
-                  script: "answer",
+          PostModel.find({ fromQuestion: questionFromDb._id }).then(
+            (answersFromDb) => {
+              console.log("kiwwwwwwwwwww", answersFromDb);
+              PostModel.find({
+                $and: [
+                  { fromQuestion: questionFromDb._id },
+                  { categorie: "answer" },
+                ],
+              })
+                .populate("userId")
+                .then((useranswer) => {
+                  console.log("fadilauseranswer", useranswer);
+                  console.log("lutilisateur est", userFromDb);
+                  if (answersFromDb.length === 0) {
+                    res.render("forum/detail/answer", {
+                      question: questionFromDb,
+                      userq: userFromDb,
+                      userA: useranswer,
+                      script: "answer",
+                    });
+                  } else {
+                    res.render("forum/detail/answer", {
+                      question: questionFromDb,
+                      answers: answersFromDb,
+                      userq: userFromDb,
+                      userA: useranswer,
+                      script: "answer",
+                    });
+                  }
                 });
-              } else {
-                res.render("forum/detail/answer", {
-                  question: questionFromDb,
-                  answers: answersFromDb,
-                  userq: userFromDb,
-                  userA:useranswer,
-                  script: "answer",
-                });
-              }
-             })
             }
           );
         });

@@ -11,17 +11,17 @@
             <h3>{{question.title}}</h3>
             <p>{{{question.body}}} </p>
         </div>
-        
+
     </div>
-<hr>
-    <div >
-        
+    <hr>
+    <div>
+
         {{#if answers}}
         {{#each userA}}
-<h3>{{this.userId.name}}</h3>
-<p>{{{this.body}}}</p>
-{{/each}}
-        
+        <h3>{{this.userId.name}}</h3>
+        <p>{{{this.body}}}</p>
+        {{/each}}
+
         {{/if}}
     </div>
     <div class="postanswer">
