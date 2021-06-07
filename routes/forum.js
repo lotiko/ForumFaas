@@ -248,14 +248,16 @@ router.get("/:catname/new", (req, res, next) => {
   }
   
   if (req.params.catname === "answer") {
-    routeGuard(req, res);
-    res.render("forum/answer", {
-      isLog: true,
-      title: "Question",
-      style: "answer",
-      module: "answer",
-    });
-    return;
+    if (req.params.catname === "answer") {
+      routeGuard(req, res);
+      res.render("forum/new/answer", {
+        isLog: true,
+        title: "Question",
+        style: "answer",
+        module: "answer",
+      });
+      return;
+    }
   }
   
   // si pas de route trouver continue vers 404 error
