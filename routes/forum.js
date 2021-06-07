@@ -42,23 +42,26 @@ router.get("/:catname", async (req, res, next) => {
       let postsDataview, paginationPosts;
       let usersDataView, paginationUsers;
       let nbPage = { functions: 0, posts: 0, users: 0 };
-      if (!req.query.data || req.query.data === "function") {
+      if (!req.query.data || req.query.data === "functions") {
         let dataDb = await Function.find({})
-          .populate("userId")
           .sort({ createdAt: -1 })
           .limit(limit * 1)
           .skip((page - 1) * limit)
+          .populate("userId")
           .exec();
-        let nbDocFun = await User.countDocuments({}).exec();
+        let nbDocFun = await Function.countDocuments({}).exec();
         let nbPageFun = Math.ceil(nbDocFun / limit);
         functionsDataView = dataDb.map((funDb) => {
           const { name, _id } = funDb;
+          console.log(name, _id);
+
           const authorData = {
-            avatar: funDb.userId.avatar,
-            name: funDb.userId.name,
+            avatar: funDb.userId ? funDb.userId.avatar : "/images/basicAvatar.png",
+            name: funDb.userId ? funDb.userId.name : "Utilisateur plus présent.",
           };
           return { _id, name, authorData };
         });
+        console.log(functionsDataView, dataDb);
         if (req.query.data) {
           // on retourne seulement la donnée si query data
           if (req.query.data) {
@@ -130,10 +133,10 @@ router.get("/:catname", async (req, res, next) => {
       });
       return;
     } catch (error) {
-      next(error);
+      if (req.query.data) res.status(500).json({ error: error.message });
+      else next(error);
     }
   }
-  next();
 });
 
 router.post("/:catname", (req, res, next) => {
