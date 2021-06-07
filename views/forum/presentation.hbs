@@ -31,22 +31,22 @@
       </div>
     {{/each}}
   </div>
-  {{#if pagination.one}}
-    <div class="pagination" data-nbpage="{{nbPage}}">
-      {{#if pagination.more}}
+  {{#if paginationUsers.one}}
+    <div class="pagination" data-nbpage="{{nbPage.users}}">
+      {{#if paginationUsers.more}}
         <button class="btn-less-page">&#60&#60</button>
       {{/if}}
       <button class="active btn-page">1</button>
-      {{#if pagination.two}}
+      {{#if paginationUsers.two}}
         <button class="btn-page">2</button>
       {{/if}}
-      {{#if pagination.tree}}
+      {{#if paginationUsers.tree}}
         <button class="btn-page">3</button>
       {{/if}}
-      {{#if pagination.four}}
+      {{#if paginationUsers.four}}
         <button class="btn-page">4</button>
       {{/if}}
-      {{#if pagination.more}}
+      {{#if paginationUsers.more}}
         <button class="btn-more-page">&#62&#62</button>
       {{/if}}
 

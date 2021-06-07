@@ -1,6 +1,6 @@
 <div class="presentations">
   <h1>Présentations</h1>
-  <div class="users">
+  <div class="block users">
     {{#each users}}
       <div class="user-block">
         <div class="user-title">
@@ -31,34 +31,43 @@
       </div>
     {{/each}}
   </div>
-  {{#if pagination.one}}
-    <div class="pagination" data-nbpage="{{nbPage}}">
-      {{#if pagination.more}}
-        <button class="btn-less-page">&#60&#60</button>
+  {{#if paginationUsers.one}}
+    <div class="pagination-users" data-nbpage="{{nbPage.users}}">
+      {{#if paginationUsers.more}}
+        <button class="btn-less-page-users">&#60&#60</button>
       {{/if}}
-      <button class="active btn-page">1</button>
-      {{#if pagination.two}}
-        <button class="btn-page">2</button>
+      <button class="active btn-page-users ">1</button>
+      {{#if paginationUsers.two}}
+        <button class="btn-page-users ">2</button>
       {{/if}}
-      {{#if pagination.tree}}
-        <button class="btn-page">3</button>
+      {{#if paginationUsers.tree}}
+        <button class="btn-page-users ">3</button>
       {{/if}}
-      {{#if pagination.four}}
-        <button class="btn-page">4</button>
+      {{#if paginationUsers.four}}
+        <button class="btn-page-users ">4</button>
       {{/if}}
-      {{#if pagination.more}}
-        <button class="btn-more-page">&#62&#62</button>
+      {{#if paginationUsers.more}}
+        <button class="btn-more-page-users ">&#62&#62</button>
       {{/if}}
 
     </div>
   {{/if}}
 </div>
-<div class="block">
+<div class="block functions">
   <h1>Fonction</h1>
   <a href="/forum/function/new"><button class="new">New</button></a>
   {{#each functions}}
-  <div class="function">
-   <a href="/forum/function/{{this._id}}">{{this.name}}</a>
+  <div class="function-block">
+        <div class="function-title">
+          <img class="title avatar" src="{{this.authorData.avatar}}" alt="avatar" />
+          <h2 class="title name">{{this.name}}</h2>
+          <a href="/forum/function/{{this._id}}"></a><img
+            class="title btn-details"
+            src="/images/details.png"
+            alt="ico details"
+            data-id="{{this._id}}"
+          /></a>
+        </div>
   </div>
    {{/each}}
 {{! bloc answer }}

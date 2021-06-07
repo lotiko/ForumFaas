@@ -16,155 +16,103 @@ const { findById } = require("../models/user");
 
 /* GET home page */
 router.get("/:catname", async (req, res, next) => {
-  // if (req.params.catname === "presentation") {
-  //   const { page = 1, limit = 4 } = req.query;
-  //   try {
-  //     // execute query with page and limit values
-  //     const users = await User.find()
-  //       .select("-password")
-  //       .limit(limit * 1)
-  //       .skip((page - 1) * limit)
-  //       .exec();
-  //     // compter le nombre de présentations et calculer le nombre de page en conséquences pour pagination dans vue
-  //     const nbDoc = await User.countDocuments({}).exec();
-  //     let nbPage = Math.floor(nbDoc / limit);
-  //     if (nbDoc % nbPage !== 0) {
-  //       nbPage++;
-  //     }
+  function makePaginationObj(nbpage) {
+    let pagination = { one: false, two: false, tree: false, four: false, more: false };
+    if (nbpage < 3) {
+      pagination.one = true;
+      pagination.two = true;
+    } else if (nbpage < 4) {
+      pagination.one = true;
+      pagination.two = true;
+      pagination.tree = true;
+    } else {
+      if (nbpage > 4) pagination.more = true;
+      pagination.one = true;
+      pagination.two = true;
+      pagination.tree = true;
+      pagination.four = true;
+    }
+    return pagination;
+  }
 
-  //     const usersDataView = users.map((el) => {
-  //       return {
-  //         ...el._doc,
-  //         nbPost: el.posts.length,
-  //         nbFun: el.functions.length,
-  //       };
-  //     });
-  //     // on retourne seulement la donnée si query data sinon on envoi la vue
-  //     if (req.query.data) {
-  //       res.json({
-  //         users: usersDataView,
-  //         nbPage: nbPage,
-  //         page: page,
-  //         limit: limit,
-  //       });
-  //       return;
-  //     }
-  //     // console.log(usersDataView);
-  //     let pagination = { one: false, two: false, tree: false, four: false, more: false };
-  //     if (nbPage < 3) {
-  //       pagination.one = true;
-  //       pagination.two = true;
-  //     } else if (nbPage < 4) {
-  //       pagination.one = true;
-  //       pagination.two = true;
-  //       pagination.tree = true;
-  //     } else {
-  //       if (nbPage > 4) pagination.more = true;
-  //       pagination.one = true;
-  //       pagination.two = true;
-  //       pagination.tree = true;
-  //       pagination.four = true;
-  //     }
-  //     // dev
-  //     pagination.more = true;
-
-  //     res.render("forum/presentation", {
-  //       users: usersDataView,
-  //       nbPage: nbPage,
-  //       page: page,
-  //       limit: limit,
-  //       pagination: pagination,
-  //       title: "Presentations",
-  //       style: "presentations",
-  //       script: "presentations",
-  //       isLog: !!req.user,
-  //     });
-  //     return;
-  //   } catch (err) {
-  //     next(err);
-  //   }
-  // }
-  // voir si details catname
-  // if (req.params.catname === "function") {
-  // }
   if (req.params.catname === "home") {
     try {
       const { page = 1, limit = 4 } = req.query;
-      let fun = await Function.find({}).sort({ createdAt: -1 }).exec();
-      let post = await PostModel.find({ categorie: "question" }).sort({ createdAt: -1 }).exec();
-      // execute query with page and limit values
-      const users = await User.find()
-        .select("-password")
-        .limit(limit * 1)
-        .skip((page - 1) * limit)
-        .exec();
-      // compter le nombre de présentations et calculer le nombre de page en conséquences pour pagination dans vue
-      const nbDoc = await User.countDocuments({}).exec();
-      let nbPage = Math.floor(nbDoc / limit);
-      if (nbDoc % nbPage !== 0) {
-        nbPage++;
-      }
-
-      const usersDataView = users.map((el) => {
-        return {
-          ...el._doc,
-          nbPost: el.posts.length,
-          nbFun: el.functions.length,
-        };
-      });
-      // on retourne seulement la donnée si query data sinon on envoi la vue
-      if (req.query.data) {
-        res.json({
-          users: usersDataView,
-          nbPage: nbPage,
-          page: page,
-          limit: limit,
+      let functionsDataView, paginationFunctions;
+      let postsDataview, paginationPosts;
+      let usersDataView, paginationUsers;
+      let nbPage = { functions: 0, posts: 0, users: 0 };
+      if (!req.query.data || req.query.data === "function") {
+        let dataDb = await Function.find({})
+          .populate("userId")
+          .sort({ createdAt: -1 })
+          .limit(limit * 1)
+          .skip((page - 1) * limit)
+          .exec();
+        functionsDataView = dataDb.map((funDb) => {
+          const { name, _id } = funDb;
+          const authorData = {
+            avatar: funDb.userId.avatar,
+            name: funDb.userId.name,
+          };
+          return { _id, name, authorData };
         });
-        return;
+        console.log(functionsDataView);
       }
-      // console.log(usersDataView);
-      let pagination = { one: false, two: false, tree: false, four: false, more: false };
-      if (nbPage < 3) {
-        pagination.one = true;
-        pagination.two = true;
-      } else if (nbPage < 4) {
-        pagination.one = true;
-        pagination.two = true;
-        pagination.tree = true;
-      } else {
-        if (nbPage > 4) pagination.more = true;
-        pagination.one = true;
-        pagination.two = true;
-        pagination.tree = true;
-        pagination.four = true;
+      if (!req.query.data || req.query.data === "question") {
+        postsDataview = await PostModel.find({ categorie: "question" })
+          .sort({ createdAt: -1 })
+          .limit(limit * 1)
+          .skip((page - 1) * limit)
+          .exec();
       }
-      // dev
-      pagination.more = true;
+      if (!req.query.data || req.query.data === "users") {
+        // execute query with page and limit values
+        const users = await User.find()
+          .select("-password")
+          .limit(limit * 1)
+          .skip((page - 1) * limit)
+          .exec();
+        // compter le nombre de présentations et calculer le nombre de page en conséquences pour pagination dans vue
+        let nbDocUsers = await User.countDocuments({}).exec();
+        let nbPagePrez = Math.ceil(nbDocUsers / limit);
+        usersDataView = users.map((el) => {
+          return {
+            ...el._doc,
+            nbPost: el.posts.length,
+            nbFun: el.functions.length,
+          };
+        });
+        if (req.query.data) {
+          // on retourne seulement la donnée si query data
+          if (req.query.data) {
+            res.json({
+              users: usersDataView,
+              nbPage: nbPagePrez,
+              page: page,
+              limit: limit,
+            });
+            return;
+          }
+        } // sinon on prepare les données de la vue
+        paginationUsers = makePaginationObj(nbPagePrez);
+        nbPage.users = nbPagePrez;
+      }
 
-      // res.render("forum/presentation", {
-      //   users: usersDataView,
-      //   nbPage: nbPage,
-      //   page: page,
-      //   limit: limit,
-      //   pagination: pagination,
-      //   title: "ForumHome",
-      //   style: "presentations",
-      //   script: "presentations",
-      //   isLog: !!req.user,
-      // });
       res.render("forum/home", {
         users: usersDataView,
         nbPage: nbPage,
         page: page,
         limit: limit,
-        pagination: pagination,
+        paginationUsers: paginationUsers,
         title: "ForumHome",
         style: "presentations",
         script: "presentations",
         isLog: !!req.user,
-        posts: post,
-        functions: fun,
+        posts: postsDataview,
+        functions: functionsDataView,
       });
+      return;
     } catch (error) {
       next(error);
     }
@@ -208,7 +156,8 @@ router.post("/:catname", (req, res, next) => {
         User.findById(req.user._id).then((userInDb) => {
           userInDb.functions.push(funInDb._id);
           userInDb.save().then((updateUser) => {
-            res.json({ fun: funInDb, upUser: updateUser });
+            // res.json({ fun: funInDb, upUser: updateUser });
+            res.redirect("/forum/home");
           });
         });
       })
@@ -221,48 +170,12 @@ router.post("/:catname", (req, res, next) => {
   // si pas de route trouver continue vers 404 error
 });
 
-router.get("/:catname/:id", (req, res, next) => {
-  if (req.params.catname === "presentation") {
-  }
-  if (req.params.catname === "function") {
-    Function.findById(req.params.id).then((funFromDb) => {
-      res.render("forum/detail/function", { function: funFromDb });
-      return;
-    });
-  }
-  if (req.params.catname === "home") {
-  }
-  if (req.params.catname === "answer") {
-    PostModel.findById(req.params.id)
-      .then((questionFromDb) => {
-        User.findById(questionFromDb.userId)
-          .select("avatar name createdAt")
-          .then((userFromDb) => {
-            PostModel.find({ fromQuestion: questionFromDb._id }).then((answersFromDb) => {
-              console.log("lutilisateur est", userFromDb);
-              if (answersFromDb.length === 0) {
-                res.render("forum/detail/answer", { question: questionFromDb, userq: userFromDb });
-              } else {
-                res.render("forum/detail/answer", {
-                  question: questionFromDb,
-                  answers: answersFromDb,
-                  userq: userFromDb,
-                  script: "answer",
-                });
-              }
-            });
-          });
-        return;
-      })
-      .catch((err) => next(err));
-  }
-});
 router.get("/:catname/new", (req, res, next) => {
   if (req.params.catname === "presentation") {
   }
   if (req.params.catname === "function") {
     routeGuard(req, res);
-    res.render("forum/function", {
+    res.render("forum/new/function", {
       isLog: true,
       title: "Function",
       style: "function",
@@ -331,42 +244,114 @@ router.get("/:catname/new", (req, res, next) => {
   // si pas de route trouver continue vers 404 error
 });
 
+// router.get("/:catname/:id", (req, res, next) => {
+// PostModel.findById(req.params.id)
+//   .then((questionFromDb) => {
+//     console.log("massiquestionFromDb", questionFromDb);
+//     User.findById(questionFromDb.userId)
+//       .select("avatar name createdAt")
+//       .then((userFromDb) => {
+//         PostModel.find({ fromQuestion: questionFromDb._id }).then((answersFromDb) => {
+//           console.log("kiwwwwwwwwwww", answersFromDb);
+//           PostModel.find({
+//             $and: [{ fromQuestion: questionFromDb._id }, { categorie: "answer" }],
+//           })
+//             .populate("userId")
+//             .then((useranswer) => {
+//               console.log("fadilauseranswer", useranswer);
+//               console.log("lutilisateur est", userFromDb);
+//               if (answersFromDb.length === 0) {
+//                 res.render("forum/detail/answer", {
+//                   question: questionFromDb,
+//                   userq: userFromDb,
+//                   userA: useranswer,
+//                   script: "answer",
+//                 });
+//               } else {
+//                 res.render("forum/detail/answer", {
+//                   question: questionFromDb,
+//                   answers: answersFromDb,
+//                   userq: userFromDb,
+//                   userA: useranswer,
+//                   script: "answer",
+//                 });
+//               }
+//             });
+//         });
+//       });
+//   })
+//   .catch((err) => next(err));
+// });
 router.get("/:catname/:id", (req, res, next) => {
-  PostModel.findById(req.params.id)
-    .then((questionFromDb) => {
-      console.log("massiquestionFromDb", questionFromDb);
-      User.findById(questionFromDb.userId)
-        .select("avatar name createdAt")
-        .then((userFromDb) => {
-          PostModel.find({ fromQuestion: questionFromDb._id }).then((answersFromDb) => {
-            console.log("kiwwwwwwwwwww", answersFromDb);
-            PostModel.find({
-              $and: [{ fromQuestion: questionFromDb._id }, { categorie: "answer" }],
-            })
-              .populate("userId")
-              .then((useranswer) => {
-                console.log("fadilauseranswer", useranswer);
-                console.log("lutilisateur est", userFromDb);
-                if (answersFromDb.length === 0) {
-                  res.render("forum/detail/answer", {
-                    question: questionFromDb,
-                    userq: userFromDb,
-                    userA: useranswer,
-                    script: "answer",
-                  });
-                } else {
-                  res.render("forum/detail/answer", {
-                    question: questionFromDb,
-                    answers: answersFromDb,
-                    userq: userFromDb,
-                    userA: useranswer,
-                    script: "answer",
-                  });
-                }
-              });
+  if (req.params.catname === "presentation") {
+  }
+  if (req.params.catname === "function") {
+    Function.findById(req.params.id).then((funFromDb) => {
+      res.render("forum/detail/function", { function: funFromDb });
+      return;
+    });
+  }
+  if (req.params.catname === "home") {
+  }
+  if (req.params.catname === "answer") {
+    // PostModel.findById(req.params.id)
+    //   .then((questionFromDb) => {
+    //     User.findById(questionFromDb.userId)
+    //       .select("avatar name createdAt")
+    //       .then((userFromDb) => {
+    //         PostModel.find({ fromQuestion: questionFromDb._id }).then((answersFromDb) => {
+    //           console.log("lutilisateur est", userFromDb);
+    //           if (answersFromDb.length === 0) {
+    //             res.render("forum/detail/answer", { question: questionFromDb, userq: userFromDb });
+    //           } else {
+    //             res.render("forum/detail/answer", {
+    //               question: questionFromDb,
+    //               answers: answersFromDb,
+    //               userq: userFromDb,
+    //               script: "answer",
+    //             });
+    //           }
+    //         });
+    //       });
+    //     return;
+    //   })
+    //   .catch((err) => next(err));
+    PostModel.findById(req.params.id)
+      .then((questionFromDb) => {
+        console.log("massiquestionFromDb", questionFromDb);
+        User.findById(questionFromDb.userId)
+          .select("avatar name createdAt")
+          .then((userFromDb) => {
+            PostModel.find({ fromQuestion: questionFromDb._id }).then((answersFromDb) => {
+              console.log("kiwwwwwwwwwww", answersFromDb);
+              PostModel.find({
+                $and: [{ fromQuestion: questionFromDb._id }, { categorie: "answer" }],
+              })
+                .populate("userId")
+                .then((useranswer) => {
+                  console.log("fadilauseranswer", useranswer);
+                  console.log("lutilisateur est", userFromDb);
+                  if (answersFromDb.length === 0) {
+                    res.render("forum/detail/answer", {
+                      question: questionFromDb,
+                      userq: userFromDb,
+                      userA: useranswer,
+                      script: "answer",
+                    });
+                  } else {
+                    res.render("forum/detail/answer", {
+                      question: questionFromDb,
+                      answers: answersFromDb,
+                      userq: userFromDb,
+                      userA: useranswer,
+                      script: "answer",
+                    });
+                  }
+                });
+            });
           });
-        });
-    })
-    .catch((err) => next(err));
+      })
+      .catch((err) => next(err));
+  }
 });
 module.exports = router;

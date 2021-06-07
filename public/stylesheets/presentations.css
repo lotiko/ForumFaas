@@ -12,9 +12,11 @@
   width: 40px; }
 
 .btn-details {
-  height: 30px; }
+  height: 30px;
+  border-radius: 5px; }
 
-.user-block {
+.user-block,
+.function-block {
   display: flex;
   flex-direction: column;
   background-color: whitesmoke;
@@ -23,7 +25,8 @@
   border: 2px solid #e49906;
   margin: 1em 2em; }
 
-.user-title {
+.user-title,
+.function-title {
   display: flex;
   align-items: center; }
 
@@ -44,7 +47,7 @@ nav {
   display: flex;
   justify-content: center; }
 
-.pagination {
+.pagination-users {
   display: flex;
   border: 1px solid #35578b;
   border-radius: 5px;
@@ -54,28 +57,28 @@ nav {
   bottom: 0;
   left: 20%; }
 
-.btn-less-page {
+.btn-less-page-users {
   border-radius: 5px 0 0 5px;
   flex: 2;
   text-align: center; }
 
-.btn-more-page {
+.btn-more-page-users {
   border-radius: 0 5px 5px 0;
   flex: 2; }
 
-.btn-page {
+.btn-page-users {
   border-radius: 0;
   flex: 2; }
 
-.pagination button {
+.pagination-users button {
   color: black;
   transition: background-color 0.3s; }
 
-.pagination button.active {
+.pagination-users button.active {
   background-color: #35578b;
   color: #e49906; }
 
-.pagination button:hover:not(.active) {
+.pagination-users button:hover:not(.active) {
   background-color: #a3b1c2; }
 
 button :first-child {

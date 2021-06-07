@@ -1,10 +1,10 @@
-const nbPage = document.querySelector(".pagination").dataset.nbpage;
-console.log(typeof nbPage);
-let currentPage = 1;
-const $btnPages = document.querySelectorAll(".btn-page");
+///// Users block
 const $users = document.querySelector(".users");
-const $btnPaginLess = document.querySelector(".btn-less-page");
-const $btnPaginMore = document.querySelector(".btn-more-page");
+const nbPageUsers = document.querySelector(".pagination-users").dataset.nbpage;
+let currentPageUsers = 1;
+const $btnPagesUsers = document.querySelectorAll(".btn-page-users");
+const $btnPaginLessUsers = document.querySelector(".btn-less-page-users");
+const $btnPaginMoreUsers = document.querySelector(".btn-more-page-users");
 let $btnDetails, $details;
 
 function set$details() {
@@ -48,7 +48,7 @@ function changeUsersBlock(newData) {
 }
 //////// PAGINATION process make event on button then update button
 function toggleActive($toActive) {
-  $btnPages.forEach((el) => {
+  $btnPagesUsers.forEach((el) => {
     if (el.classList.contains("active")) {
       el.classList.remove("active");
     }
@@ -58,17 +58,17 @@ function toggleActive($toActive) {
   });
 }
 function setPagination() {
-  if ($btnPages.length > 0) {
-    $btnPages.forEach(($btnpage) => {
+  if ($btnPagesUsers.length > 0) {
+    $btnPagesUsers.forEach(($btnpage) => {
       let page = $btnpage.textContent;
       $btnpage.onclick = () => {
         toggleActive($btnpage);
         axios
-          .get(`/forum/home?page=${page}&limit=4&data=true`)
+          .get(`/forum/home?page=${page}&limit=4&data=users`)
           .then((dataPage) => {
             console.log(dataPage);
             changeUsersBlock(dataPage.data.users);
-            currentPage = Number(page);
+            currentPageUsers = Number(page);
           })
           .catch((err) => console.log(err));
       };
@@ -92,33 +92,33 @@ function addEventDetails() {
   });
 }
 function addEvent$paginMoreLess() {
-  if ($btnPaginLess.length === 0) return;
-  $btnPaginLess.onclick = () => {
-    if ($btnPages[0].textContent === "1") return;
-    for (let i = 0; i < $btnPages.length; i++) {
-      const element = $btnPages[i];
+  if ($btnPaginLessUsers.length === 0) return;
+  $btnPaginLessUsers.onclick = () => {
+    if ($btnPagesUsers[0].textContent === "1") return;
+    for (let i = 0; i < $btnPagesUsers.length; i++) {
+      const element = $btnPagesUsers[i];
       let newNbpage = Number(element.textContent) - 1;
       element.textContent = newNbpage;
       if (element.classList.contains("active")) {
         element.classList.remove("active");
       } else {
-        if (newNbpage === currentPage) $btnPages[i].classList.add("active");
+        if (newNbpage === currentPageUsers) $btnPagesUsers[i].classList.add("active");
       }
       set$details();
       setPagination();
     }
   };
 
-  $btnPaginMore.onclick = () => {
-    if ($btnPages[$btnPages.length - 1].textContent === nbPage) return;
-    for (let i = 0; i < $btnPages.length; i++) {
-      const element = $btnPages[i];
+  $btnPaginMoreUsers.onclick = () => {
+    if ($btnPagesUsers[$btnPagesUsers.length - 1].textContent === nbPageUsers) return;
+    for (let i = 0; i < $btnPagesUsers.length; i++) {
+      const element = $btnPagesUsers[i];
       let newNbpage = Number(element.textContent) + 1;
       element.textContent = newNbpage;
       if (element.classList.contains("active")) {
         element.classList.remove("active");
       } else {
-        if (newNbpage === currentPage) $btnPages[i].classList.add("active");
+        if (newNbpage === currentPageUsers) $btnPagesUsers[i].classList.add("active");
       }
       set$details();
       setPagination();
