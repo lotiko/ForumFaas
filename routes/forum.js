@@ -263,11 +263,80 @@ router.get("/:catname/new", (req, res, next) => {
   // si pas de route trouver continue vers 404 error
 });
 
+router.get("/:catname/edit/:id", (req, res, next) => {
+  if (req.params.catname === "function") {
+    routeGuard(req, res);
+    res.render("forum/home", {
+      isLog: true,
+      title: "ForumHome",
+      style: "presentations",
+      script: "presentations",
+      message: "c'est delete et non!",
+    });
+    return;
+  }
+  if (req.params.catname === "home") {
+  }
+  if (req.params.catname === "answer") {
+    // if (req.params.catname === "answer") {
+    //   routeGuard(req, res);
+    //   res.render("forum/new/answer", {
+    //     isLog: true,
+    //     title: "Question",
+    //     style: "answer",
+    //     module: "answer",
+    //   });
+    //   return;
+    // }
+  }
+  // si pas de route trouver continue vers 404 error
+});
+router.get("/:catname/delete/:id", routeGuard, (req, res, next) => {
+  if (req.params.catname === "function") {
+    Function.findById(req.params.id).then((funFromDb) => {
+      if (String(req.user.id) !== String(funFromDb.userId)) {
+        // on verifie que c'est bien l'utilisateur connecter qui posséde la fonction
+        res.redirect(
+          "/forum/function/" + req.params.id + "?error=Seul le créateur peu supprimer la function."
+        );
+        return;
+      }
+      let oldname = funFromDb.name;
+      Function.deleteOne(funFromDb, (err) => next(err));
+      res.render("home", {
+        isLog: !!req.user,
+        title: "Home",
+        message: `Votre fonction ${oldname} a bien été suprimé.`,
+      });
+    });
+    return;
+  }
+  if (req.params.catname === "home") {
+  }
+  if (req.params.catname === "answer") {
+    // if (req.params.catname === "answer") {
+    //   routeGuard(req, res);
+    //   res.render("forum/new/answer", {
+    //     isLog: true,
+    //     title: "Question",
+    //     style: "answer",
+    //     module: "answer",
+    //   });
+    //   return;
+    // }
+  }
+  // si pas de route trouver continue vers 404 error
+});
+
 router.get("/:catname/:id", (req, res, next) => {
   if (req.params.catname === "presentation") {
   }
   if (req.params.catname === "function") {
-    let dataView = { canDelete: false, userAlwaysExist: true };
+    let dataView = {
+      canDelete: false,
+      userAlwaysExist: true,
+      errorMessage: req.query.error ? req.query.error : false,
+    };
     Function.findById(req.params.id)
       .populate({ path: "userId", select: "avatar status _id name" })
       .then((funFromDb) => {

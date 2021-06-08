@@ -28,4 +28,13 @@ code {
   margin: 2em;
   font-weight: bold; }
 
+.icos {
+  margin: auto;
+  width: 30%;
+  display: flex;
+  justify-content: space-between; }
+
+.fun-ico {
+  float: left; }
+
 /*# sourceMappingURL=functiondetail.css.map */

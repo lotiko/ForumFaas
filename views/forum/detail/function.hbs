@@ -11,9 +11,22 @@
       <img src="{{fun.userId.avatar}}" alt="avatar" class="avatar" />
       <h3 class="name">{{fun.userId.name}}</h3>
     </div>
-
     <pre><code>{{textfun}}</code></pre>
+    {{#if canDelete}}
+      <div class="icos">
+        <a class="user-ico" href="/forum/function/edit/{{fun._id}}"><img
+            src="/images/editaccount.png"
+            alt="icon edit"
+          /></a>
 
+        <a class="user-ico" href="/forum/function/delete/{{fun._id}}"><img
+            class="fun-ico"
+            id="btn-delete"
+            src="/images/deleteaccount.png"
+            alt="icon delete"
+          /></a>
+      </div>
+    {{/if}}
   </div>
   <div>
 
@@ -35,7 +48,16 @@
     </form>
   </div> --}}
 </div>
-{{! <script src="/javascripts/ckeditor.js"></script> }}
+{{#if errorMessage}}
+  <div class="error">
+    {{errorMessage}}
+  </div>
+{{/if}}
+{{#if message}}
+  <div class="message">
+    {{message}}
+  </div>
+{{/if}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/highlight.min.js"></script>
 <script
   src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/languages/javascript.min.js"
