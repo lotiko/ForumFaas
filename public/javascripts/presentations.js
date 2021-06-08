@@ -5,8 +5,8 @@ const nbPage = {
   functions: document.querySelector(".pagination-functions").dataset.nbpage,
   answers: document.querySelector(".pagination-answers").dataset.nbpage,
 };
-console.log(nbPage);
-
+console.log('nbPage',nbPage);
+let currentPage = { users: 1, functions: 1, answers: 1 };
 const $btnPages = {
   users: document.querySelectorAll(".btn-page-users"),
   functions: document.querySelectorAll(".btn-page-functions"),
@@ -107,7 +107,7 @@ function addEvent$paginMoreLess(type) {
       if (element.classList.contains("active")) {
         element.classList.remove("active");
       } else {
-        if (newNbpage === nbPage[type]) $btnPages[type][i].classList.add("active");
+        if (newNbpage === currentPage[type]) $btnPages[type][i].classList.add("active");
       }
     }
     if (type === "users") set$details();
@@ -116,8 +116,9 @@ function addEvent$paginMoreLess(type) {
   };
 
   $btnPaginMore[type].onclick = () => {
+    console.log(Number($btnPages[type][$btnPages[type].length - 1].textContent) , Number(nbPage[type]));
     if (Number($btnPages[type][$btnPages[type].length - 1].textContent) === Number(nbPage[type])) return;
-     console.log('le nombre de pase',Number($btnPages[type][$btnPages[type].length - 1].textContent),Number(nbPage[type]));
+    
     for (let i = 0; i < $btnPages[type].length; i++) {
 
       const element = $btnPages[type][i];
@@ -126,7 +127,7 @@ function addEvent$paginMoreLess(type) {
       if (element.classList.contains("active")) {
         element.classList.remove("active");
       } else {
-        if (newNbpage === nbPage[type]) $btnPages[type][i].classList.add("active");
+        if (newNbpage === currentPage[type]) $btnPages[type][i].classList.add("active");
       }
       if (type === "users") set$details();
 
@@ -192,7 +193,7 @@ function setPagination(type) {
           .then((dataPage) => {
             console.log(dataPage);
             callback(dataPage.data[type]);
-            nbPage[type] = Number(page);
+            currentPage[type] = Number(page);
           })
           .catch((err) => console.log(err));
       };
