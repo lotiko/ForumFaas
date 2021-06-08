@@ -94,10 +94,12 @@ router.get("/:catname", async (req, res, next) => {
           .skip((page - 1) * limit)
           .populate("userId")
           .exec();
-        let nbDocanswer = await PostModel.countDocuments({categorie:"question"}).exec();
+        let nbDocanswer = await PostModel.countDocuments({
+          categorie: "question",
+        }).exec();
         let nbPageanswer = Math.ceil(nbDocanswer / limit);
-        console.log('nbPageanswer',nbPageanswer);
-        console.log('nbDocanswer',nbDocanswer);
+        console.log("nbPageanswer", nbPageanswer);
+        console.log("nbDocanswer", nbDocanswer);
         postsDataview = dataDb.map((answerDb) => {
           const { title, _id } = answerDb;
           console.log(title, _id);
@@ -113,19 +115,19 @@ router.get("/:catname", async (req, res, next) => {
           return { _id, title, authorData };
         });
         console.log(req.query);
-        
-          // on retourne seulement la donnée si query data
-          if (req.query.data) {
-            res.json({
-              answers: postsDataview,
-              nbPage: nbPageanswer,
-              page: page,
-              limit: limit,
-            });
-            return;
-          }
-        
-        paginationPosts= makePaginationObj(nbPageanswer);
+
+        // on retourne seulement la donnée si query data
+        if (req.query.data) {
+          res.json({
+            answers: postsDataview,
+            nbPage: nbPageanswer,
+            page: page,
+            limit: limit,
+          });
+          return;
+        }
+
+        paginationPosts = makePaginationObj(nbPageanswer);
         nbPage.posts = nbPageanswer;
       }
       if (!req.query.data || req.query.data === "users") {
@@ -167,7 +169,7 @@ router.get("/:catname", async (req, res, next) => {
         paginationUsers: paginationUsers,
         functions: functionsDataView,
         paginationFunctions: paginationFunctions,
-        paginationAnswers:paginationPosts,
+        paginationAnswers: paginationPosts,
         posts: postsDataview,
         page: page,
         limit: limit,
@@ -211,7 +213,9 @@ router.post("/:catname", (req, res, next) => {
           if (String(req.user.id) !== String(funFromDb.userId)) {
             // on verifie que c'est bien l'utilisateur connecter qui posséde la fonction
             res.redirect(
-              "/forum/function/" + req.params.id + "?error=Seul le créateur peu éditer la function."
+              "/forum/function/" +
+                req.params.id +
+                "?error=Seul le créateur peu éditer la function."
             );
             return;
           }
@@ -222,7 +226,9 @@ router.post("/:catname", (req, res, next) => {
             .save()
             .then((savedFun) => {
               res.redirect(
-                "/forum/function/" + savedFun._id + "?message=Votre function a bien été édité."
+                "/forum/function/" +
+                  savedFun._id +
+                  "?message=Votre function a bien été édité."
               );
               return;
             })
@@ -344,7 +350,9 @@ router.get("/:catname/edit/:id", routeGuard, (req, res, next) => {
         if (String(req.user.id) !== String(funFromDb.userId)) {
           // on verifie que c'est bien l'utilisateur connecter qui posséde la fonction
           res.redirect(
-            "/forum/function/" + req.params.id + "?error=Seul le créateur peu éditer la function."
+            "/forum/function/" +
+              req.params.id +
+              "?error=Seul le créateur peu éditer la function."
           );
           return;
         }
@@ -446,7 +454,8 @@ router.get("/:catname/:id", (req, res, next) => {
           //on regarde si le créateur exist encore en db si non on set les valeurs en conséquences pour la vue
           dataView.userAlwaysExist = false;
           funFromDb.userId.avatar = "/images/basicavatar.png";
-          funFromDb.userId.name = "L'utilisateur ne fait plus partie de la communauté";
+          funFromDb.userId.name =
+            "L'utilisateur ne fait plus partie de la communauté";
         } else if (String(funFromDb.userId._id) === String(req.user.id)) {
           // si l'utilisateur qui demande le détail est le créateur de la fonction il peu la supprimer
           dataView.canDelete = true;
@@ -497,6 +506,12 @@ function ${funFromDb.name}(${funFromDb.args}) {
                 })
                   .populate("userId")
                   .then((useranswer) => {
+                    if (!useranswer.userId) {
+                      let user = {};
+                      user.avatar = "/images/basicAvatar.png";
+                      user.name = "inconnue";
+                      useranswer.userId = user;
+                    }
                     console.log("fadilauseranswer", useranswer);
                     console.log("lutilisateur est", userFromDb);
                     if (answersFromDb.length === 0) {
