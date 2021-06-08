@@ -156,22 +156,49 @@ router.post("/:catname", (req, res, next) => {
       return;
     }
     const args = req.body["[args]"];
-    console.log(name, args, body, req.body, req.user._id);
+    // console.log(req.query);
+    // res.json(req.query);
+    // return;
     // / TODO VERIF DATA
-
-    new Function({ name: name, args: args, body: body, userId: req.user._id })
-      .save()
-      .then((funInDb) => {
-        User.findById(req.user._id).then((userInDb) => {
-          userInDb.functions.push(funInDb._id);
-          userInDb.save().then((updateUser) => {
-            // res.json({ fun: funInDb, upUser: updateUser });
-            res.redirect("/forum/home");
+    if (req.query && req.query.edit) {
+      Function.findById(req.query.id)
+        .then((funFromDb) => {
+          if (String(req.user.id) !== String(funFromDb.userId)) {
+            // on verifie que c'est bien l'utilisateur connecter qui posséde la fonction
+            res.redirect(
+              "/forum/function/" + req.params.id + "?error=Seul le créateur peu éditer la function."
+            );
+            return;
+          }
+          funFromDb.name = name;
+          funFromDb.args = args;
+          funFromDb.body = body;
+          funFromDb
+            .save()
+            .then((savedFun) => {
+              res.redirect(
+                "/forum/function/" + savedFun._id + "?message=Votre function a bien été édité."
+              );
+              return;
+            })
+            .catch((err) => next(err));
+        })
+        .catch((err) => next(err));
+    } else {
+      new Function({ name: name, args: args, body: body, userId: req.user._id })
+        .save()
+        .then((funInDb) => {
+          User.findById(req.user._id).then((userInDb) => {
+            userInDb.functions.push(funInDb._id);
+            userInDb.save().then((updateUser) => {
+              // res.json({ fun: funInDb, upUser: updateUser });
+              res.redirect("/forum/home");
+            });
           });
-        });
-      })
-      .catch((err) => next(err));
-    return;
+        })
+        .catch((err) => next(err));
+      return;
+    }
   }
   // /////////////ANSWER///////////////////
   if (req.params.catname === "answer") {
@@ -388,11 +415,18 @@ router.get("/:catname/:id", (req, res, next) => {
 function ${funFromDb.name}(${funFromDb.args}) {
   ${funFromDb.body}
 }`;
+        // on récupére le message dans query si il y en as (aprés post edit par exemple)
+        if (req.query && req.query.message) {
+          message = req.query.message;
+        } else {
+          message = false;
+        }
         res.render("forum/detail/function", {
           fun: funFromDb,
           ...dataView,
           textfun: textFun,
           style: "functiondetail",
+          message: message,
         });
         return;
       })
