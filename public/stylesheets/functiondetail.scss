@@ -1,0 +1,40 @@
+.block-fun {
+  background-color: rgba(4, 129, 156, 1);
+  min-height: 30em;
+  min-width: 40em;
+  border-radius: 5px;
+}
+h1 {
+  text-align: center;
+}
+.head-detail {
+  display: flex;
+  margin: 0 2em;
+  align-items: center;
+  color: rgba(228, 153, 6, 1);
+}
+.title-crea {
+  margin-right: 2em;
+}
+.avatar {
+  margin-right: 1em;
+}
+.name {
+  text-align: left;
+}
+
+code {
+  border-radius: 10px;
+  box-shadow: inset 0px 0px 5px 3px rgba(0, 0, 0, 0.7);
+  margin: 2em;
+  font-weight: bold;
+}
+.icos {
+  margin: auto;
+  width: 30%;
+  display: flex;
+  justify-content: space-between;
+}
+.fun-ico {
+  float: left;
+}

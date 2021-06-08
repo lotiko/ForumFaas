@@ -201,22 +201,49 @@ router.post("/:catname", (req, res, next) => {
       return;
     }
     const args = req.body["[args]"];
-    console.log(name, args, body, req.body, req.user._id);
+    // console.log(req.query);
+    // res.json(req.query);
+    // return;
     // / TODO VERIF DATA
-
-    new Function({ name: name, args: args, body: body, userId: req.user._id })
-      .save()
-      .then((funInDb) => {
-        User.findById(req.user._id).then((userInDb) => {
-          userInDb.functions.push(funInDb._id);
-          userInDb.save().then((updateUser) => {
-            // res.json({ fun: funInDb, upUser: updateUser });
-            res.redirect("/forum/home");
+    if (req.query && req.query.edit) {
+      Function.findById(req.query.id)
+        .then((funFromDb) => {
+          if (String(req.user.id) !== String(funFromDb.userId)) {
+            // on verifie que c'est bien l'utilisateur connecter qui posséde la fonction
+            res.redirect(
+              "/forum/function/" + req.params.id + "?error=Seul le créateur peu éditer la function."
+            );
+            return;
+          }
+          funFromDb.name = name;
+          funFromDb.args = args;
+          funFromDb.body = body;
+          funFromDb
+            .save()
+            .then((savedFun) => {
+              res.redirect(
+                "/forum/function/" + savedFun._id + "?message=Votre function a bien été édité."
+              );
+              return;
+            })
+            .catch((err) => next(err));
+        })
+        .catch((err) => next(err));
+    } else {
+      new Function({ name: name, args: args, body: body, userId: req.user._id })
+        .save()
+        .then((funInDb) => {
+          User.findById(req.user._id).then((userInDb) => {
+            userInDb.functions.push(funInDb._id);
+            userInDb.save().then((updateUser) => {
+              // res.json({ fun: funInDb, upUser: updateUser });
+              res.redirect("/forum/home");
+            });
           });
-        });
-      })
-      .catch((err) => next(err));
-    return;
+        })
+        .catch((err) => next(err));
+      return;
+    }
   }
   // /////////////ANSWER///////////////////
   if (req.params.catname === "answer") {
@@ -310,14 +337,147 @@ router.get("/:catname/new", (req, res, next) => {
   // si pas de route trouver continue vers 404 error
 });
 
+router.get("/:catname/edit/:id", routeGuard, (req, res, next) => {
+  if (req.params.catname === "function") {
+    Function.findById(req.params.id)
+      .then((funFromDb) => {
+        if (String(req.user.id) !== String(funFromDb.userId)) {
+          // on verifie que c'est bien l'utilisateur connecter qui posséde la fonction
+          res.redirect(
+            "/forum/function/" + req.params.id + "?error=Seul le créateur peu éditer la function."
+          );
+          return;
+        }
+        let args;
+        if (funFromDb.args.length > 0) {
+          let i = 1;
+          args = {};
+          funFromDb.args.map((arg) => {
+            args[`arg${i}`] = arg;
+            i++;
+          });
+          args.length = i - 1;
+        } else {
+          args = false;
+        }
+        console.log(args);
+        res.render("forum/edit/function", {
+          isLog: !!req.user,
+          title: "EditFun",
+          style: "function",
+          module: "function",
+          function: funFromDb,
+          args: args,
+        });
+        return;
+      })
+      .catch((err) => next(err));
+  }
+  if (req.params.catname === "home") {
+  }
+  if (req.params.catname === "answer") {
+    // if (req.params.catname === "answer") {
+    //   routeGuard(req, res);
+    //   res.render("forum/new/answer", {
+    //     isLog: true,
+    //     title: "Question",
+    //     style: "answer",
+    //     module: "answer",
+    //   });
+    //   return;
+    // }
+  }
+  // si pas de route trouver continue vers 404 error
+});
+router.get("/:catname/delete/:id", routeGuard, (req, res, next) => {
+  if (req.params.catname === "function") {
+    Function.findById(req.params.id)
+      .then((funFromDb) => {
+        if (String(req.user.id) !== String(funFromDb.userId)) {
+          // on verifie que c'est bien l'utilisateur connecter qui posséde la fonction
+          res.redirect(
+            "/forum/function/" +
+              req.params.id +
+              "?error=Seul le créateur peu supprimer la function."
+          );
+          return;
+        }
+        let oldname = funFromDb.name;
+        Function.deleteOne(funFromDb, (err) => next(err));
+        res.render("home", {
+          isLog: !!req.user,
+          title: "Home",
+          message: `Votre fonction ${oldname} a bien été suprimé.`,
+        });
+        return;
+      })
+      .catch((err) => next(err));
+  }
+  if (req.params.catname === "home") {
+  }
+  if (req.params.catname === "answer") {
+    // if (req.params.catname === "answer") {
+    //   routeGuard(req, res);
+    //   res.render("forum/new/answer", {
+    //     isLog: true,
+    //     title: "Question",
+    //     style: "answer",
+    //     module: "answer",
+    //   });
+    //   return;
+    // }
+  }
+  // si pas de route trouver continue vers 404 error
+});
+
 router.get("/:catname/:id", (req, res, next) => {
   if (req.params.catname === "presentation") {
   }
   if (req.params.catname === "function") {
-    Function.findById(req.params.id).then((funFromDb) => {
-      res.render("forum/detail/function", { function: funFromDb });
-      return;
-    });
+    let dataView = {
+      canDelete: false,
+      userAlwaysExist: true,
+      errorMessage: req.query.error ? req.query.error : false,
+    };
+    Function.findById(req.params.id)
+      .populate({ path: "userId", select: "avatar status _id name" })
+      .then((funFromDb) => {
+        if (!funFromDb.userId) {
+          //on regarde si le créateur exist encore en db si non on set les valeurs en conséquences pour la vue
+          dataView.userAlwaysExist = false;
+          funFromDb.userId.avatar = "/images/basicavatar.png";
+          funFromDb.userId.name = "L'utilisateur ne fait plus partie de la communauté";
+        } else if (String(funFromDb.userId._id) === String(req.user.id)) {
+          // si l'utilisateur qui demande le détail est le créateur de la fonction il peu la supprimer
+          dataView.canDelete = true;
+        }
+        if (funFromDb.args.length > 1) {
+          funFromDb.args = funFromDb.args.reduce((acc, val) => `${acc},${val}`);
+        } else if (funFromDb.args.length > 0) {
+          funFromDb.args = funFromDb.args[0];
+        } else {
+          funFromDb.args = "";
+        }
+        let textFun = `
+function ${funFromDb.name}(${funFromDb.args}) {
+  ${funFromDb.body}
+}`;
+        // on récupére le message dans query si il y en as (aprés post edit par exemple)
+        if (req.query && req.query.message) {
+          message = req.query.message;
+        } else {
+          message = false;
+        }
+        res.render("forum/detail/function", {
+          fun: funFromDb,
+          ...dataView,
+          textfun: textFun,
+          style: "functiondetail",
+          message: message,
+        });
+        return;
+      })
+      .catch((err) => next(err));
   }
   if (req.params.catname === "answer") {
     PostModel.findById(req.params.id)
