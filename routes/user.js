@@ -76,7 +76,7 @@ router
     }
   );
 router.get("/delete/:id", (req, res, next) => {
-  if (req.user._id !== req.params.id) {
+  if (String(req.user._id) !== String(req.params.id)) {
     res.render("home", { errorMessage: "Vous ne pouvez pas supprimer cette utilsateur." });
     return;
   }

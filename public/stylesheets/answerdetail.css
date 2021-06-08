@@ -12,7 +12,8 @@
 .question {
   display: flex;
   flex-direction: row;
-  min-width: 65vw; }
+  min-width: 65vw;
+  position: relative; }
 
 .answer {
   min-width: 50vw;
@@ -30,26 +31,16 @@
   box-shadow: 10px 5px 10px 2px black;
   border-radius: 0px 10px 10px 10px;
   width: 65vw;
-  overflow: scroll; }
+  overflow: auto; }
 
-.dialgueBox::before, .dialgueBox::after {
-  content: "";
+.fleche {
+  height: 36px;
+  width: 44px;
+  transform: rotate(59deg);
   position: absolute;
-  top: -webkit-calc(100% - 10px);
-  /*may require prefix for old browser support*/
-  top: calc(5px);
-  /*i.e. half the height*/
-  left: -12px;
-  height: 46px;
-  width: 35px;
-  background: gray;
-  transform: rotate(45deg);
-  z-index: -1;
-  box-shadow: inherit; }
-
-.dialgueBox::after {
-  box-shadow: none;
-  z-index: 8; }
+  top: 36px;
+  left: 103px;
+  background-color: grey; }
 
 .user-block {
   text-align: center;
@@ -62,7 +53,8 @@
 
 .containerAnswer {
   display: flex;
-  flex-direction: row; }
+  flex-direction: row;
+  position: relative; }
 
 .containerAnswer > div:first-child {
   text-align: center;

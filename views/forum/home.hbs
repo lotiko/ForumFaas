@@ -99,11 +99,21 @@
   <h1>question</h1>
 
   <a href="/forum/answer/new"><button class="new">New</button></a>
+  <div class="block answ">
   {{#each posts}}
-    <div class="question">
-      <a href="/forum/answer/{{this._id}}">{{this.title}}</a>
-    </div>
+  <div class="answer-block">
+        <div class="answer-title">
+          <img class="title avatar" src="{{this.authorData.avatar}}" alt="avatar" />
+          <h2 class="title name">{{this.title}}</h2>
+          <a href="/forum/answer/{{this._id}}"><img
+              class="title btn-details-fun"
+              src="/images/details.png"
+              alt="ico details"
+            /></a>
+        </div>
+      </div>
   {{/each}}
+  </div>
   {{#if paginationAnswers.one}}
     <div class="pagination-answers" data-nbpage="{{nbPage.answers}}">
       {{#if paginationAnswers.more}}

@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="/stylesheets/answerdetail.css" />
-{{!-- <link rel="stylesheet" href="/stylesheets/styles.css"/> --}}
+{{!--
+<link rel="stylesheet" href="/stylesheets/styles.css" /> --}}
 <h1>Detail question</h1>
 <div class="postanswer">
 
@@ -12,7 +13,7 @@
             <h3>{{question.title}}</h3>
             <p>{{{question.body}}} </p>
         </div>
-
+         <div class="fleche"></div>
     </div>
     <hr>
     <div class="answer">
@@ -20,14 +21,17 @@
         {{#if answers}}
         {{#each userA}}
         <div class="containerAnswer">
-        <div>
-        
-        <img src="{{this.userId.avatar}}" alt="useravatar" class="avatar">
-        <h3>{{this.userId.name}}</h3>
-         </div>  
-         <div class="containquestion dialgueBox">
-        <p>{{{this.body}}}</p>
-        </div>
+            <div>
+
+                <img src="{{this.userId.avatar}}" alt="useravatar" class="avatar">
+                <h3>{{this.userId.name}}</h3>
+            </div>
+            
+            <div class="containquestion dialgueBox">
+
+                <p>{{{this.body}}}</p>
+            </div>
+            <div class="fleche"></div>
         </div>
         {{/each}}
 
@@ -38,7 +42,7 @@
         <form action="/forum/answer?type=answer&from={{question.id}}" method="post">
 
             <label>
-                <textarea name="body" id="editor" rows="5" cols="33" > Votre réponse </textarea>
+                <textarea name="body" id="editor" rows="5" cols="33"> Votre réponse </textarea>
             </label>
             <button class="btnposter">Poster</button>
         </form>

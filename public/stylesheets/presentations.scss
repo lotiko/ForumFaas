@@ -1,5 +1,6 @@
 .presentations,
-.functions {
+.functions,
+.answers{
   background-color: rgba(4, 129, 156, 1);
   border-radius: 5px;
   min-width: 30%;
@@ -23,7 +24,8 @@
   margin-bottom: 3em;
 }
 .user-block,
-.function-block {
+.function-block ,
+.answer-block{
   display: flex;
   flex-direction: column;
   background-color: whitesmoke;
@@ -33,9 +35,11 @@
   margin: 1em 2em;
 }
 .user-title,
-.function-title {
+.function-title,
+.answer-title{
   display: flex;
   align-items: center;
+  
 }
 .name {
   flex: 1;
@@ -43,6 +47,8 @@
 }
 .title {
   margin: 0.5em 2em 0.5em;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 .hide {
   display: none;
@@ -56,7 +62,8 @@ nav {
 }
 
 .pagination-users,
-.pagination-functions {
+.pagination-functions,
+.pagination-answers {
   display: flex;
   border: 1px solid #35578b;
   border-radius: 5px;
@@ -68,35 +75,41 @@ nav {
 }
 
 .btn-less-page-users,
-.btn-less-page-functions {
+.btn-less-page-functions,
+.btn-less-page-answers {
   border-radius: 5px 0 0 5px;
   flex: 2;
   text-align: center;
 }
 .btn-more-page-users,
-.btn-more-page-function {
+.btn-more-page-function,
+.btn-more-page-answers {
   border-radius: 0 5px 5px 0;
   flex: 2;
 }
 .btn-page-users,
-.btn-page-functions {
+.btn-page-functions,
+.btn-page-answers {
   border-radius: 0;
   flex: 2;
 }
 .pagination-users button,
-.pagination-function button {
+.pagination-function button,
+.pagination-answers button {
   color: black;
   transition: background-color 0.3s;
 }
 
 .pagination-users button.active,
-.pagination-functions button.active {
+.pagination-functions button.active,
+.pagination-answers button.active {
   background-color: #35578b;
   color: rgba(228, 153, 6, 1);
 }
 
 .pagination-users button:hover:not(.active),
-.pagination-functions button:hover:not(.active) {
+.pagination-functions button:hover:not(.active) ,
+.pagination-functions button:hover:not(.active){
   background-color: rgb(163, 177, 194);
 }
 button :first-child {

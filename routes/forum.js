@@ -17,7 +17,13 @@ const { findById } = require("../models/user");
 /* GET home page */
 router.get("/:catname", async (req, res, next) => {
   function makePaginationObj(nbpage) {
-    let pagination = { one: false, two: false, tree: false, four: false, more: false };
+    let pagination = {
+      one: false,
+      two: false,
+      tree: false,
+      four: false,
+      more: false,
+    };
     if (nbpage < 3) {
       pagination.one = true;
       pagination.two = true;
@@ -56,8 +62,12 @@ router.get("/:catname", async (req, res, next) => {
           console.log(name, _id);
 
           const authorData = {
-            avatar: funDb.userId ? funDb.userId.avatar : "/images/basicAvatar.png",
-            name: funDb.userId ? funDb.userId.name : "Utilisateur plus présent.",
+            avatar: funDb.userId
+              ? funDb.userId.avatar
+              : "/images/basicAvatar.png",
+            name: funDb.userId
+              ? funDb.userId.name
+              : "Utilisateur plus présent.",
           };
           return { _id, name, authorData };
         });
@@ -77,12 +87,46 @@ router.get("/:catname", async (req, res, next) => {
         paginationFunctions = makePaginationObj(nbPageFun);
         nbPage.functions = nbPageFun;
       }
-      if (!req.query.data || req.query.data === "question") {
-        postsDataview = await PostModel.find({ categorie: "question" })
+      if (!req.query.data || req.query.data === "answers") {
+        let dataDb = await PostModel.find({ categorie: "question" })
           .sort({ createdAt: -1 })
           .limit(limit * 1)
           .skip((page - 1) * limit)
+          .populate("userId")
           .exec();
+        let nbDocanswer = await PostModel.countDocuments({categorie:"question"}).exec();
+        let nbPageanswer = Math.ceil(nbDocanswer / limit);
+        console.log('nbPageanswer',nbPageanswer);
+        console.log('nbDocanswer',nbDocanswer);
+        postsDataview = dataDb.map((answerDb) => {
+          const { title, _id } = answerDb;
+          console.log(title, _id);
+
+          const authorData = {
+            avatar: answerDb.userId
+              ? answerDb.userId.avatar
+              : "/images/basicAvatar.png",
+            name: answerDb.userId
+              ? answerDb.userId.name
+              : "Utilisateur plus présent.",
+          };
+          return { _id, title, authorData };
+        });
+        console.log(req.query);
+        
+          // on retourne seulement la donnée si query data
+          if (req.query.data) {
+            res.json({
+              answers: postsDataview,
+              nbPage: nbPageanswer,
+              page: page,
+              limit: limit,
+            });
+            return;
+          }
+        
+        paginationPosts= makePaginationObj(nbPageanswer);
+        nbPage.posts = nbPageanswer;
       }
       if (!req.query.data || req.query.data === "users") {
         // execute query with page and limit values
@@ -123,6 +167,7 @@ router.get("/:catname", async (req, res, next) => {
         paginationUsers: paginationUsers,
         functions: functionsDataView,
         paginationFunctions: paginationFunctions,
+        paginationAnswers:paginationPosts,
         posts: postsDataview,
         page: page,
         limit: limit,
@@ -190,7 +235,7 @@ router.post("/:catname", (req, res, next) => {
 
     console.log("title", title);
     if (!title || !body) {
-      res.render("forum/answer", {
+      res.render("forum/new/answer", {
         isLog: true,
         errorMessage: "Veuillez remplir le titre",
         style: "answer",
@@ -201,7 +246,7 @@ router.post("/:catname", (req, res, next) => {
 
     console.log("mon test titre", regexTitle.test(title));
     if (!regexTitle.test(title)) {
-      res.render("forum/answer", {
+      res.render("forum/new/answer", {
         errorMessage: "Votre question est tres longue",
         style: "answer",
         module: "answer",
@@ -248,7 +293,7 @@ router.get("/:catname/new", (req, res, next) => {
   }
   if (req.params.catname === "home") {
   }
-  
+
   if (req.params.catname === "answer") {
     if (req.params.catname === "answer") {
       routeGuard(req, res);
@@ -261,7 +306,7 @@ router.get("/:catname/new", (req, res, next) => {
       return;
     }
   }
-  
+
   // si pas de route trouver continue vers 404 error
 });
 
@@ -281,35 +326,40 @@ router.get("/:catname/:id", (req, res, next) => {
         User.findById(questionFromDb.userId)
           .select("avatar name createdAt")
           .then((userFromDb) => {
-            PostModel.find({ fromQuestion: questionFromDb._id }).then((answersFromDb) => {
-              console.log("kiwwwwwwwwwww", answersFromDb);
-              PostModel.find({
-                $and: [{ fromQuestion: questionFromDb._id }, { categorie: "answer" }],
-              })
-                .populate("userId")
-                .then((useranswer) => {
-                  console.log("fadilauseranswer", useranswer);
-                  console.log("lutilisateur est", userFromDb);
-                  if (answersFromDb.length === 0) {
-                    res.render("forum/detail/answer", {
-                      question: questionFromDb,
-                      userq: userFromDb,
-                      userA: useranswer,
-                      script: "answer",
-                      isLog: !!req.user,
-                    });
-                  } else {
-                    res.render("forum/detail/answer", {
-                      question: questionFromDb,
-                      answers: answersFromDb,
-                      userq: userFromDb,
-                      userA: useranswer,
-                      script: "answer",
-                      isLog: !!req.user,
-                    });
-                  }
-                });
-            });
+            PostModel.find({ fromQuestion: questionFromDb._id }).then(
+              (answersFromDb) => {
+                console.log("kiwwwwwwwwwww", answersFromDb);
+                PostModel.find({
+                  $and: [
+                    { fromQuestion: questionFromDb._id },
+                    { categorie: "answer" },
+                  ],
+                })
+                  .populate("userId")
+                  .then((useranswer) => {
+                    console.log("fadilauseranswer", useranswer);
+                    console.log("lutilisateur est", userFromDb);
+                    if (answersFromDb.length === 0) {
+                      res.render("forum/detail/answer", {
+                        question: questionFromDb,
+                        userq: userFromDb,
+                        userA: useranswer,
+                        script: "answer",
+                        isLog: !!req.user,
+                      });
+                    } else {
+                      res.render("forum/detail/answer", {
+                        question: questionFromDb,
+                        answers: answersFromDb,
+                        userq: userFromDb,
+                        userA: useranswer,
+                        script: "answer",
+                        isLog: !!req.user,
+                      });
+                    }
+                  });
+              }
+            );
           });
       })
       .catch((err) => next(err));

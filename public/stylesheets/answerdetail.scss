@@ -14,11 +14,13 @@
   display: flex;
   flex-direction: row;
   min-width: 65vw;
+  position: relative;
 }
 
 .answer {
   min-width: 50vw;
 max-width: 50vw;
+
 }
 
 .containquestion{
@@ -36,26 +38,36 @@ padding: 2em;
   box-shadow: 10px 5px 10px 2px black;
   border-radius: 0px 10px 10px 10px;
   width: 65vw;
-  overflow: scroll;
+  overflow: auto;
+ 
   }
-  
-  .dialgueBox::before,.dialgueBox::after {
-  content: "";
-  position: absolute;
-  top: -webkit-calc(100% - 10px); /*may require prefix for old browser support*/
-  top: calc(5px); /*i.e. half the height*/
-  left:-12px;
-  height: 46px;
-  width: 35px;
-  background: gray;
-  transform: rotate(45deg);
-  z-index:-1;
-  box-shadow:inherit;
-  }
-  .dialgueBox::after{
-  box-shadow:none;
-  z-index:8;
-  }
+   .fleche{
+	   height: 36px;
+	   width: 44px;
+	   transform: rotate(59deg);
+	   position: absolute;
+	   top: 36px;
+	   left: 103px;
+	   background-color: grey;
+   }
+//   .ddialgueBox::before,.ddialgueBox::after {
+//   content: "";
+//   position: absolute;
+//   top: -webkit-calc(100% - 10px); /*may require prefix for old browser support*/
+//   top: calc(5px); /*i.e. half the height*/
+//   left:-12px;
+//   height: 46px;
+//   width: 35px;
+//   background: gray;
+//   transform: rotate(45deg);
+//   z-index:1;
+//   box-shadow:inherit;
+//   }
+
+//   .ddialgueBox::after{
+//   box-shadow:none;
+//   z-index:8;
+//   }
 .user-block {
   text-align: center;
   margin-bottom: auto;
@@ -69,6 +81,7 @@ padding: 2em;
 .containerAnswer{
   display: flex;
   flex-direction: row;
+  position: relative;
 
 }
 

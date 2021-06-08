@@ -3,13 +3,14 @@ const $users = document.querySelector(".users");
 const nbPage = {
   users: document.querySelector(".pagination-users").dataset.nbpage,
   functions: document.querySelector(".pagination-functions").dataset.nbpage,
-  // answers: document.querySelector(".pagination-answers").dataset.nbpage,
+  answers: document.querySelector(".pagination-answers").dataset.nbpage,
 };
-let currentPage = { users: 1, functions: 1, answers: 1 };
+console.log(nbPage);
+
 const $btnPages = {
   users: document.querySelectorAll(".btn-page-users"),
   functions: document.querySelectorAll(".btn-page-functions"),
-  answers: document.querySelectorAll(".btn-page-answer"),
+  answers: document.querySelectorAll(".btn-page-answers"),
 };
 const $btnPaginLess = {
   users: document.querySelector(".btn-less-page-users"),
@@ -106,7 +107,7 @@ function addEvent$paginMoreLess(type) {
       if (element.classList.contains("active")) {
         element.classList.remove("active");
       } else {
-        if (newNbpage === currentPageUsers) $btnPagesUsers[i].classList.add("active");
+        if (newNbpage === nbPage[type]) $btnPages[type][i].classList.add("active");
       }
     }
     if (type === "users") set$details();
@@ -115,15 +116,17 @@ function addEvent$paginMoreLess(type) {
   };
 
   $btnPaginMore[type].onclick = () => {
-    if ($btnPages[type][$btnPages[type].length - 1].textContent === nbPage[type]) return;
+    if (Number($btnPages[type][$btnPages[type].length - 1].textContent) === Number(nbPage[type])) return;
+     console.log('le nombre de pase',Number($btnPages[type][$btnPages[type].length - 1].textContent),Number(nbPage[type]));
     for (let i = 0; i < $btnPages[type].length; i++) {
+
       const element = $btnPages[type][i];
       let newNbpage = Number(element.textContent) + 1;
       element.textContent = newNbpage;
       if (element.classList.contains("active")) {
         element.classList.remove("active");
       } else {
-        if (newNbpage === currentPage[type]) $btnPages[type][i].classList.add("active");
+        if (newNbpage === nbPage[type]) $btnPages[type][i].classList.add("active");
       }
       if (type === "users") set$details();
 
@@ -152,12 +155,34 @@ function changeFunctionsBlock(newData) {
   });
 }
 //// answer block
-function changeAnswersBlock(newData) {}
+const $answers = document.querySelector(".answ");
+function changeAnswersBlock(newData) {
+  $answers.innerHTML = "";
+  newData.map((answerdata) => {
+    let $answerblock = document.createElement("div");
+    $answerblock.classList.add("answer-block");
+    let inner = `<div class="answer-title">
+    <img class="title avatar" src="${answerdata.authorData.avatar}" alt="avatar" />
+    <h2 class="title name">${answerdata.title}</h2>
+    <a href="/forum/answer/${answerdata._id}"><img
+        class="title btn-details-fun"
+        src="/images/details.png"
+        alt="ico details"
+      /></a>
+  </div>`;
+    $answerblock.innerHTML = inner;
+    $answers.appendChild($answerblock);
+  });
+
+}
 /// utils
 function setPagination(type) {
   let $btnToset = $btnPages[type];
   let callback = changeFun[type];
+  console.log('notre type', type);
+  console.log(type ,$btnToset,callback);
   if ($btnToset.length > 0) {
+
     $btnToset.forEach(($btnpage) => {
       let page = $btnpage.textContent;
       $btnpage.onclick = () => {
@@ -167,7 +192,7 @@ function setPagination(type) {
           .then((dataPage) => {
             console.log(dataPage);
             callback(dataPage.data[type]);
-            currentPage[type] = Number(page);
+            nbPage[type] = Number(page);
           })
           .catch((err) => console.log(err));
       };
@@ -179,7 +204,8 @@ set$details();
 addEventDetails();
 setPagination("users");
 setPagination("functions");
-// setPagination("answers");
+setPagination("answers");
 if ($btnPaginLess.users) addEvent$paginMoreLess("users");
 if ($btnPaginLess.functions) addEvent$paginMoreLess("functions");
-// addEvent$paginMoreLess("answers");
+
+if ($btnPaginLess.answers) addEvent$paginMoreLess("answers");
