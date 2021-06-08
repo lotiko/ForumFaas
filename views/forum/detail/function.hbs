@@ -1,14 +1,18 @@
-<div class="detail-fun">
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/styles/default.min.css"
+/>
+<link rel="stylesheet" href="/stylesheets/dracula.css" />
+<div class="block-fun">
   <h1>Detail Fonction</h1>
-  <div data-id="{{fun.id}}" class="fun">
-    <div class="user-block">
-      <h4>{{userq.name}}</h4>
-      <img src="{{userq.avatar}}" alt="avatar" class="avatar" />
+  <div data-id="{{fun._id}}" class="fun">
+    <div class="head-detail">
+      <h2 class="title-crea">Créateur:</h2>
+      <img src="{{fun.userId.avatar}}" alt="avatar" class="avatar" />
+      <h3 class="name">{{fun.userId.name}}</h3>
     </div>
-    <div>
-      <h3>{{function.name}}</h3>
-      <p>{{{function.body}}} </p>
-    </div>
+
+    <pre><code>{{textfun}}</code></pre>
 
   </div>
   <div>
@@ -31,4 +35,9 @@
     </form>
   </div> --}}
 </div>
-<script src="/javascripts/ckeditor.js"></script>
+{{! <script src="/javascripts/ckeditor.js"></script> }}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/highlight.min.js"></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/languages/javascript.min.js"
+></script>
+<script>hljs.highlightAll();</script>

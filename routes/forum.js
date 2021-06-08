@@ -267,10 +267,39 @@ router.get("/:catname/:id", (req, res, next) => {
   if (req.params.catname === "presentation") {
   }
   if (req.params.catname === "function") {
-    Function.findById(req.params.id).then((funFromDb) => {
-      res.render("forum/detail/function", { function: funFromDb });
-      return;
-    });
+    let dataView = { canDelete: false, userAlwaysExist: true };
+    Function.findById(req.params.id)
+      .populate({ path: "userId", select: "avatar status _id name" })
+      .then((funFromDb) => {
+        if (!funFromDb.userId) {
+          //on regarde si le créateur exist encore en db si non on set les valeurs en conséquences pour la vue
+          dataView.userAlwaysExist = false;
+          funFromDb.userId.avatar = "/images/basicavatar.png";
+          funFromDb.userId.name = "L'utilisateur ne fait plus partie de la communauté";
+        } else if (String(funFromDb.userId._id) === String(req.user.id)) {
+          // si l'utilisateur qui demande le détail est le créateur de la fonction il peu la supprimer
+          dataView.canDelete = true;
+        }
+        if (funFromDb.args.length > 1) {
+          funFromDb.args = funFromDb.args.reduce((acc, val) => `${acc},${val}`);
+        } else if (funFromDb.args.length > 0) {
+          funFromDb.args = funFromDb.args[0];
+        } else {
+          funFromDb.args = "";
+        }
+        let textFun = `
+function ${funFromDb.name}(${funFromDb.args}) {
+  ${funFromDb.body}
+}`;
+        res.render("forum/detail/function", {
+          fun: funFromDb,
+          ...dataView,
+          textfun: textFun,
+          style: "functiondetail",
+        });
+        return;
+      })
+      .catch((err) => next(err));
   }
   if (req.params.catname === "answer") {
     PostModel.findById(req.params.id)
