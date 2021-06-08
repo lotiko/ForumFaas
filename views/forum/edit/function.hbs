@@ -1,0 +1,43 @@
+<link rel="stylesheet" href="/stylesheets/styles.css" />
+<div class="function modal">
+
+  <form action="/forum/function" method="post">
+    <label>
+      Nombre d'arguments:
+      <input type="number" class="nb-args" name="nbargs" min="0" max="5" value="{{#if args }}{{args.length}}{{else}}0{{/if}}" />
+    </label>
+    <p>Le nom de la function et des arguments doit commencer
+      <br />part une lettre ou underscore ou "$"</p>
+    <div class="head-function">
+
+      <span>function</span>
+      <input type="text" name="name" value="{{function.name}}"/>
+
+      <div class="block-args">
+        <span>(</span>
+
+        <input type="text" class="arg" name="[args]"{{#if args}} value="{{args.arg1}}" {{else}} hidden{{/if}}  />
+
+        <div class="args-input">
+          
+{{#if args.arg2}}<input type="text" class="arg" name="[args]" value="{{args.arg2}}">{{/if}}
+{{#if args.arg3}}<input type="text" class="arg" name="[args]" value="{{args.arg3}}">{{/if}}
+{{#if args.arg4}}<input type="text" class="arg" name="[args]" value="{{args.arg4}}">{{/if}}
+{{#if args.arg5}}<input type="text" class="arg" name="[args]" value="{{args.arg5}}">{{/if}}
+        </div>
+        <span>) {</span>
+      </div>
+    </div>
+    <textarea name="body" id="editor" rows="10" cols="80">{{function.body}}</textarea>
+    <span class="end-function">}</span>
+    <button class="btnposter">Editer</button>
+  </form>
+
+</div>
+{{#if errorMessage}}
+  <div class="error">
+    {{errorMessage}}
+  </div>
+{{/if}}
+
+<script src="/javascripts/ckeditor.js"></script>

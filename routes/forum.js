@@ -263,17 +263,41 @@ router.get("/:catname/new", (req, res, next) => {
   // si pas de route trouver continue vers 404 error
 });
 
-router.get("/:catname/edit/:id", (req, res, next) => {
+router.get("/:catname/edit/:id", routeGuard, (req, res, next) => {
   if (req.params.catname === "function") {
-    routeGuard(req, res);
-    res.render("forum/home", {
-      isLog: true,
-      title: "ForumHome",
-      style: "presentations",
-      script: "presentations",
-      message: "c'est delete et non!",
-    });
-    return;
+    Function.findById(req.params.id)
+      .then((funFromDb) => {
+        if (String(req.user.id) !== String(funFromDb.userId)) {
+          // on verifie que c'est bien l'utilisateur connecter qui posséde la fonction
+          res.redirect(
+            "/forum/function/" + req.params.id + "?error=Seul le créateur peu éditer la function."
+          );
+          return;
+        }
+        let args;
+        if (funFromDb.args.length > 0) {
+          let i = 1;
+          args = {};
+          funFromDb.args.map((arg) => {
+            args[`arg${i}`] = arg;
+            i++;
+          });
+          args.length = i - 1;
+        } else {
+          args = false;
+        }
+        console.log(args);
+        res.render("forum/edit/function", {
+          isLog: !!req.user,
+          title: "EditFun",
+          style: "function",
+          module: "function",
+          function: funFromDb,
+          args: args,
+        });
+        return;
+      })
+      .catch((err) => next(err));
   }
   if (req.params.catname === "home") {
   }
@@ -293,23 +317,27 @@ router.get("/:catname/edit/:id", (req, res, next) => {
 });
 router.get("/:catname/delete/:id", routeGuard, (req, res, next) => {
   if (req.params.catname === "function") {
-    Function.findById(req.params.id).then((funFromDb) => {
-      if (String(req.user.id) !== String(funFromDb.userId)) {
-        // on verifie que c'est bien l'utilisateur connecter qui posséde la fonction
-        res.redirect(
-          "/forum/function/" + req.params.id + "?error=Seul le créateur peu supprimer la function."
-        );
+    Function.findById(req.params.id)
+      .then((funFromDb) => {
+        if (String(req.user.id) !== String(funFromDb.userId)) {
+          // on verifie que c'est bien l'utilisateur connecter qui posséde la fonction
+          res.redirect(
+            "/forum/function/" +
+              req.params.id +
+              "?error=Seul le créateur peu supprimer la function."
+          );
+          return;
+        }
+        let oldname = funFromDb.name;
+        Function.deleteOne(funFromDb, (err) => next(err));
+        res.render("home", {
+          isLog: !!req.user,
+          title: "Home",
+          message: `Votre fonction ${oldname} a bien été suprimé.`,
+        });
         return;
-      }
-      let oldname = funFromDb.name;
-      Function.deleteOne(funFromDb, (err) => next(err));
-      res.render("home", {
-        isLog: !!req.user,
-        title: "Home",
-        message: `Votre fonction ${oldname} a bien été suprimé.`,
-      });
-    });
-    return;
+      })
+      .catch((err) => next(err));
   }
   if (req.params.catname === "home") {
   }
