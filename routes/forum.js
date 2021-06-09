@@ -299,6 +299,11 @@ router.post("/:catname", (req, res, next) => {
     new PostModel(newPost)
       .save()
       .then(function (answersFromDb) {
+        User.findById(userId)
+        .then(userFromDb=>{
+          userFromDb.posts.push(answersFromDb._id);
+          userFromDb.save()
+        }) .catch(err=>next(err))
         if (categorie === "question") {
           res.redirect("/forum/home");
         }
