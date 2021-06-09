@@ -3,6 +3,7 @@
   href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/styles/default.min.css"
 />
 <link rel="stylesheet" href="/stylesheets/dracula.css" />
+<div class="all-block">
 <div class="block-fun">
   <h1>Detail Fonction</h1>
   <div data-id="{{fun._id}}" class="fun">
@@ -27,9 +28,33 @@
           /></a>
       </div>
     {{/if}}
+    <div class="explication">
+      <p class="explication-text">
+        Pour tester cette fonction utilser la boite de test sur la droite.
+        <br />
+        Pour l'utiliser de n'importe ou faite une requéte http:
+        <br />
+        type: POST
+        <br />
+        Url:
+        {{baseUrl}}:{{dockerPort}}/exec/{{fun.name}}
+        <br />
+        Headers: "Content-type" = "application/json"
+        <br />
+        {{#if fun.argsArr}}
+          Pour les arguments envoyer un json dans le body de forme:
+<pre><code>
+  { 
+{{#each fun.argsArr}}
+    "{{this}}": "votre valeur d'arguments"{{#if @last}}{{else}},{{/if}}
+{{/each}}
+  }
+</code></pre>
+        {{/if}}
+      </p>
+    </div>
   </div>
   <div>
-
     {{#if answers}}
       {{#each answers}}
         <div>
@@ -37,6 +62,7 @@
         </div>
       {{/each}}
     {{/if}}
+
   </div>
   {{!-- <div class="postanswer">
     <form action="/forum/answer?type=answer&from={{function.id}}" method="post">
@@ -47,6 +73,19 @@
       <button class="btnposter">Poster</button>
     </form>
   </div> --}}
+</div>
+<div class="block-test">
+  <h1>Test Fonction {{fun.name}}</h1>
+ <h2>Définir les argumments puis clicker sur Tester</h2>
+  {{#each fun.argsArr}}
+  <label >
+    {{this}}
+    <input type="text" name="" placeholder="entrer une valeur">
+    </label>
+    
+{{/each}}
+<button id="test">Tester</button>
+</div>
 </div>
 {{#if errorMessage}}
   <div class="error">
@@ -61,5 +100,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/highlight.min.js"></script>
 <script
   src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/languages/javascript.min.js"
+></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/languages/json.min.js"
 ></script>
 <script>hljs.highlightAll();</script>

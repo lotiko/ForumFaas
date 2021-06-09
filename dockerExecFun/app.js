@@ -70,11 +70,6 @@ module.exports = ${data.name};`;
     .catch((err) => next(err));
 });
 
-// app.get("/nodb/launch/:id", (req, res) => {
-//   res.sendFile(path.join(__dirname + "/about.html"));
-//   //__dirname : It will resolve to your project folder.
-// });
-
 app.listen(2323, () => {
   console.log("Listening on port 2323");
 });
