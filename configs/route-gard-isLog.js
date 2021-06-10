@@ -8,5 +8,6 @@ module.exports = (
 ) => {
   console.log("In ROUTE-GARD!!");
   if (!!req.user) next();
-  else res.redirect("/");
+  else
+    res.render("home", { errorMessage: "Vous devez étre connecté pour atteindre cette section." });
 };

@@ -1,8 +1,28 @@
-.block-fun {
+.all-block {
+  display: flex;
+  width: 90%;
+  padding: 2em; }
+
+.block-fun, .block-test {
+  display: flex;
+  flex-direction: column;
   background-color: #04819c;
-  min-height: 30em;
-  min-width: 40em;
-  border-radius: 5px; }
+  min-width: 48%;
+  border-radius: 5px;
+  margin: auto; }
+
+label {
+  text-align: left; }
+
+h2 {
+  margin-bottom: 0;
+  text-align: center; }
+
+.block-test {
+  margin-top: 0; }
+
+.block-test button {
+  margin: auto; }
 
 h1 {
   text-align: center; }
@@ -23,10 +43,9 @@ h1 {
   text-align: left; }
 
 code {
-  border-radius: 10px;
   box-shadow: inset 0px 0px 5px 3px rgba(0, 0, 0, 0.7);
-  margin: 2em;
-  font-weight: bold; }
+  font-weight: bold;
+  margin: 0.5em 2em; }
 
 .icos {
   margin: auto;
@@ -36,5 +55,21 @@ code {
 
 .fun-ico {
   float: left; }
+
+.explication {
+  background-color: #d3d9db;
+  color: #083944;
+  padding-bottom: 2em;
+  margin: 2em; }
+
+.explication-text {
+  padding: 1em;
+  margin: 2em; }
+
+.hljs.language-json > .hljs-punctuation {
+  color: white; }
+
+pre {
+  margin-top: 0.5em; }
 
 /*# sourceMappingURL=functiondetail.css.map */

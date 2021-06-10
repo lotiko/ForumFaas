@@ -62,12 +62,8 @@ router.get("/:catname", async (req, res, next) => {
           console.log(name, _id);
 
           const authorData = {
-            avatar: funDb.userId
-              ? funDb.userId.avatar
-              : "/images/basicAvatar.png",
-            name: funDb.userId
-              ? funDb.userId.name
-              : "Utilisateur plus présent.",
+            avatar: funDb.userId ? funDb.userId.avatar : "/images/basicAvatar.png",
+            name: funDb.userId ? funDb.userId.name : "Utilisateur plus présent.",
           };
           return { _id, name, authorData };
         });
@@ -105,12 +101,8 @@ router.get("/:catname", async (req, res, next) => {
           console.log(title, _id);
 
           const authorData = {
-            avatar: answerDb.userId
-              ? answerDb.userId.avatar
-              : "/images/basicAvatar.png",
-            name: answerDb.userId
-              ? answerDb.userId.name
-              : "Utilisateur plus présent.",
+            avatar: answerDb.userId ? answerDb.userId.avatar : "/images/basicAvatar.png",
+            name: answerDb.userId ? answerDb.userId.name : "Utilisateur plus présent.",
           };
           return { _id, title, authorData };
         });
@@ -213,9 +205,7 @@ router.post("/:catname", (req, res, next) => {
           if (String(req.user.id) !== String(funFromDb.userId)) {
             // on verifie que c'est bien l'utilisateur connecter qui posséde la fonction
             res.redirect(
-              "/forum/function/" +
-                req.params.id +
-                "?error=Seul le créateur peu éditer la function."
+              "/forum/function/" + req.params.id + "?error=Seul le créateur peu éditer la function."
             );
             return;
           }
@@ -226,9 +216,7 @@ router.post("/:catname", (req, res, next) => {
             .save()
             .then((savedFun) => {
               res.redirect(
-                "/forum/function/" +
-                  savedFun._id +
-                  "?message=Votre function a bien été édité."
+                "/forum/function/" + savedFun._id + "?message=Votre function a bien été édité."
               );
               return;
             })
@@ -355,9 +343,7 @@ router.get("/:catname/edit/:id", routeGuard, (req, res, next) => {
         if (String(req.user.id) !== String(funFromDb.userId)) {
           // on verifie que c'est bien l'utilisateur connecter qui posséde la fonction
           res.redirect(
-            "/forum/function/" +
-              req.params.id +
-              "?error=Seul le créateur peu éditer la function."
+            "/forum/function/" + req.params.id + "?error=Seul le créateur peu éditer la function."
           );
           return;
         }
@@ -458,14 +444,15 @@ router.get("/:catname/:id", (req, res, next) => {
         if (!funFromDb.userId) {
           //on regarde si le créateur exist encore en db si non on set les valeurs en conséquences pour la vue
           dataView.userAlwaysExist = false;
-          funFromDb.userId.avatar = "/images/basicavatar.png";
-          funFromDb.userId.name =
-            "L'utilisateur ne fait plus partie de la communauté";
-        } else if (String(funFromDb.userId._id) === String(req.user.id)) {
+          funFromDb.userId = {};
+          funFromDb.userId.avatar = "/images/basicAvatar.png";
+          funFromDb.userId.name = "Inconnu";
+        } else if (req.user && String(funFromDb.userId._id) === String(req.user._id)) {
           // si l'utilisateur qui demande le détail est le créateur de la fonction il peu la supprimer
           dataView.canDelete = true;
         }
         if (funFromDb.args.length > 1) {
+          funFromDb.argsArr = funFromDb.args;
           funFromDb.args = funFromDb.args.reduce((acc, val) => `${acc},${val}`);
         } else if (funFromDb.args.length > 0) {
           funFromDb.args = funFromDb.args[0];
@@ -482,12 +469,16 @@ function ${funFromDb.name}(${funFromDb.args}) {
         } else {
           message = false;
         }
+        console.log(funFromDb);
         res.render("forum/detail/function", {
           fun: funFromDb,
           ...dataView,
           textfun: textFun,
           style: "functiondetail",
           message: message,
+          baseUrl: process.env.BASE_URL,
+          dockerPort: process.env.DOCKER_PORT,
+          script: "detailFunction",
         });
         return;
       })
@@ -500,46 +491,41 @@ function ${funFromDb.name}(${funFromDb.args}) {
         User.findById(questionFromDb.userId)
           .select("avatar name createdAt")
           .then((userFromDb) => {
-            PostModel.find({ fromQuestion: questionFromDb._id }).then(
-              (answersFromDb) => {
-                console.log("kiwwwwwwwwwww", answersFromDb);
-                PostModel.find({
-                  $and: [
-                    { fromQuestion: questionFromDb._id },
-                    { categorie: "answer" },
-                  ],
-                })
-                  .populate("userId")
-                  .then((useranswer) => {
-                    if (!useranswer.userId) {
-                      let user = {};
-                      user.avatar = "/images/basicAvatar.png";
-                      user.name = "inconnue";
-                      useranswer.userId = user;
-                    }
-                    console.log("fadilauseranswer", useranswer);
-                    console.log("lutilisateur est", userFromDb);
-                    if (answersFromDb.length === 0) {
-                      res.render("forum/detail/answer", {
-                        question: questionFromDb,
-                        userq: userFromDb,
-                        userA: useranswer,
-                        script: "answer",
-                        isLog: !!req.user,
-                      });
-                    } else {
-                      res.render("forum/detail/answer", {
-                        question: questionFromDb,
-                        answers: answersFromDb,
-                        userq: userFromDb,
-                        userA: useranswer,
-                        script: "answer",
-                        isLog: !!req.user,
-                      });
-                    }
-                  });
-              }
-            );
+            PostModel.find({ fromQuestion: questionFromDb._id }).then((answersFromDb) => {
+              console.log("kiwwwwwwwwwww", answersFromDb);
+              PostModel.find({
+                $and: [{ fromQuestion: questionFromDb._id }, { categorie: "answer" }],
+              })
+                .populate("userId")
+                .then((useranswer) => {
+                  if (!useranswer.userId) {
+                    let user = {};
+                    user.avatar = "/images/basicAvatar.png";
+                    user.name = "inconnue";
+                    useranswer.userId = user;
+                  }
+                  console.log("fadilauseranswer", useranswer);
+                  console.log("lutilisateur est", userFromDb);
+                  if (answersFromDb.length === 0) {
+                    res.render("forum/detail/answer", {
+                      question: questionFromDb,
+                      userq: userFromDb,
+                      userA: useranswer,
+                      script: "answer",
+                      isLog: !!req.user,
+                    });
+                  } else {
+                    res.render("forum/detail/answer", {
+                      question: questionFromDb,
+                      answers: answersFromDb,
+                      userq: userFromDb,
+                      userA: useranswer,
+                      script: "answer",
+                      isLog: !!req.user,
+                    });
+                  }
+                });
+            });
           });
       })
       .catch((err) => next(err));
