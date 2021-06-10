@@ -11,6 +11,39 @@ mongoose.connect("mongodb://localhost/forumfaas", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
+let fonctions = [
+  {
+    args: ["numbers1"],
+    name: "createPhoneNumber1",
+    body: " numbers = numbers1.join('');\r\n  return '(' + numbers.substring(0, 3) + ') ' \r\n  + numbers.substring(3, 6) \r\n   + '-' \r\n    + numbers.substring(6)",
+    userId: "",
+  },{
+    args: ["numbers2"],
+    name: "createPhoneNumber2",
+    body: " numbers = numbers2.join('');\r\n  return '(' + numbers.substring(0, 3) + ') ' \r\n  + numbers.substring(3, 6) \r\n   + '-' \r\n    + numbers.substring(6)",
+    userId: "",
+  },{
+    args: ["numbers"],
+    name: "createPhoneNumber3",
+    body: " numbers = numbers.join('');\r\n  return '(' + numbers.substring(0, 3) + ') ' \r\n  + numbers.substring(3, 6) \r\n   + '-' \r\n    + numbers.substring(6)",
+    userId: "",
+  },{
+    args: ["numbers1"],
+    name: "createPhoneNumber4",
+    body: " numbers = numbers.join('');\r\n  return '(' + numbers.substring(0, 3) + ') ' \r\n  + numbers.substring(3, 6) \r\n   + '-' \r\n    + numbers.substring(6)",
+    userId: "",
+  },{
+    args: ["numbers"],
+    name: "createPhoneNumber5",
+    body: " numbers = numbers.join('');\r\n  return '(' + numbers.substring(0, 3) + ') ' \r\n  + numbers.substring(3, 6) \r\n   + '-' \r\n    + numbers.substring(6)",
+    userId: "",
+  },{
+    args: ["numbers"],
+    name: "createPhoneNumber6",
+    body: " numbers = numbers.join('');\r\n  return '(' + numbers.substring(0, 3) + ') ' \r\n  + numbers.substring(3, 6) \r\n   + '-' \r\n    + numbers.substring(6)",
+    userId: "",
+  }
+];
 
 let answers = [
   [
@@ -107,30 +140,46 @@ let i = 0;
 async function initdb() {
   try {
     await User.insertMany(modo)
-      .then(function (modoFromDb) {
-        console.log(modoFromDb);
-        modoFromDb.map(async(el) => {
+      .then(function (usersFromDb) {
+        console.log(usersFromDb);
+        usersFromDb.map(async (el) => {
           posts[i].userId = el._id;
-         let post = await PostModel.create(posts[i]).then(async (postfromDb) => {
-            el.posts.push(postfromDb._id);
-            el.save();
-            return postfromDb;
-        });
-        let ans = [];
-        console.log("lengthanswer", answers[i].length);
-        for (let j = 0; j < answers[i].length; j++) {
-          // console.log('answwwwwwwwwwwwwwwer',answers[i]);
-          const element = answers[i][j];
-          element.userId =
-            modoFromDb[Math.floor(Math.random() * modoFromDb.length)]._id;
-          element.fromQuestion = post._id;
-          ans.push(element);
-        }
-        await PostModel.insertMany(ans).then((answerFromDb) => {
-          console.log(answerFromDb);
-        });
+          let post = await PostModel.create(posts[i]).then(
+            async (postfromDb) => {
+              el.posts.push(postfromDb._id);
+              el.save();
+              return postfromDb;
+            }
+          );
+
+          let ans = [];
+          console.log("lengthanswer", answers[i].length);
+          for (let j = 0; j < answers[i].length; j++) {
+            // console.log('answwwwwwwwwwwwwwwer',answers[i]);
+            const element = answers[i][j];
+            element.userId =
+              usersFromDb[Math.floor(Math.random() * usersFromDb.length)]._id;
+            element.fromQuestion = post._id;
+            ans.push(element);
+          }
+          await PostModel.insertMany(ans).then((answerFromDb) => {
+            console.log(answerFromDb);
+          });
 
           i++;
+        });
+
+        fonctions.map((fonction) => {
+          let randomidex=Math.floor(Math.random() * usersFromDb.length)
+          fonction.userId =
+            usersFromDb[randomidex]._id;
+          Function.create(fonction).then(async (fonctionFromDb) => {
+           User.findById(usersFromDb[randomidex]._id)
+            .then(userrandomFromDb=>{
+              userrandomFromDb.functions.push(fonctionFromDb._id);
+              userrandomFromDb.save();
+            })
+          });
         });
       })
       .catch((err) => console.log(err));
