@@ -455,10 +455,12 @@ router.get("/:catname/:id", (req, res, next) => {
           funFromDb.argsArr = funFromDb.args;
           funFromDb.args = funFromDb.args.reduce((acc, val) => `${acc},${val}`);
         } else if (funFromDb.args.length > 0) {
+          funFromDb.argsArr = funFromDb.args;
           funFromDb.args = funFromDb.args[0];
         } else {
           funFromDb.args = "";
         }
+        console.log('coucou',funFromDb);
         let textFun = `
 function ${funFromDb.name}(${funFromDb.args}) {
   ${funFromDb.body}
