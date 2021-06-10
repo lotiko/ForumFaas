@@ -15,7 +15,7 @@ const bcrypt = require("bcrypt");
 /// mongoose
 const mongoose = require("mongoose");
 mongoose
-  .connect("mongodb://localhost/forumfaas", {
+  .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
@@ -70,7 +70,7 @@ passport.use(
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
-    store: MongoStore.create({ mongoUrl: "mongodb://localhost/forumfaas" }),
+    store: MongoStore.create({ mongoUrl: process.env.MONGODB_URI }),
     resave: true,
     saveUninitialized: false,
   })
