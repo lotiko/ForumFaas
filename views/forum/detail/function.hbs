@@ -29,15 +29,13 @@
       </div>
     {{/if}}
     <div class="explication">
-      <p class="explication-text">
-        Pour tester cette fonction utilser la boite de test sur la droite.
-        <br />
-        Pour l'utiliser de n'importe ou faite une requéte http:
-        <br />
-        type: POST
-        <br />
-        Url:
-        {{baseUrl}}:{{dockerPort}}/exec/{{fun.name}}
+      <div class="explication-text">
+        <p>Pour tester cette fonction utilser la boite de test sur la droite.</p>
+        <p>Pour l'utiliser de n'importe ou faite une requéte http:</p>
+        <p>type: POST</p>
+        <p>
+        Url: <span id="url-exec">{{baseUrl}}:{{dockerPort}}/exec/{{fun.name}}</span> 
+        </p>
         <br />
         Headers: "Content-type" = "application/json"
         <br />
@@ -51,10 +49,10 @@
   }
 </code></pre>
         {{/if}}
-      </p>
+      </div>
     </div>
   </div>
-  <div>
+  {{!-- <div>
     {{#if answers}}
       {{#each answers}}
         <div>
@@ -63,7 +61,7 @@
       {{/each}}
     {{/if}}
 
-  </div>
+  </div> --}}
   {{!-- <div class="postanswer">
     <form action="/forum/answer?type=answer&from={{function.id}}" method="post">
 
@@ -76,15 +74,20 @@
 </div>
 <div class="block-test">
   <h1>Test Fonction {{fun.name}}</h1>
- <h2>Définir les argumments puis clicker sur Tester</h2>
-  {{#each fun.argsArr}}
-  <label >
-    {{this}}
-    <input type="text" name="" placeholder="entrer une valeur">
-    </label>
-    
-{{/each}}
+  {{#if fun.argsArr}}
+  <h2>Définir les argumments comme si c'était du json puis clicker sur Tester</h2>
+    {{#each fun.argsArr}}
+    <label >
+      {{this}}
+      <input type="text" class="input-test" name="{{this}}" placeholder="entrer une valeur">
+      </label>
+    {{/each}}
+  {{/if}}
 <button id="test">Tester</button>
+<h2>Résultat:</h2>
+<pre><code class="result hljs language-json">
+
+</code></pre>
 </div>
 </div>
 {{#if errorMessage}}
@@ -105,3 +108,4 @@
   src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/languages/json.min.js"
 ></script>
 <script>hljs.highlightAll();</script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

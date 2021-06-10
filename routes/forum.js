@@ -439,8 +439,9 @@ router.get("/:catname/:id", (req, res, next) => {
         if (!funFromDb.userId) {
           //on regarde si le créateur exist encore en db si non on set les valeurs en conséquences pour la vue
           dataView.userAlwaysExist = false;
-          funFromDb.userId.avatar = "/images/basicavatar.png";
-          funFromDb.userId.name = "L'utilisateur ne fait plus partie de la communauté";
+          funFromDb.userId = {};
+          funFromDb.userId.avatar = "/images/basicAvatar.png";
+          funFromDb.userId.name = "Inconnu";
         } else if (req.user && String(funFromDb.userId._id) === String(req.user._id)) {
           // si l'utilisateur qui demande le détail est le créateur de la fonction il peu la supprimer
           dataView.canDelete = true;
@@ -472,6 +473,7 @@ function ${funFromDb.name}(${funFromDb.args}) {
           message: message,
           baseUrl: process.env.BASE_URL,
           dockerPort: process.env.DOCKER_PORT,
+          script: "detailFunction",
         });
         return;
       })
