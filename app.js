@@ -107,4 +107,7 @@ app.use("/auth", auth);
 const user = require("./routes/user");
 app.use("/user", user);
 
+const exec = require("./routes/exec");
+app.use("/exec", exec);
+
 module.exports = app;

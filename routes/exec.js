@@ -1,29 +1,20 @@
 const express = require("express");
-const app = express();
-const path = require("path");
-const Fun = require("./models/funModel");
+const router = express.Router();
+const Fun = require("../models/function");
 const fs = require("fs");
 const cors = require("cors");
-console.log(cors);
+const corsOptions = { origin: "*" };
+/* GET home page */
+router.get("/:name", (req, res, next) => {
+  res.status(400);
+  res.json({ error: "only post request are allowed on this route" });
+});
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-const mongoose = require("mongoose");
-mongoose
-  .connect(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-  })
-  .then((x) => {
-    console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`);
-  })
-  .catch((err) => {
-    console.error("Error connecting to mongo", err);
-  });
 
-app.options("/exec/:name", cors());
-app.post("/exec/:name",cors(), async (req, res, next) => {
+router.options("/:name", cors(corsOptions), (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
+});
+router.post("/:name",cors(corsOptions), async (req, res, next) => {
   try {
     // console.log(req);
     Fun.find({ name: req.params.name })
@@ -38,7 +29,7 @@ app.post("/exec/:name",cors(), async (req, res, next) => {
           });
         }
         console.log("valueArgs=>", valuesArgs);
-        let path = `${__dirname}/tmpfolder/${data.name}.js`;
+        let path = `${__dirname}/../tmpfolder/${data.name}.js`;
         let args = data.args.reduce((acc, val) => {
           return acc + "," + val;
         });
@@ -51,7 +42,7 @@ module.exports = ${data.name};`;
         // console.log(fileText, "TEWWWWWWWWWWWWWT");
 
         fs.writeFileSync(path, fileText, { flag: "w+" });
-        const fun = require(`./tmpfolder/${data.name}.js`);
+        const fun = require(`../tmpfolder/${data.name}.js`);
         let datatoret = fun.apply(null, valuesArgs);
         console.log(datatoret);
         fs.unlinkSync(path, (err) => {
@@ -67,6 +58,5 @@ module.exports = ${data.name};`;
   }
 });
 
-app.listen(2323, () => {
-  console.log("Listening on port 2323");
-});
+
+module.exports = router;
