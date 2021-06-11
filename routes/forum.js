@@ -478,7 +478,7 @@ function ${funFromDb.name}(${funFromDb.args}) {
           style: "functiondetail",
           message: message,
           baseUrl: process.env.BASE_URL,
-          localPort: process.env.LOCAL_PORT,
+          localPort: process.env.PORT,
           script: "detailFunction",
         });
         return;
