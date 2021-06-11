@@ -2093,7 +2093,6 @@ const usersId = [];
 async function initdb() {
   try {
     const users = await User.insertMany(modo).then(function (usersFromDb) {
-      console.log(usersFromDb);
       fonctions.map((fonction) => {
         let randomidex = Math.floor(Math.random() * usersFromDb.length);
         fonction.userId = usersFromDb[randomidex]._id;
@@ -2109,61 +2108,47 @@ async function initdb() {
 
       return usersFromDb;
     });
-    const postsfromDb = [];
-    posts.map(async (post) => {
-      let randomindex = Math.floor(Math.random() * users.length);
-      post.userId = users[randomindex]._id;
 
-      postsfromDb.push(await  PostModel.create(post).then((postfromDb) => {
-        users[randomindex].posts.push(postfromDb._id);
-        users[randomindex].save();
-        return postfromDb;
-      }))
-    });
+    let postsfromDb = [];
+    async function initposts() {
 
-    for (let i = 0; i < postsfromDb.length; i++) {
-      const currentpost = postsfromDb[i];
+      posts.map(async (post) => {
+        console.log("coucou");
+        let randomindex = Math.floor(Math.random() * users.length);
+        post.userId = users[randomindex]._id;
 
-      for (let j = 0; j < answers[i].length; j++) {
-        let randomuser = Math.floor(Math.random() * users.length);
-        const answer = answers[i][j];
-        answer.fromQuestion = currentpost._id;
-        answer.userId = users[randomuser]._id;
-        PostModel.create(answer).then((answerFromdb) => {
-          users[randomuser].posts.push(answerFromdb._id);
-          users[randomuser].save();
+        return await PostModel.create(post).then((postfromDb) => {
+          console.log(postfromDb);
+          users[randomindex].posts.push(postfromDb._id);
+          users[randomindex].save();
+          return postfromDb;
         });
-      }
+      });
     }
 
-    //   for (let i = 0; i < usersfromDb.length; i++) {
-    //     const el = usersfromDb[i];
-
-    //     posts[i].userId = el._id;
-    //     let post = await PostModel.create(posts[i]).then(
-    //       async (postfromDb) => {
-    //         el.posts.push(postfromDb._id);
-    //         el.save();
-    //         return postfromDb;
-    //       }
-    //     );
-    //     let ans = [];
-    //     console.log("lengthanswer", answers[i].length);
-    //     for (let j = 0; j < answers[i].length; j++) {
-    //       // console.log('answwwwwwwwwwwwwwwer',answers[i]);
-    //       const element = answers[i][j];
-    //       element.userId =
-    //         usersFromDb[Math.floor(Math.random() * usersFromDb.length)]._id;
-    //       element.fromQuestion = post._id;
-    //       ans.push(element);
-    //     }
-    //     await PostModel.insertMany(ans).then((answerFromDb) => {
-    //       console.log(answerFromDb);
-    //     });
-    //   }
-
-    // .catch((err) => console.log(err));
-   
+    await initposts();
+    console.log('avant la fonction',postsfromDb);
+    async function initanswer() {
+      console.log('apres la fonction',postsfromDb);
+      for (let i = 0; i < posts.length; i++) {
+        console.log("avaant le for coucou");
+        const currentpost = postsfromDb[i];
+        console.log("current post", currentpost);
+        for (let j = 0; j < answers[i].length; j++) {
+          let randomuser = Math.floor(Math.random() * users.length);
+          const answer = answers[i][j];
+          console.log("avant", answer);
+          answer.fromQuestion = currentpost._id;
+          answer.userId = users[randomuser]._id;
+          console.log("apres", answer);
+          PostModel.create(answer).then((answerFromdb) => {
+            users[randomuser].posts.push(answerFromdb._id);
+            users[randomuser].save();
+          });
+        }
+      }
+    }
+    await initanswer();
   } catch (error) {
     console.log(error);
   }
