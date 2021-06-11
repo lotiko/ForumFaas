@@ -477,7 +477,7 @@ function ${funFromDb.name}(${funFromDb.args}) {
           style: "functiondetail",
           message: message,
           baseUrl: process.env.BASE_URL,
-          dockerPort: process.env.DOCKER_PORT,
+          localPort: process.env.LOCAL_PORT,
           script: "detailFunction",
         });
         return;
