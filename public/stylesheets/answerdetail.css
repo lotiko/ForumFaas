@@ -17,7 +17,8 @@
 
 h4 {
   max-width: 100px;
-  min-width: 100px; }
+  min-width: 100px;
+  margin: 3px 0px; }
 
 .answer {
   min-width: 50vw;
@@ -32,7 +33,7 @@ h4 {
   background: #d3d7da;
   position: relative;
   cursor: pointer;
-  box-shadow: 10px 5px 10px 2px black;
+  box-shadow: 10px 5px 10px 2px #413e3e;
   border-radius: 0px 10px 10px 10px;
   width: 65vw;
   overflow: auto; }
@@ -60,14 +61,25 @@ h1 {
   background-color: #d3d7da;
   z-index: 8; }
 
+.creatat {
+  margin: 0px 0px auto auto;
+  max-width: 30em;
+  text-align: end; }
+
+.creatatanswer {
+  margin-left: auto;
+  text-align: end;
+  max-width: 30em; }
+
 .user-block {
   text-align: center;
   margin-bottom: auto;
   margin-right: 2em;
-  background-color: whitesmoke;
+  background-color: #5557574d;
   color: black;
   border-radius: 5px;
-  border: 2px solid #e49906; }
+  border: 2px solid #3737376e;
+  padding-bottom: 3px; }
 
 .containerAnswer {
   display: flex;

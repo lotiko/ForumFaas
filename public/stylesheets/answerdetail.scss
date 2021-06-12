@@ -19,6 +19,7 @@
 h4 {
   max-width: 100px;
   min-width: 100px;
+  margin: 3px 0px;
 }
 
 .answer {
@@ -35,13 +36,13 @@ h4 {
   background: rgb(211, 215, 218);
   position: relative;
   cursor: pointer;
-  box-shadow: 10px 5px 10px 2px black;
+  box-shadow: 10px 5px 10px 2px rgb(65, 62, 62);
   border-radius: 0px 10px 10px 10px;
   width: 65vw;
   overflow: auto;
 }
-h1{
-	color:  rgb(211, 215, 218);;
+h1 {
+  color: rgb(211, 215, 218);
 }
 .fleche {
   height: 36px;
@@ -63,6 +64,18 @@ h1{
   left: 120px;
   background-color: rgb(211, 215, 218);
   z-index: 8;
+}
+
+.creatat {
+  margin: 0px 0px auto auto;
+  max-width: 30em;
+
+  text-align: end;
+}
+.creatatanswer {
+  margin-left: auto;
+  text-align: end;
+  max-width: 30em;
 }
 //   .ddialgueBox::before,.ddialgueBox::after {
 //   content: "";
@@ -86,10 +99,11 @@ h1{
   text-align: center;
   margin-bottom: auto;
   margin-right: 2em;
-  background-color: whitesmoke;
+  background-color: #5557574d;
   color: black;
   border-radius: 5px;
-  border: 2px solid rgba(228, 153, 6, 1);
+  border: 2px solid #3737376e;
+  padding-bottom: 3px;
 }
 
 .containerAnswer {
