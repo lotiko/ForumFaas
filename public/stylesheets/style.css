@@ -163,10 +163,19 @@ label {
   align-items: center;
   min-width: 70vw;
   justify-content: space-around;
-  border-radius: 5px;
   background-color: #04819c;
-  padding: 1em;
   min-height: 40%; }
+
+.user-infos-sub {
+  color: #2e2b25;
+  display: flex;
+  align-items: center;
+  background-color: #e6e9ee;
+  padding: 2em;
+  width: 80%; }
+
+.user-activity {
+  font-size: larger; }
 
 .user-infos-text {
   flex: 1; }
@@ -182,12 +191,13 @@ label {
   margin: 0;
   font-size: medium;
   font-weight: normal;
-  text-align: center;
-  margin-left: 2em; }
+  text-align: left;
+  margin-left: 3em; }
 
 .user-ico {
   margin-right: 1em;
-  box-shadow: 3px 6px 21px 0px #2e2b25; }
+  width: max-content;
+  height: max-content; }
 
 .footer {
   padding-bottom: 4em;

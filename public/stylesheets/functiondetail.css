@@ -67,10 +67,10 @@ code {
   padding-bottom: 2em;
   font-weight: bolder;
   margin: 0 auto 1em auto;
-  width: 85%;
-  text-align: center; }
+  width: 85%; }
 
 .explication-text {
+  text-align: center;
   padding: 1em;
   margin: 2em; }
 
@@ -78,6 +78,7 @@ code {
   color: white; }
 
 pre {
-  margin-top: 0.5em; }
+  margin-top: 0.5em;
+  text-align: left; }
 
 /*# sourceMappingURL=functiondetail.css.map */

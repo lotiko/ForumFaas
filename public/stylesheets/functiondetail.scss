@@ -71,9 +71,10 @@ code {
   font-weight: bolder;
   margin: 0 auto 1em auto;
   width: 85%;
-  text-align: center;
 }
+
 .explication-text {
+  text-align: center;
   padding: 1em;
   margin:2em;
 }
@@ -83,4 +84,5 @@ code {
 }
 pre {
   margin-top: 0.5em;
+  text-align: left;
 }

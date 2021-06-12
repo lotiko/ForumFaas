@@ -185,10 +185,19 @@ label {
   align-items: center;
   min-width: 70vw;
   justify-content: space-around;
-  border-radius: 5px;
   background-color: rgba(4, 129, 156, 1);
-  padding: 1em;
   min-height: 40%;
+}
+.user-infos-sub {
+  color: rgb(46, 43, 37);
+  display: flex;
+  align-items: center;
+  background-color: rgb(230, 233, 238);
+  padding: 2em;
+  width: 80%;
+}
+.user-activity {
+  font-size: larger;
 }
 .user-infos-text {
   flex: 1;
@@ -204,12 +213,14 @@ label {
   margin: 0;
   font-size: medium;
   font-weight: normal;
-  text-align: center;
-  margin-left: 2em;
+  text-align: left;
+  margin-left: 3em;
 }
 .user-ico {
   margin-right: 1em;
-  box-shadow: 3px 6px 21px 0px rgba(46, 43, 37, 1);
+  width: max-content;
+  height: max-content;
+  
 }
 /////////////////////////////////////
 
