@@ -460,6 +460,7 @@ router.get("/:catname/:id", (req, res, next) => {
         } else {
           funFromDb.args = "";
         }
+        console.log('coucou',funFromDb);
         let textFun = `
 function ${funFromDb.name}(${funFromDb.args}) {
   ${funFromDb.body}
