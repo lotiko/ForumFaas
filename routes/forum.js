@@ -59,15 +59,12 @@ router.get("/:catname", async (req, res, next) => {
         let nbPageFun = Math.ceil(nbDocFun / limit);
         functionsDataView = dataDb.map((funDb) => {
           const { name, _id } = funDb;
-          console.log(name, _id);
-
           const authorData = {
             avatar: funDb.userId ? funDb.userId.avatar : "/images/basicAvatar.png",
             name: funDb.userId ? funDb.userId.name : "Utilisateur plus présent.",
           };
           return { _id, name, authorData };
         });
-        console.log(functionsDataView, dataDb);
         if (req.query.data) {
           // on retourne seulement la donnée si query data
           if (req.query.data) {
@@ -94,12 +91,11 @@ router.get("/:catname", async (req, res, next) => {
           categorie: "question",
         }).exec();
         let nbPageanswer = Math.ceil(nbDocanswer / limit);
-        console.log("nbPageanswer", nbPageanswer);
-        console.log("nbDocanswer", nbDocanswer);
+        // console.log("nbPageanswer", nbPageanswer);
+        // console.log("nbDocanswer", nbDocanswer);
         postsDataview = dataDb.map((answerDb) => {
           const { title, _id } = answerDb;
-          console.log(title, _id);
-
+          // console.log(title, _id);
           const authorData = {
             avatar: answerDb.userId ? answerDb.userId.avatar : "/images/basicAvatar.png",
             name: answerDb.userId ? answerDb.userId.name : "Utilisateur plus présent.",
@@ -118,7 +114,6 @@ router.get("/:catname", async (req, res, next) => {
           });
           return;
         }
-
         paginationPosts = makePaginationObj(nbPageanswer);
         nbPage.posts = nbPageanswer;
       }
@@ -195,10 +190,6 @@ router.post("/:catname", (req, res, next) => {
       return;
     }
     const args = req.body["[args]"];
-    // console.log(req.query);
-    // res.json(req.query);
-    // return;
-    // / TODO VERIF DATA
     if (req.query && req.query.edit) {
       Function.findById(req.query.id)
         .then((funFromDb) => {
@@ -241,7 +232,6 @@ router.post("/:catname", (req, res, next) => {
   }
   // /////////////ANSWER///////////////////
   if (req.params.catname === "answer") {
-    console.log(req.body, req.query);
     const { title = "answer", body } = req.body;
     const categorie = req.query.type;
     let fromQuestion = false;
@@ -251,10 +241,8 @@ router.post("/:catname", (req, res, next) => {
     }
     const userId = req.user._id;
     // const withFunction=req.function._id
-
-    console.log(req.user._id);
-
-    console.log("title", title);
+    // console.log(req.user._id);
+    // console.log("title", title);
     if (!title || !body) {
       res.render("forum/new/answer", {
         isLog: true,
@@ -264,8 +252,7 @@ router.post("/:catname", (req, res, next) => {
       });
       return;
     }
-
-    console.log("mon test titre", regexTitle.test(title));
+    //console.log("mon test titre", regexTitle.test(title));
     if (!regexTitle.test(title)) {
       res.render("forum/new/answer", {
         errorMessage: "Votre question est tres longue",
@@ -280,7 +267,7 @@ router.post("/:catname", (req, res, next) => {
       categorie: categorie,
       userId: userId,
     };
-    console.log("mon nvx poste", newPost);
+    //console.log("mon nvx poste", newPost);
     if (fromQuestion) {
       newPost.fromQuestion = fromQuestion;
     }
@@ -288,10 +275,11 @@ router.post("/:catname", (req, res, next) => {
       .save()
       .then(function (answersFromDb) {
         User.findById(userId)
-        .then(userFromDb=>{
-          userFromDb.posts.push(answersFromDb._id);
-          userFromDb.save()
-        }) .catch(err=>next(err))
+          .then((userFromDb) => {
+            userFromDb.posts.push(answersFromDb._id);
+            userFromDb.save();
+          })
+          .catch((err) => next(err));
         if (categorie === "question") {
           res.redirect("/forum/home");
         }
@@ -372,21 +360,6 @@ router.get("/:catname/edit/:id", routeGuard, (req, res, next) => {
       })
       .catch((err) => next(err));
   }
-  if (req.params.catname === "home") {
-  }
-  if (req.params.catname === "answer") {
-    // if (req.params.catname === "answer") {
-    //   routeGuard(req, res);
-    //   res.render("forum/new/answer", {
-    //     isLog: true,
-    //     title: "Question",
-    //     style: "answer",
-    //     module: "answer",
-    //   });
-    //   return;
-    // }
-  }
-  // si pas de route trouver continue vers 404 error
 });
 router.get("/:catname/delete/:id", routeGuard, (req, res, next) => {
   if (req.params.catname === "function") {
@@ -445,7 +418,7 @@ router.get("/:catname/:id", (req, res, next) => {
         } else {
           funFromDb.args = "";
         }
-        console.log('coucou',funFromDb);
+        console.log("coucou", funFromDb);
         let textFun = `
 function ${funFromDb.name}(${funFromDb.args}) {
   ${funFromDb.body}

@@ -8,3 +8,8 @@ var currentScrollPos = window.pageYOffset;
   }
   prevScrollpos = currentScrollPos;
 }
+
+const $logo = document.querySelector(".logo");
+$logo.onclick = () => {
+  window.location = "/";
+};

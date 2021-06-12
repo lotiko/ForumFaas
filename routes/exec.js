@@ -39,15 +39,12 @@ function ${data.name}(${args}) {
 ${data.body}
 }
 module.exports = ${data.name};`;
-        // console.log(fileText, "TEWWWWWWWWWWWWWT");
-
         fs.writeFileSync(path, fileText, { flag: "w+" });
         const fun = require(`../tmpfolder/${data.name}.js`);
         let datatoret = fun.apply(null, valuesArgs);
         console.log(datatoret);
         fs.unlinkSync(path, (err) => {
           if (err) console.log(err);
-          else console.log("GOOOOOD");
         });
         res.header("Access-Control-Allow-Origin", "*");
         res.json({ data: datatoret });
