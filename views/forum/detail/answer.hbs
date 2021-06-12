@@ -8,12 +8,15 @@
         <div class="user-block">
             <h4>{{userq.name}}</h4>
             <img src="{{userq.avatar}}" alt="avatar" class="avatar">
+            <div class="flecheposter"></div>
         </div>
         <div class="containquestion dialgueBox">
+            <h6 class="creatat">Poster le :{{question.createdAt}}</h6>
             <h3>{{question.title}}</h3>
             <p>{{{question.body}}} </p>
+             
         </div>
-         <div class="fleche"></div>
+         
          
     </div>
 
@@ -27,13 +30,14 @@
 
                 <img src="{{this.userId.avatar}}" alt="useravatar" class="avatar">
                 <h3>{{this.userId.name}}</h3>
+                <div class="fleche"></div>
             </div>
             
             <div class="containquestion dialgueBox">
-
+                 <h6 class="creatatanswer">{{this.userId.name}} a répondu le {{this.createdAt}}</h6>
                 <p>{{{this.body}}}</p>
             </div>
-            <div class="fleche"></div>
+            
         </div>
         {{/each}}
 
@@ -44,7 +48,7 @@
         <form action="/forum/answer?type=answer&from={{question.id}}" method="post">
 
             <label>
-                <textarea name="body" id="editor" rows="5" cols="33"> Votre réponse </textarea>
+                <textarea name="body" id="editor" rows="5" cols="33"> votre réponse ici...</textarea>
             </label>
             <button class="btnposter">Poster</button>
         </form>

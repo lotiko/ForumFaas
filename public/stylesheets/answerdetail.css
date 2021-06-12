@@ -15,6 +15,11 @@
   min-width: 65vw;
   position: relative; }
 
+h4 {
+  max-width: 100px;
+  min-width: 100px;
+  margin: 3px 0px; }
+
 .answer {
   min-width: 50vw;
   max-width: 50vw; }
@@ -25,31 +30,56 @@
 
 .dialgueBox {
   margin: 10px;
-  background: gray;
+  background: #d3d7da;
   position: relative;
   cursor: pointer;
-  box-shadow: 10px 5px 10px 2px black;
+  box-shadow: 10px 5px 10px 2px #413e3e;
   border-radius: 0px 10px 10px 10px;
   width: 65vw;
   overflow: auto; }
+
+h1 {
+  color: #d3d7da; }
 
 .fleche {
   height: 36px;
   width: 44px;
   transform: rotate(59deg);
   position: absolute;
-  top: 36px;
-  left: 103px;
-  background-color: grey; }
+  top: 33px;
+  left: 104px;
+  background-color: #d3d7da;
+  z-index: 8; }
+
+.flecheposter {
+  height: 56px;
+  width: 69px;
+  transform: rotate(59deg);
+  position: absolute;
+  top: 33px;
+  left: 120px;
+  background-color: #d3d7da;
+  z-index: 8; }
+
+.creatat {
+  margin: 0px 0px auto auto;
+  max-width: 30em;
+  text-align: end; }
+
+.creatatanswer {
+  margin-left: auto;
+  text-align: end;
+  max-width: 30em; }
 
 .user-block {
   text-align: center;
   margin-bottom: auto;
   margin-right: 2em;
-  background-color: whitesmoke;
+  background-color: #5557574d;
   color: black;
   border-radius: 5px;
-  border: 2px solid #e49906; }
+  border: 2px solid #3737376e;
+  padding-bottom: 3px; }
 
 .containerAnswer {
   display: flex;
@@ -61,7 +91,10 @@
   padding: 0.6em 1.1em; }
 
 .containerAnswer > div > h3 {
-  margin: 0px; }
+  margin: 0px;
+  padding: 0px;
+  max-width: 76px;
+  overflow: auto; }
 
 /**
  * @license Copyright (c) 2014-2021, CKSource - Frederico Knabben. All rights reserved.
@@ -88,7 +121,7 @@ main .ck-editor[role='application'] .ck.ck-content,
   font-size: 1em;
   line-height: 1.6em;
   min-height: var(--ck-sample-editor-min-height);
-  padding: 1.5em 2em; }
+  padding: -0.5em 1em; }
 
 .ck.ck-editor__editable {
   background: #fff;
@@ -109,11 +142,11 @@ main .ck-editor[role='application'] .ck.ck-content,
   z-index: var(--ck-sample-editor-z-index); }
 
 /* --------- DECOUPLED (DOCUMENT) BUILD. ---------------------------------------------*/
-body[data-editor='DecoupledDocumentEditor'] .document-editor__toolbar {
+body[data-editor="DecoupledDocumentEditor"] .document-editor__toolbar {
   width: 100%; }
 
-body[data-editor='DecoupledDocumentEditor'] .collaboration-demo__editable,
-body[data-editor='DecoupledDocumentEditor'] .row-editor .editor {
+body[data-editor="DecoupledDocumentEditor"] .collaboration-demo__editable,
+body[data-editor="DecoupledDocumentEditor"] .row-editor .editor {
   width: 18.5cm;
   height: 100%;
   min-height: 26.25cm;
@@ -123,7 +156,7 @@ body[data-editor='DecoupledDocumentEditor'] .row-editor .editor {
   background-color: var(--ck-sample-color-white);
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); }
 
-body[data-editor='DecoupledDocumentEditor'] .row-editor {
+body[data-editor="DecoupledDocumentEditor"] .row-editor {
   display: flex;
   position: relative;
   justify-content: center;
@@ -131,7 +164,7 @@ body[data-editor='DecoupledDocumentEditor'] .row-editor {
   background-color: #f2f2f2;
   border: 1px solid #c4c4c4; }
 
-body[data-editor='DecoupledDocumentEditor'] .sidebar {
+body[data-editor="DecoupledDocumentEditor"] .sidebar {
   background: transparent;
   border: 0;
   box-shadow: none; }
@@ -151,8 +184,8 @@ body[data-editor='DecoupledDocumentEditor'] .sidebar {
   flex-grow: 1; }
 
 /* Do not inherit styles related to the editable editor content. See line 25.*/
-.sidebar .ck-content[role='textbox'],
-.ck.ck-annotation-wrapper .ck-content[role='textbox'] {
+.sidebar .ck-content[role="textbox"],
+.ck.ck-annotation-wrapper .ck-content[role="textbox"] {
   min-height: unset;
   width: unset;
   padding: 0;
@@ -205,7 +238,7 @@ body[data-editor='DecoupledDocumentEditor'] .sidebar {
 
 .ck.ck-presence-list {
   flex: 1;
-  padding: 1.25rem .75rem; }
+  padding: 1.25rem 0.75rem; }
 
 .presence .ck.ck-presence-list__counter {
   order: 2;
@@ -220,7 +253,7 @@ body[data-editor='DecoupledDocumentEditor'] .sidebar {
   background-color: #f2f2f2;
   border: 1px solid #c4c4c4; }
 
-body[data-editor='InlineEditor'] .collaboration-demo__row {
+body[data-editor="InlineEditor"] .collaboration-demo__row {
   border: 0; }
 
 .collaboration-demo__container {
@@ -228,8 +261,9 @@ body[data-editor='InlineEditor'] .collaboration-demo__row {
   margin: 0 auto;
   padding: 1.25rem; }
 
-.presence, .collaboration-demo__row {
-  transition: .2s opacity; }
+.presence,
+.collaboration-demo__row {
+  transition: 0.2s opacity; }
 
 .collaboration-demo__topbar {
   background: #fff;
@@ -253,7 +287,7 @@ body[data-editor='InlineEditor'] .collaboration-demo__row {
 .collaboration-demo__share {
   display: flex;
   align-items: center;
-  padding: 1.25rem .75rem; }
+  padding: 1.25rem 0.75rem; }
 
 .collaboration-demo__share-description p {
   margin: 0;
@@ -302,7 +336,7 @@ body[data-editor='InlineEditor'] .collaboration-demo__row {
   transform: translateX(-50%); }
 
 .collaboration-demo__share button[data-tooltip]::after {
-  content: '';
+  content: "";
   border: 5px solid transparent;
   width: 0;
   font-size: 0;
@@ -333,7 +367,8 @@ body[data-editor='InlineEditor'] .collaboration-demo__row {
   z-index: var(--ck-sample-editor-z-index); }
 
 /* --------- SAMPLE GENERIC STYLES (not related to CKEditor) ------------------------------------------------------- */
-body, html {
+body,
+html {
   padding: 0;
   margin: 0;
   font-family: sans-serif, Arial, Verdana, "Trebuchet MS", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
@@ -342,13 +377,13 @@ body, html {
 
 body {
   height: 100%;
-  color: #2D3A4A; }
+  color: #2d3a4a; }
 
 body * {
   box-sizing: border-box; }
 
 a {
-  color: #38A5EE; }
+  color: #38a5ee; }
 
 header .centered {
   display: flex;
@@ -361,7 +396,7 @@ header h1 a {
   font-size: 20px;
   display: flex;
   align-items: center;
-  color: #2D3A4A;
+  color: #2d3a4a;
   text-decoration: none; }
 
 header h1 img {
@@ -382,7 +417,7 @@ header nav ul li + li {
 header nav ul li a {
   font-weight: bold;
   text-decoration: none;
-  color: #2D3A4A; }
+  color: #2d3a4a; }
 
 header nav ul li a:hover {
   text-decoration: underline; }
@@ -424,7 +459,7 @@ main .message h2 {
   font-size: 1rem;
   user-select: none;
   border-radius: 4px;
-  transition: color .2s ease-in-out,background-color .2s ease-in-out,border-color .2s ease-in-out,opacity .2s ease-in-out;
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
   background-color: var(--ck-sample-color-button-blue);
   border-color: var(--ck-sample-color-button-blue);
   color: var(--ck-sample-color-white);
@@ -432,11 +467,11 @@ main .message h2 {
 
 .btn--tiny {
   padding: 6px 12px;
-  font-size: .8rem; }
+  font-size: 0.8rem; }
 
 footer {
-  margin: calc(2*var(--ck-sample-base-spacing)) var(--ck-sample-base-spacing);
-  font-size: .8em;
+  margin: calc(2 * var(--ck-sample-base-spacing)) var(--ck-sample-base-spacing);
+  font-size: 0.8em;
   text-align: center;
   color: rgba(0, 0, 0, 0.4); }
 
