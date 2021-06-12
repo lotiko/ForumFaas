@@ -412,21 +412,6 @@ router.get("/:catname/delete/:id", routeGuard, (req, res, next) => {
       })
       .catch((err) => next(err));
   }
-  if (req.params.catname === "home") {
-  }
-  if (req.params.catname === "answer") {
-    // if (req.params.catname === "answer") {
-    //   routeGuard(req, res);
-    //   res.render("forum/new/answer", {
-    //     isLog: true,
-    //     title: "Question",
-    //     style: "answer",
-    //     module: "answer",
-    //   });
-    //   return;
-    // }
-  }
-  // si pas de route trouver continue vers 404 error
 });
 
 router.get("/:catname/:id", (req, res, next) => {
@@ -479,7 +464,7 @@ function ${funFromDb.name}(${funFromDb.args}) {
           style: "functiondetail",
           message: message,
           baseUrl: process.env.BASE_URL,
-          dockerPort: process.env.DOCKER_PORT,
+          localPort: process.env.PORT,
           script: "detailFunction",
         });
         return;

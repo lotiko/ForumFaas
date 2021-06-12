@@ -16,9 +16,7 @@ $btnTest.onclick = async function () {
       .catch((err) => console.log(err));
   } else {
     let body = {};
-    let value = null;
     $inputTest.forEach((input) => {
-      
       body[input.name] = JSON.parse(input.value);
     console.log(body[input.name]);
     });
