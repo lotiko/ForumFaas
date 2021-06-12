@@ -38,6 +38,7 @@ router
           res.render("user/edit", {
             errorMessage: "Probléme avec le fichier image seul jpg, png, jpeg sont acceptés.",
             ...getDataView(req.user),
+            style: "editUser" 
           });
           return;
         } else {
@@ -56,6 +57,8 @@ router
         res.render("user/edit", {
           errorMessage: "Email non valide.",
           title: "EditUser",
+          style: "editUser",
+          ...getDataView(req.user),
         });
         return;
       }
