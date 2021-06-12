@@ -4,10 +4,16 @@
   min-width: 70vw;
   justify-content: space-around;
   border-radius: 5px;
-  background-color: #085868;
+  background-color: #04819c;
   padding: 1.5em;
   margin-bottom: 2em;
   flex-direction: column; }
+
+pre {
+  background-color: #9cabbb; }
+
+code {
+  background-color: #9cabbb; }
 
 .question {
   display: flex;

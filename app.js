@@ -15,7 +15,7 @@ const bcrypt = require("bcrypt");
 /// mongoose
 const mongoose = require("mongoose");
 mongoose
-  .connect(process.env.MONGODB_URI, {
+  .connect(process.env.MONGODB_URl, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,

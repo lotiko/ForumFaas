@@ -8,7 +8,7 @@ const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 const salt = bcrypt.genSaltSync(bcryptSalt);
 
-mongoose.connect(process.env.MONGODB_URI, {
+mongoose.connect(process.env.MONGODB_URl, {
   useCreateIndex: true,
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -1552,19 +1552,15 @@ async function initdb() {
 
     function initanswer() {
       PostModel.find({ categorie: "question" }).then((postfromDb) => {
-        console.log("apres la fonction postfromDb", postfromDb);
-        for (let i = 0; i <postfromDb.length; i++) {
-          console.log("avaant le for coucou");
+        for (let i = 0; i < postfromDb.length; i++) {
           const currentpost = postfromDb[i];
-
           console.log("current post", currentpost._id);
-          for (let j = 0; j <answers[i].length; j++) {
+          for (let j = 0; j < answers[i].length; j++) {
             let randomuser = Math.floor(Math.random() * users.length);
             const answer = answers[i][j];
-            console.log("avant", answer);
             answer.fromQuestion = currentpost._id;
             answer.userId = users[randomuser]._id;
-            console.log("apres", answer);
+
             PostModel.create(answer).then((answerFromdb) => {
               // users[randomuser].posts.push(answerFromdb._id);
               // users[randomuser].save();
@@ -1577,7 +1573,7 @@ async function initdb() {
       initposts();
       setTimeout(() => {
         resolve(initanswer());
-      }, 30000);
+      }, 3000);
     });
   } catch (error) {
     console.log(error);

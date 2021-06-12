@@ -9,7 +9,12 @@
   margin-bottom: 2em;
   flex-direction: column;
 }
-
+pre{
+	background-color: #9cabbb;
+}
+code{
+	background-color: #9cabbb;
+}
 .question {
   display: flex;
   flex-direction: row;

@@ -1,33 +1,37 @@
-[
-    {
-        "title": "Director of Sales",
-        "body": "Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.",
-        "categorie": "question",
-        "userId": ""
-    },{
-        "title": "teacherM",
-        "body": "Nullaaaaaaaaaaaaaaaaaaaaaaam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.",
-        "categorie": "question",
-        "userId": "" 
-    },{
-        "title": "teacherA",
-        "body": "Nullaaaaaaaaaaaaaaaaaaaaaaam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.",
-        "categorie": "question",
-        "userId": "" 
-    },{
-        "title": "teacherB",
-        "body": "Nullaaaaaaaaaaaaaaaaaaaaaaam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.",
-        "categorie": "question",
-        "userId": "" 
-    },{
-        "title": "teacherC",
-        "body": "Nullaaaaaaaaaaaaaaaaaaaaaaam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.",
-        "categorie": "question",
-        "userId": "" 
-    },{
-        "title": "teacherD",
-        "body": "Nullaaaaaaaaaaaaaaaaaaaaaaam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.",
-        "categorie": "question",
-        "userId": "" 
-    }
+[  {
+    "title": "You tried to parse SCSS with the standard CSS parser?",
+    "body": "<p>After updating from Angular 11 to 12, ng serve is now throwing an error:</p><p><code>Error: /Users/btaylor/work/angular-apps/mdsl-authoring/assets/scss/_colors.scss:1:4: Unknown word</code><br><code>You tried to parse SCSS with the standard CSS parser; try again with the postcss-scss parser</code></p><p><code>Error: /Users/btaylor/work/angular-apps/mdsl-authoring/assets/scss/custom-bootstrap.scss:1:1: Unknown word</code><br><code>You tried to parse SCSS with the standard CSS parser; try again with the postcss-scss parser</code></p><p><code>Error: /Users/btaylor/work/angular-apps/mdsl-authoring/assets/scss/global.scss:296:12: Unknown word</code><br><code>You tried to parse SCSS with the standard CSS parser; try again with the postcss-scss parser</code></p><p><code>Error: /Users/btaylor/work/angular-apps/mdsl-authoring/assets/scss/mdsl-composer/mdsl-composer-variables.scss:103:1: Unknown word</code><br><code>You tried to parse SCSS with the standard CSS parser; try again with the postcss-scss parser</code><br>None of the SCSS files in question is doing anything special. _colors.scss for example is simply:</p><pre><code class=\"language-css\">// Bootstrap Overrides\r\n$text-secondary: #2E93B1;\r\n$text-muted: #ccc;\r\n$link-color: #2E93B1;\r\n.text-secondary {\r\n color: $text-secondary !important;\r\n}\r\n// LabCorp UI Overrides\r\n$theme-colors: (\r\n 'primary': #003A70,\r\n 'secondary': #2E93B1,\r\n 'success': #155724,\r\n 'danger': #790E1D,\r\n 'warning': #C59C38,\r\n 'info': #007A6E,\r\n 'light': #EDF1F4,\r\n 'dark': #0B1519,\r\n);\r\n// UI design colors\r\n$primary: #007FA3;\r\n$highlighted: #D57800;\r\n$accent: #5F456F;\r\n$accent-secondary: #808080;\r\n$related: #D1EAF1;</code></pre><p>I'm not finding very much information online regarding this error with Angular.</p><p>The rest of the project code will compile as expected, but now the application won't run. I'm not sure what other code to provide here, but am more than happy to post whatever would be helpful for debugging.</p><p>The error is specific to Angular CLI. Our project uses Angular Universal, and building the code and serving it via Node work as expected.</p><p>angular</p>",
+    "categorie": "question",
+    "userId": ""
+  },
+  {
+    "title": "Javascript : issues with Promise.all and json() being logged as “not a function”",
+    "body": "<p>I'm having some issues with the \"Promise.all\" method. Bascially, I have an array of URL (here is a simple one if you guys want to test :</p><pre><code class=\"language-javascript\">const urlArray = [\r\n \"https://coverartarchive.org/release/985adeec-a1fd-4e79-899d-10c54b6af299\",\r\n \"https://coverartarchive.org/release/4c54ee58-86df-3ba5-aaad-6b284293141b\",\r\n \"https://coverartarchive.org/release/cd8e5736-ec8c-3c4d-a231-ac097877d87a\",\r\n \"https://coverartarchive.org/release/b9b7641f-9389-342e-8be9-e463bd52fdb9\",\r\n \"https://coverartarchive.org/release/b6206cad-15eb-3a95-b67e-1f49849e5fbd\",\r\n \"https://coverartarchive.org/release/db425753-965f-4881-955b-8cd3ef65d1e6\",\r\n \"https://coverartarchive.org/release/fa4f230a-e78c-32a8-bec8-3a7425aba9d2\",\r\n \"https://coverartarchive.org/release/fa023617-1585-4ae6-81b6-1a07c47ecb2a\",\r\n \"https://coverartarchive.org/release/61782e1c-67a2-487c-8324-6431c628cad8\",\r\n \"https://coverartarchive.org/release/b16e94f3-ad3b-4e3b-9fad-0ef3d2a0958e\",\r\n \"https://coverartarchive.org/release/37e7091f-9ebc-4ac8-875b-5c88f7e5fba8\",\r\n \"https://coverartarchive.org/release/a63b6cc9-899c-447d-b0e6-d1e439379eb2\",\r\n \"https://coverartarchive.org/release/d2d3df43-65c4-499e-90d2-22a157cc7dea\",\r\n \"https://coverartarchive.org/release/9cb95cac-4a0d-4fbb-9237-544a99f29b57\",\r\n \"https://coverartarchive.org/release/7cf87b52-47e3-4d12-8890-53a910792b70\"\r\n]</code></pre><p><br>Normally, when a promise is resolved, it should return a JSON object, has seen when you enter one of those URLs above in your browser with infos about cover arts for an album release. So I have tried using Promise.all using this array and see what goes, but I simply can't get something to work : the json() method. I have tried several ways to handle this, found on stackoverflow or elsewhere on the internet, I just always get the \"Uncaught (in promise) TypeError: response.json is not a function\" Here are several things I tried :</p><pre><code class=\"language-javascript\"> Promise.all(urlArray)\r\n   .then(toJSON)\r\n   .then((jsonObjects) =&gt; console.log(jsonObjects));\r\n function toJSON(responses) {\r\n   if (!Array.isArray(responses)) {\r\n     // also handle the non array case\r\n     responses = [responses];\r\n   }\r\n   return Promise.all(responses.map((response) =&gt; response.json()));\r\n }\r\nSame thing I guess but without helper\r\n   Promise.all(urlArray)\r\n     .then((res) =&gt; {\r\n       const responses = res.map((response) =&gt; response.json());\r\n       return Promise.all(responses);\r\n     })\r\n     .then((data) =&gt; console.log(data));</code></pre><p><br>The worst thing is, I did manage to do it a few days ago, then changed my mind about how to go with this, and I just can't find how I solved this the first time around. If you guys have any idea what I'm doing wrong, don't hesitate to point it out and scold me about it ! Cheers</p>",
+    "categorie": "question",
+    "userId": ""
+  },
+  {
+    "title": "CSS parser; try again with the postcss-scss parser after Angular 12 update",
+    "body": "<p>After updating from Angular 11 to 12, ng serve is now throwing an error:</p><p>Error: /Users/btaylor/work/angular-apps/mdsl-authoring/assets/scss/_colors.scss:1:4: Unknown word<br>You tried to parse SCSS with the standard CSS parser; try again with the postcss-scss parser</p><p><code>Error: /Users/btaylor/work/angular-apps/mdsl-authoring/assets/scss/custom-bootstrap.scss:1:1: Unknown word</code><br><code>You tried to parse SCSS with the standard CSS parser; try again with the postcss-scss parser</code></p><p><code>Error: /Users/btaylor/work/angular-apps/mdsl-authoring/assets/scss/global.scss:296:12: Unknown word</code><br><code>You tried to parse SCSS with the standard CSS parser; try again with the postcss-scss parser</code></p><p><code>Error: /Users/btaylor/work/angular-apps/mdsl-authoring/assets/scss/mdsl-composer/mdsl-composer-variables.scss:103:1: Unknown word</code><br><code>You tried to parse SCSS with the standard CSS parser; try again with the postcss-scss parser</code><br>None of the SCSS files in question is doing anything special. _colors.scss for example is simply:</p><pre><code class=\"language-css\">// Bootstrap Overrides\r\n$text-secondary: #2E93B1;\r\n$text-muted: #ccc;\r\n$link-color: #2E93B1;\r\n.text-secondary {\r\n color: $text-secondary !important;\r\n}\r\n// LabCorp UI Overrides\r\n$theme-colors: (\r\n 'primary': #003A70,\r\n 'secondary': #2E93B1,\r\n 'success': #155724,\r\n 'danger': #790E1D,\r\n 'warning': #C59C38,\r\n 'info': #007A6E,\r\n 'light': #EDF1F4,\r\n 'dark': #0B1519,\r\n);\r\n// UI design colors\r\n$primary: #007FA3;\r\n$highlighted: #D57800;\r\n$accent: #5F456F;\r\n$accent-secondary: #808080;\r\n$related: #D1EAF1;</code></pre><p><br>So I'm not sure what Unknown word the parser is complaining about.</p><p>I'm not finding very much information online regarding this error with Angular.</p><p>The rest of the project code will compile as expected, but now the application won't run. I'm not sure what other code to provide here, but am more than happy to post whatever would be helpful for debugging.</p><p>The error is specific to Angular CLI. Our project uses Angular Universal, and building the code and serving it via Node work as expected.</p>",
+    "categorie": "question",
+    "userId": ""
+  },
+  {
+    "title": "Let's say I have data test (dput given) where a list-col say items:",
+    "body": "<p>Let's say I have data test (dput given) where a list-col say items:</p><pre><code class=\"language-javascript\">test &lt;- structure(list(items = list('a', c('b', 'c'), c('d', 'e'), 'f', c('g', 'h')),\r\n              ID = c(1,1,1,2,2)), row.names = c(NA, 5L), class = \"data.frame\")\r\nlibrary(tidyverse)\r\ntest %&gt;% group_by(ID) %&gt;%\r\n mutate(dummy = accumulate(items, ~paste(.x, .y)))</code></pre><p>&nbsp;</p><p>I am getting an output with list-col like this</p><figure class=\"table\"><table><tbody><tr><td>&nbsp;items ID &nbsp; &nbsp; &nbsp;<br>1 &nbsp; &nbsp; a &nbsp;1 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<br>2 &nbsp;b, c &nbsp;1 &nbsp; &nbsp;&nbsp;<br>3 &nbsp;d, e &nbsp;1&nbsp;<br>4 &nbsp; &nbsp; f &nbsp;2 &nbsp;&nbsp;<br>5 &nbsp;g, h &nbsp;2 &nbsp; &nbsp;&nbsp;</td><td><p>&nbsp; dummy</p><p>&nbsp; &nbsp; &nbsp; a</p><p>a b, a c</p><p>a b d, a c e</p><p>&nbsp; &nbsp; &nbsp; f</p><p>&nbsp; &nbsp; f g, f h</p></td></tr><tr><td>&nbsp;</td><td>&nbsp;</td></tr></tbody></table></figure><p><br>I would like there to be four items in row3, having each possible combination, i.e. c(\"a b d\", \"a b e\", \"a c d\", \"a c e\"). It however doesn't matter if these are separate items in the list or not. In other words, the output of dummy may be of type multi-level list, where row3 will contain four items in the list. I tried using expand.grid, but I am doing something wrong somewhere!</p><p>&nbsp;</p>",
+    "categorie": "question",
+    "userId": ""
+  },
+  {
+    "title": "Sophisticated proportional triple element progress bar design using only CSS",
+    "body": "<p>I have made a custom progress bar, consisting of three separete parts (a uniquely customisable center piece, a left part and a right part) but I'm having difficulty aligning the center block correctly in all phases.</p><p>First I will show the desired end state using three graphical layouts, then I will describe the current problem and finally I will provide my current workaround hack, which is faulty and needs a fix of some sort.</p><p>Three Desired States:<br>Desired outcome of a starting state showing 1% left aligned:<br>enter image description here</p><p>Desired outcome of halfway sate with center block perfectly in the middle at 50%:<br>enter image description here</p><p>Desired end sate with center block perfectly stopping at 100% right aligned:<br>enter image description here</p><p>&nbsp;</p><pre><code class=\"language-css\">\r\nbody{margin: 100px; background: #CCC}\r\n.fullbar{\r\n   background-color: blue;\r\n   width: 100%;\r\n}\r\n.progress{\r\n   background: green;\r\n margin: 10px 0 0 0;\r\n   text-align: right;\r\n   padding: 0 0px 1px 0px;\r\n   line-height: 5px;\r\n}\r\n.number{\r\n background: inherit;\r\n color: #FFF;\r\n   padding: 4px;\r\n   padding: 0 2px 1px 3px;\r\n\r\n}\r\n&lt;div class=\"fullbar\"&gt;\r\n&lt;div class=\"progress\" style=\"width:50%\"&gt;\r\n   &lt;div class=\"number\"&gt;50%&lt;/div&gt;\r\n&lt;/div&gt;\r\n&lt;/div&gt;</code></pre>",
+    "categorie": "question",
+    "userId": ""
+  },
+  {
+    "title": "How do I center an image with a width less than 100%?",
+    "body": "<p>When I have display as 100%, everything displays fine, but I'd like to have the image a little smaller so I've set the width as 30% for now - the issue with this is that the image stops centering once I do that (would anybody know why that's the case?).</p><p>If I remove display block, it centers, but then sits on the same line as the button - however if I then add in display:block to the button, the left/right padding stretches across the width of the container.</p><p>Here's the codepen where I've saved my project: https://codepen.io/vivl/pen/GRWYeaw - but here's the code I'm having trouble with:</p><pre><code class=\"language-css\">.image {\r\n   margin-bottom: 25px;\r\n   width: 30%;\r\n   border-top: 1px solid #cee5d0;\r\n   display: block;\r\n}</code></pre>",
+    "categorie": "question",
+    "userId": ""
+  }
 ]
