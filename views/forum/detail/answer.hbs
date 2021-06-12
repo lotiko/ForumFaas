@@ -7,8 +7,10 @@
     <div data-id="{{question.id}}" class="question">
         <div class="user-block">
             <h4>{{userq.name}}</h4>
+            <div>
             <img src="{{userq.avatar}}" alt="avatar" class="avatar">
             <div class="flecheposter"></div>
+            </div>
         </div>
         <div class="containquestion dialgueBox">
             <h6 class="creatat">Poster le :{{question.createdAt}}</h6>
@@ -27,10 +29,12 @@
         {{#each userA}}
         <div class="containerAnswer">
             <div>
-
-                <img src="{{this.userId.avatar}}" alt="useravatar" class="avatar">
-                <h3>{{this.userId.name}}</h3>
+                <div>
                 <div class="fleche"></div>
+                <img src="{{this.userId.avatar}}" alt="useravatar" class="avatar">
+                </div>
+                <h3>{{this.userId.name}}</h3>
+                
             </div>
             
             <div class="containquestion dialgueBox">

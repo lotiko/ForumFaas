@@ -32,12 +32,12 @@ h4 {
   width: 100%;
 }
 .dialgueBox {
-  margin: 10px;
+  margin: 0px 10px 20px 10px;
   background: rgb(211, 215, 218);
   position: relative;
   cursor: pointer;
   box-shadow: 10px 5px 10px 2px rgb(65, 62, 62);
-  border-radius: 0px 10px 10px 10px;
+  
   width: 65vw;
   overflow: auto;
 }
@@ -49,8 +49,8 @@ h1 {
   width: 44px;
   transform: rotate(59deg);
   position: absolute;
-  top: 33px;
-  left: 104px;
+  top: 40px;
+left: 132px;
   background-color: rgb(211, 215, 218);
   z-index: 8;
 }
@@ -114,14 +114,14 @@ h1 {
 
 .containerAnswer > div:first-child {
   text-align: center;
-  padding: 0.6em 1.1em;
+  padding: 0.6em 2em;
 }
 .containerAnswer > div > h3 {
   margin: 0px;
   padding: 0px;
 
   max-width: 76px;
-  overflow: auto;
+  
 }
 
 /**
