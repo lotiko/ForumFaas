@@ -1,15 +1,28 @@
+<div class="block-home">
+
 <div class="bubble">
   <h3>Rejoins la communauté</h3>
   <img src="/images/codicon_account.png" alt="icon signup" />
+  {{#if isLog}}
+  <a href="/user"><button>Mon compte</button></a>
+  {{else}}
   <a href="/auth/signup"><button>Inscription</button></a>
+  {{/if}}
 </div>
-{{#if message}}
+
   <div class="message">
-    <p>{{message}}</p>
+    {{#unless message}} <h1>Bienvenue sur forum Faas,</h1>{{/unless}}
+    <p>{{#if message}}{{message}} {{else}} 
+     
+<p> en tant qu’utilisateur vous pouvez enregistrer ou consulter des fonctions javascript qui sont utilisable sur le forum ou via une api en http.</p>
+<p> Vous pouvez donc tester les fonctions sur le forum ou l’appeler depuis votre code afin de s’assurer de l’intégration de cette dernière a votre applications.</p>
+<p> Étant un forum nous valorisons également l’échange et la coopération via une section questions réponses.</p>
+      {{/if}}</p>
   </div>
-{{/if}}
+
 {{#if errorMessage}}
   <div class="error">
     <p>{{errorMessage}}</p>
   </div>
 {{/if}}
+</div>

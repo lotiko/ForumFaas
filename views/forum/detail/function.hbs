@@ -34,7 +34,7 @@
         <p>Pour l'utiliser de n'importe ou faite une requéte http:</p>
         <p>type: POST</p>
         <p>
-        Url: <span id="url-exec">{{baseUrl}}/exec/{{fun.name}}</span> 
+        Url: <span id="url-exec">{{baseUrl}}:{{localPort}}/exec/{{fun.name}}</span> 
         </p>
         <br />
         Headers: "Content-type" = "application/json"
@@ -88,6 +88,9 @@
 <pre><code class="result hljs language-json">
 
 </code></pre>
+<div class="error error-client" hidden>
+    <p></p>
+  </div>
 </div>
 </div>
 {{#if errorMessage}}
@@ -100,6 +103,7 @@
     {{message}}
   </div>
 {{/if}}
+ 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/highlight.min.js"></script>
 <script
   src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/languages/javascript.min.js"
