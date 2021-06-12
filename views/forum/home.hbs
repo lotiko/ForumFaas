@@ -8,6 +8,7 @@
     {{message}}
   </div>
 {{/if}}
+<div class="first-part">
 <div class="presentations">
   <h1>Présentations</h1>
   <div class="block users">
@@ -64,8 +65,10 @@
   {{/if}}
 </div>
 <div class="functions">
-  <h1>Fonction</h1>
-  <a href="/forum/function/new"><button class="new">New</button></a>
+  <div class="head-new">
+    <h1>Fonction</h1>
+    <a href="/forum/function/new"><button class="new">New</button></a>
+  </div>
   <div class="block funs">
     {{#each functions}}
       <div class="function-block">
@@ -103,12 +106,13 @@
     </div>
   {{/if}}
 </div>
+</div>
 {{! bloc answer }}
 <div class="answers">
-
-  <h1>question</h1>
-
-  <a href="/forum/answer/new"><button class="new">New</button></a>
+  <div class="head-new">
+    <h1>Question</h1>
+    <a href="/forum/answer/new"><button class="new">New</button></a>
+  </div>
   <div class="block answ">
   {{#each posts}}
   <div class="answer-block">

@@ -3,11 +3,45 @@
 .answers{
   background-color: rgba(4, 129, 156, 1);
   border-radius: 5px;
-  min-width: 30%;
   text-align: center;
-  margin: 1em;
+  // margin: 1em;
   min-height: 400px;
   position: relative;
+}
+.presentations > h1 {
+  text-align: left;
+  margin-left: 2em;
+  color: rgb(230, 233, 238);
+  margin-bottom: 0;
+}
+.presentations,
+.functions {
+  min-width: 49%;
+}
+.answers{
+  min-width: 90%;
+  margin: auto;
+  margin-bottom: 1em;
+}
+.first-part {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin: 1em auto;
+}
+.head-new {
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 2em;
+  align-items:flex-end;
+}
+.new {
+  margin-bottom: 0.5em;
+}
+.head-new > h1 {
+  margin-right: 2em;
+  margin-bottom: 0;
+  color: rgb(230, 233, 238);
 }
 .avatar {
   height: 40px;
@@ -28,8 +62,8 @@
 .answer-block{
   display: flex;
   flex-direction: column;
-  background-color: whitesmoke;
-  color: black;
+  background-color: rgb(230, 233, 238);
+  color: rgb(46, 43, 37);
   border-radius: 5px;
   border: 2px solid rgba(228, 153, 6, 1);
   margin: 1em 2em;
