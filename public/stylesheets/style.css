@@ -28,6 +28,13 @@ main {
   background-color: black;
   z-index: -1; }
 
+.block-home {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  align-items: center;
+  height: 100%; }
+
 header {
   display: flex;
   align-items: center;
@@ -73,12 +80,14 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   background-image: url("/images/bubble.png");
   background-size: contain;
   background-repeat: no-repeat;
+  background-position-y: 5vh;
   margin: auto;
-  height: 150px;
-  width: 260px;
+  min-height: 300px;
+  min-width: 390px;
   color: #e49906; }
 
 .bubble button {
@@ -95,9 +104,12 @@ button {
   margin: 4em;
   min-height: 4em; }
 
+.message h1 {
+  margin-bottom: 0; }
+
 .message p {
   text-align: center;
-  margin: auto 2em; }
+  margin: 0 2em 1em 2em; }
 
 .login,
 .register {
