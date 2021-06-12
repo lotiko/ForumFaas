@@ -1,15 +1,19 @@
 .all-block {
   display: flex;
   width: 90%;
+  justify-content: space-between;
   padding: 2em; }
 
 .block-fun, .block-test {
   display: flex;
   flex-direction: column;
   background-color: #04819c;
-  min-width: 48%;
-  border-radius: 5px;
-  margin: auto; }
+  width: 49%;
+  height: 100%; }
+
+.fun {
+  margin: auto;
+  width: 90%; }
 
 label {
   text-align: left; }
@@ -30,6 +34,7 @@ h1 {
 .head-detail {
   display: flex;
   margin: 0 2em;
+  margin-bottom: 2em;
   align-items: center;
   color: #e49906; }
 
@@ -60,7 +65,10 @@ code {
   background-color: #d3d9db;
   color: #083944;
   padding-bottom: 2em;
-  margin: 2em; }
+  font-weight: bolder;
+  margin: 0 auto 1em auto;
+  width: 85%;
+  text-align: center; }
 
 .explication-text {
   padding: 1em;

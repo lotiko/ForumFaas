@@ -138,23 +138,29 @@ button {
   align-items: center;
   max-width: 500px;
   background-color: rgba(4, 129, 156, 1);
-  margin: 1em auto;
+  margin: auto;
+  padding: 2em;
   border-radius: 5px;
 }
 .register h2,
 .login h2 {
   max-width: 90%;
+  text-align: center;
 }
 label {
   display: flex;
   flex-direction: column;
-  align-items: left;
+  text-align: center;
   color: rgba(228, 153, 6, 1);
   margin: 0.5em auto;
   max-width: 15em;
 }
 .checkb {
   flex-direction: row;
+}
+.checkb  input{
+  margin-top: 8px;
+  margin-right: 14px;
 }
 ///user account
 //////////////////////////////////////

@@ -11,9 +11,9 @@ router.get("/:name", (req, res, next) => {
 });
 
 
-router.options("/:name", cors(corsOptions), (req, res) => {
-  res.header("Access-Control-Allow-Origin", "*");
-});
+// router.options("/:name", cors(corsOptions), (req, res) => {
+//   res.header("Access-Control-Allow-Origin", "*");
+// });
 router.post("/:name",cors(corsOptions), async (req, res, next) => {
   try {
     // console.log(req);

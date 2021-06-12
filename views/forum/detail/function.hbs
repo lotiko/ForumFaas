@@ -28,7 +28,43 @@
           /></a>
       </div>
     {{/if}}
+    
+  </div>
+</div>
+<div class="block-test">
+  <h1>Test Fonction </h1>
+  {{#if fun.argsArr}}
+  <h2>Définir les argumments comme si c'était du json puis clicker sur Tester</h2>
+    {{#each fun.argsArr}}
+    <label >
+      {{this}}
+      <input type="text" class="input-test" name="{{this}}" placeholder="entrer une valeur">
+      </label>
+    {{/each}}
+  {{/if}}
+<button id="test">Tester</button>
+{{!-- <h2>Résultat:</h2> --}}
+<pre><code class="result hljs language-json">
+
+</code></pre>
+<div class="error error-client" hidden>
+    <p></p>
+  </div>
+</div>
+</div>
+
+{{#if errorMessage}}
+  <div class="error">
+    {{errorMessage}}
+  </div>
+{{/if}}
+{{#if message}}
+  <div class="message">
+    {{message}}
+  </div>
+{{/if}}
     <div class="explication">
+      <h1>Utilisation de {{fun.name}}</h1>
       <div class="explication-text">
         <p>Pour tester cette fonction utilser la boite de test sur la droite.</p>
         <p>Pour l'utiliser de n'importe ou faite une requéte http:</p>
@@ -51,59 +87,6 @@
         {{/if}}
       </div>
     </div>
-  </div>
-  {{!-- <div>
-    {{#if answers}}
-      {{#each answers}}
-        <div>
-          <p>{{{this.body}}}</p>
-        </div>
-      {{/each}}
-    {{/if}}
-
-  </div> --}}
-  {{!-- <div class="postanswer">
-    <form action="/forum/answer?type=answer&from={{function.id}}" method="post">
-
-      <label>
-        <textarea name="body" id="editor"> Votre réponse </textarea>
-      </label>
-      <button class="btnposter">Poster</button>
-    </form>
-  </div> --}}
-</div>
-<div class="block-test">
-  <h1>Test Fonction {{fun.name}}</h1>
-  {{#if fun.argsArr}}
-  <h2>Définir les argumments comme si c'était du json puis clicker sur Tester</h2>
-    {{#each fun.argsArr}}
-    <label >
-      {{this}}
-      <input type="text" class="input-test" name="{{this}}" placeholder="entrer une valeur">
-      </label>
-    {{/each}}
-  {{/if}}
-<button id="test">Tester</button>
-<h2>Résultat:</h2>
-<pre><code class="result hljs language-json">
-
-</code></pre>
-<div class="error error-client" hidden>
-    <p></p>
-  </div>
-</div>
-</div>
-{{#if errorMessage}}
-  <div class="error">
-    {{errorMessage}}
-  </div>
-{{/if}}
-{{#if message}}
-  <div class="message">
-    {{message}}
-  </div>
-{{/if}}
- 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/highlight.min.js"></script>
 <script
   src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/languages/javascript.min.js"
