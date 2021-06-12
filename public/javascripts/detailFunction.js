@@ -18,6 +18,7 @@ $btnTest.onclick = async function () {
     let body = {};
     $inputTest.forEach((input) => {
       body[input.name] = JSON.parse(input.value);
+    console.log(body[input.name]);
     });
     let bodyToPost = JSON.stringify(body);
     console.log(bodyToPost);
