@@ -63,642 +63,6 @@ const answers = answerjson;
   [
     {
       title: "answer",
-      body: "Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: null,
-      body: null,
-      categorie: null,
-      userId: null,
-      fromQuestion: null,
-    },
-    {
-      title: "answer",
-      body: "In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Fusce consequat. Nulla nisl. Nunc nisl.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-  ],
-  [
-    {
-      title: "answer",
-      body: "Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-  ],
-  [
-    {
-      title: "answer",
-      body: '<p>You can use the <strong>in</strong> operator to check if a key exists in an object:</p><pre><code class="language-javascript">var x = 1;\r\nvar y = 3;\r\nvar list = {0:0, 1:0, 2:0};\r\nx in list; //true\r\ny in list; //false\r\n1 in list; //true\r\ny in {3:0, 4:0, 5:0}; //true\r\n</code></pre><p>If you find the object literals too ugly you can combine it with the parameterless function tip:</p><pre><code class="language-javascript">function list()\r\n { var x = {};\r\n   for(var i=0; i &lt; arguments.length; ++i) x[arguments[i]] = 0;\r\n   return x\r\n }\r\n\r\n 5 in list(1,2,3,4,5) //true\r\n</code></pre>',
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-  ],
-  [
-    {
-      title: "answer",
-      body: "Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {},
-    {
-      title: "answer",
-      body: "Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Phasellus in felis. Donec semper sapien a libero. Nam dui.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-  ],
-  [
-    {
-      title: "answer",
-      body: "Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {},
-    {
-      title: "answer",
-      body: "Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-  ],
-  [
-    {
-      title: "answer",
-      body: "Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Fusce consequat. Nulla nisl. Nunc nisl.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-  ],
-  [
-    {},
-    {
-      title: "answer",
-      body: "Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-  ],
-  [
-    {
-      title: "answer",
-      body: "Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Sed ante. Vivamus tortor. Duis mattis egestas metus.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-  ],
-  [
-    {
-      title: "answer",
-      body: "Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Phasellus in felis. Donec semper sapien a libero. Nam dui.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-  ],
-  [
-    {
-      title: "answer",
-      body: "Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-  ],
-  [
-    {
-      title: "answer",
-      body: "In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-  ],
-  [
-    {
-      title: "answer",
-      body: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-    {
-      title: "answer",
-      body: "Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.",
-      categorie: "answer",
-      userId: "",
-      fromQuestion: "",
-    },
-  ],
-  [
-    {
-      title: "answer",
       body: "Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.",
       categorie: "answer",
       userId: "",
@@ -749,6 +113,64 @@ const answers = answerjson;
     {
       title: "answer",
       body: "Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.",
+      categorie: "answer",
+      userId: "",
+      fromQuestion: "",
+    },
+  ],
+  [
+    {
+      title: "answer",
+      body: "Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.",
+      categorie: "answer",
+      userId: "",
+      fromQuestion: "",
+    },
+    {
+      title: "answer",
+      body: "Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus.",
+      categorie: "answer",
+      userId: "",
+      fromQuestion: "",
+    },
+    {
+      title: "answer",
+      body: "Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.",
+      categorie: "answer",
+      userId: "",
+      fromQuestion: "",
+    },
+    {
+      title: "answer",
+      body: "In congue. Etiam justo. Etiam pretium iaculis justo.",
+      categorie: "answer",
+      userId: "",
+      fromQuestion: "",
+    },
+    {
+      title: "answer",
+      body: "Phasellus in felis. Donec semper sapien a libero. Nam dui.",
+      categorie: "answer",
+      userId: "",
+      fromQuestion: "",
+    },
+    {
+      title: "answer",
+      body: "Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.",
+      categorie: "answer",
+      userId: "",
+      fromQuestion: "",
+    },
+    {
+      title: "answer",
+      body: "In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.",
+      categorie: "answer",
+      userId: "",
+      fromQuestion: "",
+    },
+    {
+      title: "answer",
+      body: "Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.",
       categorie: "answer",
       userId: "",
       fromQuestion: "",
@@ -2110,14 +1532,14 @@ async function initdb() {
     });
 
     let postsfromDb = [];
-    async function initposts() {
 
-      posts.map(async (post) => {
+    function initposts() {
+      posts.map((post) => {
         console.log("coucou");
         let randomindex = Math.floor(Math.random() * users.length);
         post.userId = users[randomindex]._id;
 
-        return await PostModel.create(post).then((postfromDb) => {
+        PostModel.create(post).then((postfromDb) => {
           console.log(postfromDb);
           users[randomindex].posts.push(postfromDb._id);
           users[randomindex].save();
@@ -2126,29 +1548,37 @@ async function initdb() {
       });
     }
 
-    await initposts();
-    console.log('avant la fonction',postsfromDb);
-    async function initanswer() {
-      console.log('apres la fonction',postsfromDb);
-      for (let i = 0; i < posts.length; i++) {
-        console.log("avaant le for coucou");
-        const currentpost = postsfromDb[i];
-        console.log("current post", currentpost);
-        for (let j = 0; j < answers[i].length; j++) {
-          let randomuser = Math.floor(Math.random() * users.length);
-          const answer = answers[i][j];
-          console.log("avant", answer);
-          answer.fromQuestion = currentpost._id;
-          answer.userId = users[randomuser]._id;
-          console.log("apres", answer);
-          PostModel.create(answer).then((answerFromdb) => {
-            users[randomuser].posts.push(answerFromdb._id);
-            users[randomuser].save();
-          });
+    console.log("avant la fonction", postsfromDb);
+
+    function initanswer() {
+      PostModel.find({ categorie: "question" }).then((postfromDb) => {
+        console.log("apres la fonction postfromDb", postfromDb);
+        for (let i = 0; i <postfromDb.length; i++) {
+          console.log("avaant le for coucou");
+          const currentpost = postfromDb[i];
+
+          console.log("current post", currentpost._id);
+          for (let j = 0; j <answers[i].length; j++) {
+            let randomuser = Math.floor(Math.random() * users.length);
+            const answer = answers[i][j];
+            console.log("avant", answer);
+            answer.fromQuestion = currentpost._id;
+            answer.userId = users[randomuser]._id;
+            console.log("apres", answer);
+            PostModel.create(answer).then((answerFromdb) => {
+              // users[randomuser].posts.push(answerFromdb._id);
+              // users[randomuser].save();
+            });
+          }
         }
-      }
+      });
     }
-    await initanswer();
+    const promise1 = new Promise((resolve, reject) => {
+      initposts();
+      setTimeout(() => {
+        resolve(initanswer());
+      }, 30000);
+    });
   } catch (error) {
     console.log(error);
   }
