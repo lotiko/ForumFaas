@@ -14,8 +14,8 @@ mongoose.connect(process.env.MONGODB_URI, {
   useUnifiedTopology: true,
 });
 
-// const fonctionsjson=require("../json/datafonctions.json");
-// const fonctions=JSON.parse(fonctionsjson)
+const fonctionsjson=require("../json/datafonctions.json");
+const fonctions=JSON.parse(fonctionsjson)
 
 /*let fonctions = [
   {
