@@ -8,7 +8,7 @@ const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 const salt = bcrypt.genSaltSync(bcryptSalt);
 
-mongoose.connect(process.env.MONGODB_URl, {
+mongoose.connect(process.env.MONGODB_URI, {
   useCreateIndex: true,
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -17,44 +17,14 @@ mongoose.connect(process.env.MONGODB_URl, {
 // const fonctionsjson=require("../json/datafonctions.json");
 // const fonctions=JSON.parse(fonctionsjson)
 
-let fonctions = [
+/*let fonctions = [
   {
     args: ["numbers1"],
     name: "createPhoneNumber1",
     body: " numbers = numbers1.join('');\r\n  return '(' + numbers.substring(0, 3) + ') ' \r\n  + numbers.substring(3, 6) \r\n   + '-' \r\n    + numbers.substring(6)",
     userId: "",
   },
-  {
-    args: ["numbers2"],
-    name: "createPhoneNumber2",
-    body: " numbers = numbers2.join('');\r\n  return '(' + numbers.substring(0, 3) + ') ' \r\n  + numbers.substring(3, 6) \r\n   + '-' \r\n    + numbers.substring(6)",
-    userId: "",
-  },
-  {
-    args: ["numbers"],
-    name: "createPhoneNumber3",
-    body: " numbers = numbers.join('');\r\n  return '(' + numbers.substring(0, 3) + ') ' \r\n  + numbers.substring(3, 6) \r\n   + '-' \r\n    + numbers.substring(6)",
-    userId: "",
-  },
-  {
-    args: ["numbers1"],
-    name: "createPhoneNumber4",
-    body: " numbers = numbers.join('');\r\n  return '(' + numbers.substring(0, 3) + ') ' \r\n  + numbers.substring(3, 6) \r\n   + '-' \r\n    + numbers.substring(6)",
-    userId: "",
-  },
-  {
-    args: ["numbers"],
-    name: "createPhoneNumber5",
-    body: " numbers = numbers.join('');\r\n  return '(' + numbers.substring(0, 3) + ') ' \r\n  + numbers.substring(3, 6) \r\n   + '-' \r\n    + numbers.substring(6)",
-    userId: "",
-  },
-  {
-    args: ["numbers"],
-    name: "createPhoneNumber6",
-    body: " numbers = numbers.join('');\r\n  return '(' + numbers.substring(0, 3) + ') ' \r\n  + numbers.substring(3, 6) \r\n   + '-' \r\n    + numbers.substring(6)",
-    userId: "",
-  },
-];
+];*/
 
 const answerjson = require("../json/dataanswer.json");
 const answers = answerjson;

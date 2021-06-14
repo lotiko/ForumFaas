@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="/stylesheets/styles.css" />
 <div class="function modal">
 
-  <form action="/forum/function?edit=true&id={{function._id}}" method="post">
+  <form class="formfunction" action="/forum/function?edit=true&id={{function._id}}" method="post">
     <label>
       Nombre d'arguments:
       <input type="number" class="nb-args" name="nbargs" min="0" max="5" value="{{#if args }}{{args.length}}{{else}}0{{/if}}" />
