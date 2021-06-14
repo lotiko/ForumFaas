@@ -49,9 +49,9 @@ $btnTest.onclick = async function () {
                 decale--;
                 span.innerHTML = "<br/>" + space + "}";
               }
-              // if (span.textContent === ",") {
-              //   span.innerHTML = ",<br/>" + indent.repeat(decale) + "  ";
-              // }
+              if (span.textContent === ",") {
+                span.innerHTML = ",<br/>" + indent.repeat(decale) + "  ";
+              }
             }
           });
         })
