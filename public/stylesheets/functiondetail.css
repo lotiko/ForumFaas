@@ -83,7 +83,8 @@ code {
 
 pre {
   margin-top: 0.5em;
-  text-align: left; }
+  text-align: left;
+  flex: 1; }
 
 .error-client {
   margin: 1em; }
