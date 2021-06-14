@@ -42,7 +42,7 @@ main {
 header {
   display: flex;
   align-items: center;
-  background-color: rgba(4, 129, 156, 1);
+  background-color: #128faa;
   height: 6em;
   // width: 90%;
   // border-radius: 5px;
@@ -51,7 +51,7 @@ header {
   position: fixed;
   width: 100%;
   z-index: 9;
-  transition: top 0.6s;
+  transition: top 1s;
 }
 
 .logo {
@@ -229,7 +229,7 @@ label {
 .footer {
   padding-bottom: 4em;
   padding-bottom: 0.5em;
-  background-color: rgba(4, 129, 156, 1);
+  background-color: #128faa;
   // border-radius: 50% 50% 0% 0%;
   position: relative;
   bottom: 0;

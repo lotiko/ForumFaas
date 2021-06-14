@@ -4,10 +4,16 @@
   min-width: 70vw;
   justify-content: space-around;
   border-radius: 5px;
-  background-color: #085868;
+  background-color: #04819c;
   padding: 1.5em;
   margin-bottom: 2em;
   flex-direction: column; }
+
+pre {
+  background-color: #9cabbb; }
+
+code {
+  background-color: #9cabbb; }
 
 .question {
   display: flex;
@@ -29,12 +35,11 @@ h4 {
   width: 100%; }
 
 .dialgueBox {
-  margin: 10px;
+  margin: 0px 10px 20px 10px;
   background: #d3d7da;
   position: relative;
   cursor: pointer;
   box-shadow: 10px 5px 10px 2px #413e3e;
-  border-radius: 0px 10px 10px 10px;
   width: 65vw;
   overflow: auto; }
 
@@ -46,8 +51,8 @@ h1 {
   width: 44px;
   transform: rotate(59deg);
   position: absolute;
-  top: 33px;
-  left: 104px;
+  top: 40px;
+  left: 132px;
   background-color: #d3d7da;
   z-index: 8; }
 
@@ -88,13 +93,12 @@ h1 {
 
 .containerAnswer > div:first-child {
   text-align: center;
-  padding: 0.6em 1.1em; }
+  padding: 0.6em 2em; }
 
 .containerAnswer > div > h3 {
   margin: 0px;
   padding: 0px;
-  max-width: 76px;
-  overflow: auto; }
+  max-width: 76px; }
 
 /**
  * @license Copyright (c) 2014-2021, CKSource - Frederico Knabben. All rights reserved.

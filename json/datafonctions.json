@@ -1,0 +1,71 @@
+[
+    {
+        "args": [
+            "numbers1"
+        ],
+        "name": "createPhoneNumber",
+        "body": " numbers = numbers1.join('');\r\n  return '(' + numbers.substring(0, 3) + ') ' \r\n  + numbers.substring(3, 6) \r\n   + '-' \r\n    + numbers.substring(6)",
+        "userId": ""
+    },
+    {
+        "args": [
+            "str"
+        ],
+        "name": "toCamelCase",
+        "body": " if(str===''){\r\n    return ''\r\n  }\r\n  let wordarray =str.split('')\r\n  var tabf=[];\r\n  \r\n  for(let i=0;i<wordarray.length;i++){\r\n    if(wordarray[i]==='-'||wordarray[i]==='_' ){\r\n      wordarray.splice(i,1)\r\n    tabf.push(wordarray[i].toUpperCase());\r\n    }else if(wordarray[i+1]==='-' ){\r\n     tabf.push(wordarray[i])\r\n    } else{\r\n   tabf.push(wordarray[i]) \r\n    }\r\n  }\r\n  return tabf.join('')",
+        "userId": ""
+    },
+    {
+        "args": [
+            "arrayOfnomber"
+        ],
+        "name": "bingo",
+        "body": "let arrayOfLetters = []\r\n  let arrayOfBingho = []\r\n  for (let i = 0; i <= 25; i++) {\r\n    arrayOfLetters.push(String.fromCharCode(65 + i))\r\n  }\r\n  arrayOfnomber.forEach(element => {\r\n    arrayOfBingho.push(arrayOfLetters[element - 1])\r\n  });\r\n  console.log(arrayOfBingho)\r\n  if (arrayOfBingho.indexOf('B') >= 1 && arrayOfBingho.indexOf('I') >= 1 && arrayOfBingho.indexOf('N') >= 1 && arrayOfBingho.indexOf('G') >= 1 && arrayOfBingho.indexOf('O') >= 1) {\r\n    return 'WIN'\r\n  } else {\r\n    return 'lose'\r\n  }\r\n",
+        "userId": ""
+    },
+    {
+        "args": [
+            "number"
+        ],
+        "name": "descendingOrder",
+        "body": " let tab=number.toString().split('')\r\n   tab.sort().reverse()\r\n   return Number(tab.join(''))",
+        "userId": ""
+    },
+    {
+        "args": [
+            "ppg",
+            "mpg"
+        ],
+        "name": "pointsPer48avreage",
+        "body": "//ppg:Point per game  mpg:minute per game\r\nif (ppg == 0 || mpg == 0) return 0;\r\n  return Number((ppg / mpg * 48).toFixed(1));",
+        "userId": ""
+    },
+    {
+        "args": [
+            "val1",
+            "val2"
+        ],
+        "name": "addBinary",
+        "body": "//val1 :number  val2: number  \r\nvar sum = val1 + val2,\r\n  \t\tbinary = '';\r\n\r\n  while ( sum > 0 ) {\r\n    binary = ( sum % 2 ) + binary;\r\n    sum = Math.floor( sum / 2 );\r\n  }\r\n\r\n  return binary;",
+        "userId": ""
+    },
+    {
+        "args": [
+            "nCols",
+            "nRows",
+            "col",
+            "row"
+        ],
+        "name": "seatsInTheater",
+        "body": "  //nCols: number of column  nRow=number of column\r\n  /*Given the total number of rows and columns\r\n  in the theater (nRows and nCols, respectively),\r\n  and the row and column you're sitting in,\r\n  return the number of people who sit strictly\r\n  behind you and in your column or to the left,\r\n  assuming all seats are occupied.*/\r\n return  (nCols-col+1)*(nRows-row)\r\n ",
+        "userId": ""
+    },
+    {
+        "args": [
+            "games"
+        ],
+        "name": "points",
+        "body": " /*Our football team finished the championship.\r\n The result of each match look like \"x:y\".\r\n Results of all matches are recorded in the collection.\r\n/////For example: [\"3:1\", \"2:2\", \"0:1\", ...]//////\r\nWrite a function that takes such collection and counts\r\nthe points of our team in the championship.\r\nRules for counting points for each match*/\r\n  return games.reduce((acc,game)=>{\r\n    const [x,y]=game.split(':');\r\n    const points= x > y ? 3:x === y ? 1:0;\r\n    acc += points;\r\n    return acc;\r\n    },0);",
+        "userId": ""
+    }
+]

@@ -14,47 +14,17 @@ mongoose.connect(process.env.MONGODB_URI, {
   useUnifiedTopology: true,
 });
 
-// const fonctionsjson=require("../json/datafonctions.json");
-// const fonctions=JSON.parse(fonctionsjson)
+const fonctionsjson=require("../json/datafonctions.json");
+const fonctions=JSON.parse(fonctionsjson)
 
-let fonctions = [
+/*let fonctions = [
   {
     args: ["numbers1"],
     name: "createPhoneNumber1",
     body: " numbers = numbers1.join('');\r\n  return '(' + numbers.substring(0, 3) + ') ' \r\n  + numbers.substring(3, 6) \r\n   + '-' \r\n    + numbers.substring(6)",
     userId: "",
   },
-  {
-    args: ["numbers2"],
-    name: "createPhoneNumber2",
-    body: " numbers = numbers2.join('');\r\n  return '(' + numbers.substring(0, 3) + ') ' \r\n  + numbers.substring(3, 6) \r\n   + '-' \r\n    + numbers.substring(6)",
-    userId: "",
-  },
-  {
-    args: ["numbers"],
-    name: "createPhoneNumber3",
-    body: " numbers = numbers.join('');\r\n  return '(' + numbers.substring(0, 3) + ') ' \r\n  + numbers.substring(3, 6) \r\n   + '-' \r\n    + numbers.substring(6)",
-    userId: "",
-  },
-  {
-    args: ["numbers1"],
-    name: "createPhoneNumber4",
-    body: " numbers = numbers.join('');\r\n  return '(' + numbers.substring(0, 3) + ') ' \r\n  + numbers.substring(3, 6) \r\n   + '-' \r\n    + numbers.substring(6)",
-    userId: "",
-  },
-  {
-    args: ["numbers"],
-    name: "createPhoneNumber5",
-    body: " numbers = numbers.join('');\r\n  return '(' + numbers.substring(0, 3) + ') ' \r\n  + numbers.substring(3, 6) \r\n   + '-' \r\n    + numbers.substring(6)",
-    userId: "",
-  },
-  {
-    args: ["numbers"],
-    name: "createPhoneNumber6",
-    body: " numbers = numbers.join('');\r\n  return '(' + numbers.substring(0, 3) + ') ' \r\n  + numbers.substring(3, 6) \r\n   + '-' \r\n    + numbers.substring(6)",
-    userId: "",
-  },
-];
+];*/
 
 const answerjson = require("../json/dataanswer.json");
 const answers = answerjson;
@@ -1552,19 +1522,15 @@ async function initdb() {
 
     function initanswer() {
       PostModel.find({ categorie: "question" }).then((postfromDb) => {
-        console.log("apres la fonction postfromDb", postfromDb);
-        for (let i = 0; i <postfromDb.length; i++) {
-          console.log("avaant le for coucou");
+        for (let i = 0; i < postfromDb.length; i++) {
           const currentpost = postfromDb[i];
-
           console.log("current post", currentpost._id);
-          for (let j = 0; j <answers[i].length; j++) {
+          for (let j = 0; j < answers[i].length; j++) {
             let randomuser = Math.floor(Math.random() * users.length);
             const answer = answers[i][j];
-            console.log("avant", answer);
             answer.fromQuestion = currentpost._id;
             answer.userId = users[randomuser]._id;
-            console.log("apres", answer);
+
             PostModel.create(answer).then((answerFromdb) => {
               // users[randomuser].posts.push(answerFromdb._id);
               // users[randomuser].save();
@@ -1577,7 +1543,7 @@ async function initdb() {
       initposts();
       setTimeout(() => {
         resolve(initanswer());
-      }, 30000);
+      }, 3000);
     });
   } catch (error) {
     console.log(error);
