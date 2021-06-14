@@ -112,8 +112,8 @@ button {
   color: #2e2b25;
   font-size: 1.5em;
   border: 2px solid #b5b7bb;
-  margin: auto;
-  min-height: 4em;
+  margin: 1em auto;
+  padding: 1em 0.5em;
   max-width: 90%; }
 
 .message h1 {

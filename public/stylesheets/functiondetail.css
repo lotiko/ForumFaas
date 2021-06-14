@@ -13,7 +13,8 @@
 
 .fun {
   margin: auto;
-  width: 90%; }
+  width: 90%;
+  padding-bottom: 1em; }
 
 label {
   text-align: left; }
@@ -23,6 +24,9 @@ h2 {
   text-align: center; }
 
 .block-test {
+  margin-top: 0; }
+
+.block-test h2 {
   margin-top: 0; }
 
 .block-test button {
@@ -80,5 +84,8 @@ code {
 pre {
   margin-top: 0.5em;
   text-align: left; }
+
+.error-client {
+  margin: 1em; }
 
 /*# sourceMappingURL=functiondetail.css.map */
