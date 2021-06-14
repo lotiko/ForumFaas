@@ -42,8 +42,9 @@ function ${data.name}(${args}) {
 module.exports = ${data.name};`;
       fs.writeFileSync(path, fileText, { flag: "w+" });
       const fun = require(`../tmpfolder/${data.name}.js`);
+      let datatoret;
       try {
-        let datatoret = fun.apply(null, [...valuesArgs, res]);
+        datatoret = fun.apply(null, [...valuesArgs, res]);
       } catch (error) {
         res.send({ status: "error", name: error.name, message: error.message });
         return;

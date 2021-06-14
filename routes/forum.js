@@ -120,6 +120,7 @@ router.get("/:catname", async (req, res, next) => {
       if (!req.query.data || req.query.data === "users") {
         // execute query with page and limit values
         const users = await User.find()
+          .sort({ createdAt: -1 })
           .select("-password")
           .limit(limit * 1)
           .skip((page - 1) * limit)
@@ -374,13 +375,24 @@ router.get("/:catname/delete/:id", routeGuard, (req, res, next) => {
           );
           return;
         }
+        // on supprime la function 
         let oldname = funFromDb.name;
+        let idfun = funFromDb._id;
+        let userId = funFromDb.userId;
         Function.deleteOne(funFromDb, (err) => next(err));
         res.render("home", {
           isLog: !!req.user,
           title: "Home",
           message: `Votre fonction ${oldname} a bien été suprimé.`,
         });
+        //met a jour l'user en conséquences
+        User.findById(userId)
+          .then((userFromDb) => {
+            let indexFun = userFromDb.functions.indexOf(idfun);
+            userFromDb.functions.splice(indexFun, 1);
+            userFromDb.save();
+          })
+          .catch((err) => next(err));
         return;
       })
       .catch((err) => next(err));

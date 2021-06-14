@@ -2,7 +2,6 @@
 .functions,
 .answers {
   background-color: #04819c;
-  border-radius: 5px;
   text-align: center;
   min-height: 400px;
   position: relative; }
@@ -15,7 +14,7 @@
 
 .presentations,
 .functions {
-  min-width: 49%; }
+  min-width: 50%; }
 
 .answers {
   min-width: 90%;
@@ -63,7 +62,6 @@
   flex-direction: column;
   background-color: #e6e9ee;
   color: #2e2b25;
-  border-radius: 5px;
   border: 2px solid #e49906;
   margin: 1em 2em; }
 
@@ -142,6 +140,10 @@ nav {
   background-color: #a3b1c2; }
 
 button :first-child {
+  margin: auto; }
+
+.description p {
+  max-width: 75%;
   margin: auto; }
 
 /*# sourceMappingURL=presentations.css.map */

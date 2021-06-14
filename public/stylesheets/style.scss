@@ -69,9 +69,9 @@ nav .btnf {
 nav a {
   margin-left: 2em;
 }
-header button, .new {
+header button,
+.new {
   box-shadow: 3px 6px 21px 0px rgba(46, 43, 37, 1);
-  
 }
 button {
   background-color: rgb(230, 233, 238);
@@ -93,18 +93,28 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   background-image: url("/images/bubble.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position-y: 5vh;
   margin: auto;
-  min-height: 300px;
-  min-width: 390px;
+  height: 300px;
+  width: 390px;
   color: rgba(228, 153, 6, 1);
 }
+.content-bubble {
+  display: flex;
+  align-items: center;
+  margin: 15%auto;
+  height: 100%;
+  flex-direction: column;
+}
+.content-bubble > img {
+  max-width: 2.5em;
+  max-height: 2.5em;
+}
 .bubble button {
-  margin-top: 0.5em;
+  margin-top: 1em;
 }
 .message {
   display: flex;
@@ -114,15 +124,16 @@ button {
   color: rgb(46, 43, 37);
   font-size: 1.5em;
   border: 2px solid rgb(181, 183, 187);
-  margin: 4em;
+  margin: auto;
   min-height: 4em;
+  max-width: 90%;
 }
 .message h1 {
   margin-bottom: 0;
 }
 .message p {
   text-align: center;
-  margin: 0 2em 1em 2em ;
+  margin: 0 2em 1em 2em;
 }
 /////////////////////
 
@@ -138,14 +149,23 @@ button {
   align-items: center;
   max-width: 500px;
   background-color: rgba(4, 129, 156, 1);
-  margin: auto;
-  padding: 2em;
+  margin:2em auto 2em auto;
+  padding: 1.5em;
   border-radius: 5px;
 }
 .register h2,
 .login h2 {
   max-width: 90%;
   text-align: center;
+  margin-bottom: 0;
+}
+.register input,
+.login input {
+  font-size: 1em;
+}
+form.register {
+  margin-top: 0;
+  padding-top: 0;
 }
 label {
   display: flex;
@@ -158,7 +178,7 @@ label {
 .checkb {
   flex-direction: row;
 }
-.checkb  input{
+.checkb input {
   margin-top: 8px;
   margin-right: 14px;
 }
@@ -220,7 +240,6 @@ label {
   margin-right: 1em;
   width: max-content;
   height: max-content;
-  
 }
 /////////////////////////////////////
 

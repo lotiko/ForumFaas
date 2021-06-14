@@ -2,7 +2,6 @@
 .functions,
 .answers{
   background-color: rgba(4, 129, 156, 1);
-  border-radius: 5px;
   text-align: center;
   // margin: 1em;
   min-height: 400px;
@@ -16,7 +15,7 @@
 }
 .presentations,
 .functions {
-  min-width: 49%;
+  min-width: 50%;
 }
 .answers{
   min-width: 90%;
@@ -64,7 +63,6 @@
   flex-direction: column;
   background-color: rgb(230, 233, 238);
   color: rgb(46, 43, 37);
-  border-radius: 5px;
   border: 2px solid rgba(228, 153, 6, 1);
   margin: 1em 2em;
 }
@@ -151,3 +149,7 @@ button :first-child {
   margin: auto;
 }
 
+.description p {
+  max-width: 75%;
+  margin: auto;
+}
