@@ -5,6 +5,7 @@ const $argInputs = document.querySelector(".args-input");
 $nbArgs.onchange = () => {
   // on vide les inputs et on cache l'input de base qui va étre cloner
   $argInputs.innerHTML = "";
+  $arg.value = "";
   $arg.hidden = true;
   // si pas d'argument fin process
   let nbInput = Number($nbArgs.value);

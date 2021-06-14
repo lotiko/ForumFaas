@@ -186,7 +186,7 @@ router.post("/:catname", (req, res, next) => {
       res.render("forum/function", {
         errorMessage: "Le nom de fonction et le corps de fonction sont requis.",
         style: "function",
-        module: "function",
+        script: "function",
       });
       return;
     }
@@ -201,9 +201,11 @@ router.post("/:catname", (req, res, next) => {
             );
             return;
           }
+          
           funFromDb.name = name;
           funFromDb.args = args;
           funFromDb.body = body;
+
           funFromDb
             .save()
             .then((savedFun) => {
@@ -249,7 +251,7 @@ router.post("/:catname", (req, res, next) => {
         isLog: true,
         errorMessage: "Veuillez remplir le titre",
         style: "answer",
-        module: "answer",
+        script: "answer",
       });
       return;
     }
@@ -258,7 +260,7 @@ router.post("/:catname", (req, res, next) => {
       res.render("forum/new/answer", {
         errorMessage: "Votre question est tres longue",
         style: "answer",
-        module: "answer",
+        script: "answer",
       });
       return;
     }
@@ -302,7 +304,7 @@ router.get("/:catname/new", (req, res, next) => {
       isLog: true,
       title: "Function",
       style: "function",
-      module: "function",
+      script: "function",
     });
     return;
   }
@@ -316,7 +318,7 @@ router.get("/:catname/new", (req, res, next) => {
         isLog: true,
         title: "Question",
         style: "answer",
-        module: "answer",
+        script: "answer",
       });
       return;
     }
@@ -353,7 +355,7 @@ router.get("/:catname/edit/:id", routeGuard, (req, res, next) => {
           isLog: !!req.user,
           title: "EditFun",
           style: "function",
-          module: "function",
+          script: "function",
           function: funFromDb,
           args: args,
         });
@@ -425,10 +427,11 @@ router.get("/:catname/:id", (req, res, next) => {
           funFromDb.argsArr = funFromDb.args;
           funFromDb.args = funFromDb.args.reduce((acc, val) => `${acc},${val}`);
         } else if (funFromDb.args.length > 0) {
-          funFromDb.argsArr = funFromDb.args;
-          funFromDb.args = funFromDb.args[0];
-        } else {
-          funFromDb.args = "";
+          if (funFromDb.args[0] === undefined || funFromDb.args[0] === "") { funFromDb.args = ""; funFromDb.argsArr = false; }
+          else {
+            funFromDb.argsArr = funFromDb.args;
+            funFromDb.args = funFromDb.args[0];
+          }
         }
         console.log("coucou", funFromDb);
         let textFun = `

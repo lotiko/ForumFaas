@@ -3,8 +3,6 @@ const router = express.Router();
 const Fun = require("../models/function");
 const fs = require("fs");
 const cors = require("cors");
-const { throws } = require("assert");
-const { Error } = require("mongoose");
 const corsOptions = { origin: "*" };
 /* GET home page */
 router.get("/:name", (req, res, next) => {
@@ -12,11 +10,8 @@ router.get("/:name", (req, res, next) => {
   res.json({ error: "only post request are allowed on this route" });
 });
 
-// router.options("/:name", cors(corsOptions), (req, res) => {
-//   res.header("Access-Control-Allow-Origin", "*");
-// });
 router.post("/:name", cors(corsOptions), async (req, res, next) => {
-  // console.log(req);
+  // on va chercher la function en db on crée un modules avec que l'on supprime aprés
   Fun.find({ name: req.params.name })
     .then((ret) => {
       console.log("body", req.body);
@@ -40,11 +35,15 @@ function ${data.name}(${args}) {
 }
 
 module.exports = ${data.name};`;
+      console.log(fileText);
       fs.writeFileSync(path, fileText, { flag: "w+" });
+      // on doit enlever le module du cache en cas d'edit de la fonction sinon les update ne sont pas pris en compte
+      delete require.cache[require.resolve(`../tmpfolder/${data.name}.js`)];
       const fun = require(`../tmpfolder/${data.name}.js`);
       let datatoret;
+      // si une erreur a lieu durant l'éxécution on renvoi l'erreur.
       try {
-        datatoret = fun.apply(null, [...valuesArgs, res]);
+        datatoret = fun.apply(this, [...valuesArgs, res]);
       } catch (error) {
         res.send({ status: "error", name: error.name, message: error.message });
         return;
@@ -52,10 +51,13 @@ module.exports = ${data.name};`;
       fs.unlinkSync(path, (err) => {
         if (err) console.log(err);
       });
+      console.log(datatoret);
       res.header("Access-Control-Allow-Origin", "*");
       res.json({ status: "ok", data: datatoret });
     })
-    .catch((err) => { console.log(err)});
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 module.exports = router;
